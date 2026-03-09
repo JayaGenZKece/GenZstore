@@ -1,4 +1,4 @@
-# railway.json — konfigurasi deploy backend ke Railway
+cat > backend/railway.json << 'EOF'
 {
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
@@ -10,3 +10,4 @@
     "restartPolicyMaxRetries": 3
   }
 }
+EOF
