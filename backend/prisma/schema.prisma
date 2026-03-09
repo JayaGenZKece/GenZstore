@@ -1,0 +1,140 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────────────────
+// USER
+// ─────────────────────────────────────
+model User {
+  id         String   @id @default(cuid())
+  email      String   @unique
+  username   String   @unique
+  password   String
+  role       Role     @default(BUYER)
+  avatar     String?
+  whatsapp   String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  accounts   Account[]   // akun yang diposting user ini (seller)
+  orders     Order[]     // order sebagai buyer
+  wishlist   Wishlist[]
+  reviews    Review[]
+}
+
+enum Role {
+  BUYER
+  SELLER
+  ADMIN
+}
+
+// ─────────────────────────────────────
+// ACCOUNT (produk)
+// ─────────────────────────────────────
+model Account {
+  id            String        @id @default(cuid())
+  code          String        @unique  // e.g. "Code-1121"
+  title         String        @default("Akun Mobile Legends")
+  description   String?
+  priceOriginal Int           // harga coret
+  priceSell     Int           // harga jual
+  status        AccountStatus @default(AVAILABLE)
+  images        String[]      // array URL gambar
+  heroCount     Int?
+  skinCount     Int?
+  emblemLevel   Int?
+  winRate       Float?
+  rankTier      String?       // e.g. "Mythic", "Legend"
+  isFlashSale   Boolean       @default(false)
+  views         Int           @default(0)
+  sellerId      String
+  seller        User          @relation(fields: [sellerId], references: [id])
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  orders    Order[]
+  wishlist  Wishlist[]
+  reviews   Review[]
+}
+
+enum AccountStatus {
+  AVAILABLE
+  PENDING     // sedang dalam proses transaksi
+  SOLD
+}
+
+// ─────────────────────────────────────
+// ORDER
+// ─────────────────────────────────────
+model Order {
+  id          String      @id @default(cuid())
+  accountId   String
+  account     Account     @relation(fields: [accountId], references: [id])
+  buyerId     String
+  buyer       User        @relation(fields: [buyerId], references: [id])
+  amount      Int         // harga saat transaksi
+  status      OrderStatus @default(PENDING)
+  paymentUrl  String?     // URL midtrans/xendit
+  paymentId   String?
+  notes       String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  PROCESSING
+  COMPLETED
+  CANCELLED
+  REFUNDED
+}
+
+// ─────────────────────────────────────
+// WISHLIST
+// ─────────────────────────────────────
+model Wishlist {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  accountId String
+  account   Account  @relation(fields: [accountId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([userId, accountId])
+}
+
+// ─────────────────────────────────────
+// REVIEW
+// ─────────────────────────────────────
+model Review {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  accountId String
+  account   Account  @relation(fields: [accountId], references: [id])
+  rating    Int      // 1-5
+  comment   String?
+  createdAt DateTime @default(now())
+
+  @@unique([userId, accountId])
+}
+
+// ─────────────────────────────────────
+// BANNER
+// ─────────────────────────────────────
+model Banner {
+  id        String   @id @default(cuid())
+  imageUrl  String
+  linkUrl   String?
+  title     String?
+  active    Boolean  @default(true)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+}
