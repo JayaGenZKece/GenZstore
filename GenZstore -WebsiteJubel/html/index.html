@@ -1,0 +1,1371 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GenZstore — Jual Beli Akun Mobile Legends Terpercaya</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- TOAST CONTAINER -->
+    <div id="toast-container"></div>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+      <a class="nav-logo" onclick="showPage('home')">GenZstore</a>
+      <div class="nav-links">
+        <a onclick="showPage('home')" class="active mobile" id="nav-home"
+          >Beranda</a
+        >
+        <a onclick="showPage('topup')" id="nav-topup">Top Up</a>
+        <a onclick="requireAuth(() => showPage('post'))" id="nav-post"
+          >Post Akun</a
+        >
+        <a onclick="requireAuth(() => showPage('notif'))" id="nav-notif"
+          >🔔
+          <span
+            id="notif-badge"
+            style="
+              display: none;
+              background: var(--red);
+              color: #fff;
+              border-radius: 50%;
+              width: 16px;
+              height: 16px;
+              font-size: 0.6rem;
+              display: none;
+              align-items: center;
+              justify-content: center;
+              font-weight: 700;
+            "
+          ></span>
+        </a>
+      </div>
+      <div class="nav-right">
+        <button
+          class="nav-cart"
+          onclick="requireAuth(() => showPage('cart'))"
+          id="cart-btn"
+        >
+          🛒
+          <span id="cart-count" class="cart-count" style="display: none"
+            >0</span
+          >
+        </button>
+        <div id="auth-btns">
+          <button
+            class="btn btn-outline"
+            onclick="
+              showPage('login');
+              switchAuth('login', document.getElementById('atab-login'));
+            "
+          >
+            Login
+          </button>
+          <button
+            class="btn btn-gold"
+            onclick="
+              showPage('login');
+              switchAuth('register', document.getElementById('atab-reg'));
+            "
+          >
+            Daftar
+          </button>
+        </div>
+        <div id="user-menu" style="display: none">
+          <div class="dropdown">
+            <button
+              class="avatar-btn"
+              onclick="toggleDropdown()"
+              id="avatar-btn"
+            >
+              U
+            </button>
+            <div class="dropdown-menu" id="user-dropdown">
+              <button
+                class="dropdown-item"
+                onclick="
+                  showPage('profile');
+                  closeDropdown();
+                "
+              >
+                👤 Profil Saya
+              </button>
+              <button
+                class="dropdown-item"
+                onclick="
+                  requireAuth(() => showPage('cart'));
+                  closeDropdown();
+                "
+              >
+                🛒 Keranjang
+              </button>
+              <button
+                class="dropdown-item"
+                onclick="
+                  requireAuth(() => showPage('notif'));
+                  closeDropdown();
+                "
+              >
+                🔔 Notifikasi
+              </button>
+              <div class="dropdown-divider"></div>
+              <button class="dropdown-item red" onclick="logout()">
+                🚪 Keluar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ===== HOME PAGE ===== -->
+    <div class="page active" id="page-home">
+      <!-- BANNER -->
+      <div class="banner-bg">
+        <div class="banner-wrap">
+          <div class="banner-slider">
+            <div id="banner-slider-inner"></div>
+            <div class="slide-dots" id="banner-dots"></div>
+          </div>
+        </div>
+      </div>
+      <!-- end banner-bg -->
+      <div class="trust-bar">
+        <div class="trust-ticker-wrap">
+          <div class="trust-ticker-track" id="trust-track">
+            <!-- Set 1 -->
+            <div class="trust-item c-gold">
+              <div class="trust-icon-box">🛡️</div>
+              <div>
+                <div class="trust-label">Transaksi Aman</div>
+                <div class="trust-sub">Escrow System</div>
+              </div>
+            </div>
+            <div class="trust-item c-red">
+              <div class="trust-icon-box">⚡</div>
+              <div>
+                <div class="trust-label">Proses Kilat</div>
+                <div class="trust-sub">Maks. 24 Jam</div>
+              </div>
+            </div>
+            <div class="trust-item c-blue">
+              <div class="trust-icon-box">💬</div>
+              <div>
+                <div class="trust-label">CS 24/7</div>
+                <div class="trust-sub">Siap Membantu</div>
+              </div>
+            </div>
+            <div class="trust-item c-green">
+              <div class="trust-icon-box">🏆</div>
+              <div>
+                <div class="trust-label">1.000+ Transaksi</div>
+                <div class="trust-sub">Berhasil</div>
+              </div>
+            </div>
+            <div class="trust-item c-purple">
+              <div class="trust-icon-box">✅</div>
+              <div>
+                <div class="trust-label">Akun Verified</div>
+                <div class="trust-sub">Garansi Asli</div>
+              </div>
+            </div>
+            <div class="trust-item c-gold">
+              <div class="trust-icon-box">💎</div>
+              <div>
+                <div class="trust-label">Top Up Murah</div>
+                <div class="trust-sub">Harga Terbaik</div>
+              </div>
+            </div>
+            <div class="trust-item c-red">
+              <div class="trust-icon-box">🔒</div>
+              <div>
+                <div class="trust-label">Data Aman</div>
+                <div class="trust-sub">Enkripsi SSL</div>
+              </div>
+            </div>
+            <div class="trust-item c-blue">
+              <div class="trust-icon-box">🎮</div>
+              <div>
+                <div class="trust-label">ML Specialist</div>
+                <div class="trust-sub">Sejak 2022</div>
+              </div>
+            </div>
+            <!-- Set 2 (duplikat untuk seamless loop) -->
+            <div class="trust-item c-gold">
+              <div class="trust-icon-box">🛡️</div>
+              <div>
+                <div class="trust-label">Transaksi Aman</div>
+                <div class="trust-sub">Escrow System</div>
+              </div>
+            </div>
+            <div class="trust-item c-red">
+              <div class="trust-icon-box">⚡</div>
+              <div>
+                <div class="trust-label">Proses Kilat</div>
+                <div class="trust-sub">Maks. 24 Jam</div>
+              </div>
+            </div>
+            <div class="trust-item c-blue">
+              <div class="trust-icon-box">💬</div>
+              <div>
+                <div class="trust-label">CS 24/7</div>
+                <div class="trust-sub">Siap Membantu</div>
+              </div>
+            </div>
+            <div class="trust-item c-green">
+              <div class="trust-icon-box">🏆</div>
+              <div>
+                <div class="trust-label">1.000+ Transaksi</div>
+                <div class="trust-sub">Berhasil</div>
+              </div>
+            </div>
+            <div class="trust-item c-purple">
+              <div class="trust-icon-box">✅</div>
+              <div>
+                <div class="trust-label">Akun Verified</div>
+                <div class="trust-sub">Garansi Asli</div>
+              </div>
+            </div>
+            <div class="trust-item c-gold">
+              <div class="trust-icon-box">💎</div>
+              <div>
+                <div class="trust-label">Top Up Murah</div>
+                <div class="trust-sub">Harga Terbaik</div>
+              </div>
+            </div>
+            <div class="trust-item c-red">
+              <div class="trust-icon-box">🔒</div>
+              <div>
+                <div class="trust-label">Data Aman</div>
+                <div class="trust-sub">Enkripsi SSL</div>
+              </div>
+            </div>
+            <div class="trust-item c-blue">
+              <div class="trust-icon-box">🎮</div>
+              <div>
+                <div class="trust-label">ML Specialist</div>
+                <div class="trust-sub">Sejak 2022</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FLASH SALE -->
+      <div class="section" id="sec-flash">
+        <div class="sec-head">
+          <div class="sec-title">
+            ⚡ FLASH SALE <span class="badge-live">LIVE</span>
+          </div>
+          <div class="countdown">
+            <div class="cd-box">
+              <div class="cd-num" id="cd-h">05</div>
+              <div class="cd-lbl">Jam</div>
+            </div>
+            <div class="cd-box">
+              <div class="cd-num" id="cd-m">59</div>
+              <div class="cd-lbl">Mnt</div>
+            </div>
+            <div class="cd-box">
+              <div class="cd-num" id="cd-s">00</div>
+              <div class="cd-lbl">Dtk</div>
+            </div>
+          </div>
+        </div>
+        <div class="flash-scroll" id="flash-scroll"></div>
+      </div>
+
+      <!-- POPULAR -->
+      <div class="section">
+        <div class="sec-head"><div class="sec-title">🏆 AKUN POPULER</div></div>
+        <p style="color: var(--muted); font-size: 0.83rem; margin-bottom: 16px">
+          Daftar akun paling populer dan banyak diminati!
+        </p>
+        <div class="pop-grid" id="pop-grid"></div>
+      </div>
+
+      <!-- ALL PRODUCTS -->
+      <div class="section" id="sec-produk">
+        <div class="sec-head"><div class="sec-title">🎮 SEMUA AKUN</div></div>
+        <div class="filter-bar">
+          <div class="tabs">
+            <button class="tab active" onclick="setFilter('semua', this)">
+              Semua
+            </button>
+            <button class="tab" onclick="setFilter('tersedia', this)">
+              Tersedia
+            </button>
+            <button class="tab" onclick="setFilter('terjual', this)">
+              Terjual
+            </button>
+          </div>
+          <div class="fdiv"></div>
+          <select class="fsel" id="sort-sel" onchange="renderGrid()">
+            <option value="terbaru">Terbaru</option>
+            <option value="termurah">Harga Termurah</option>
+            <option value="termahal">Harga Termahal</option>
+          </select>
+          <select class="fsel" id="price-sel" onchange="renderGrid()">
+            <option value="all">Semua Harga</option>
+            <option value="low">0 – 200rb</option>
+            <option value="mid">200rb – 500rb</option>
+            <option value="high">500rb+</option>
+          </select>
+          <div class="search-wrap">
+            <span class="si">🔍</span>
+            <input
+              type="text"
+              id="search-inp"
+              placeholder="Cari kode akun..."
+              oninput="renderGrid()"
+            />
+          </div>
+        </div>
+        <div class="prod-grid" id="prod-grid"></div>
+        <div class="no-results" id="no-results" style="display: none">
+          <div class="nr-icon">😕</div>
+          <p>Tidak ada akun yang ditemukan</p>
+        </div>
+        <div class="load-more-wrap">
+          <button class="btn btn-ghost" id="load-more-btn" onclick="loadMore()">
+            Muat Lebih Banyak ↓
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== LOGIN PAGE ===== -->
+    <div class="page" id="page-login">
+      <div class="auth-wrap">
+        <div class="auth-card">
+          <div class="auth-logo">GenZstore</div>
+          <p class="auth-sub">Platform Jual Beli Akun ML Terpercaya</p>
+          <div class="auth-tabs">
+            <button
+              class="auth-tab active"
+              onclick="switchAuth('login', this)"
+              id="atab-login"
+            >
+              Masuk
+            </button>
+            <button
+              class="auth-tab"
+              onclick="switchAuth('register', this)"
+              id="atab-reg"
+            >
+              Daftar
+            </button>
+          </div>
+          <!-- LOGIN FORM -->
+          <div id="auth-login">
+            <div class="form-group">
+              <label>Email</label>
+              <input
+                type="email"
+                id="login-email"
+                placeholder="email@kamu.com"
+              />
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                id="login-pass"
+                placeholder="••••••••"
+                onkeydown="if (event.key === 'Enter') doLogin();"
+              />
+            </div>
+            <button
+              class="btn btn-gold"
+              style="
+                width: 100%;
+                justify-content: center;
+                padding: 13px;
+                font-size: 0.95rem;
+              "
+              onclick="doLogin()"
+            >
+              Masuk Sekarang
+            </button>
+            <div class="social-divider">atau</div>
+            <button class="social-btn" onclick="demoLogin()">
+              🎮 Masuk sebagai Demo User
+            </button>
+            <p class="auth-msg" style="margin-top: 12px">
+              <a onclick="showPage('home')">← Kembali ke Beranda</a>
+            </p>
+          </div>
+          <!-- REGISTER FORM -->
+          <div id="auth-register" style="display: none">
+            <div class="form-group">
+              <label>Nama Lengkap</label>
+              <input type="text" id="reg-name" placeholder="Nama kamu" />
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" id="reg-email" placeholder="email@kamu.com" />
+            </div>
+            <div class="form-group">
+              <label>No. WhatsApp</label>
+              <input type="tel" id="reg-wa" placeholder="08xxxxxxxxxx" />
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                id="reg-pass"
+                placeholder="Min. 6 karakter"
+              />
+            </div>
+            <button
+              class="btn btn-gold"
+              style="
+                width: 100%;
+                justify-content: center;
+                padding: 13px;
+                font-size: 0.95rem;
+              "
+              onclick="doRegister()"
+            >
+              Buat Akun
+            </button>
+            <p class="auth-msg" style="margin-top: 12px">
+              <a onclick="showPage('home')">← Kembali ke Beranda</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CART PAGE ===== -->
+    <div class="page" id="page-cart">
+      <div class="cart-wrap">
+        <h1>🛒 Keranjang Belanja</h1>
+        <div id="cart-body"></div>
+      </div>
+    </div>
+
+    <!-- ===== POST AKUN PAGE ===== -->
+    <div class="page" id="page-post">
+      <div class="post-wrap">
+        <h1>➕ Post Akun Kamu</h1>
+        <p class="sub">Jual akun Mobile Legends kamu dengan mudah dan aman!</p>
+        <div class="form-group">
+          <label>Nama / Judul Akun</label>
+          <input
+            type="text"
+            id="post-title"
+            placeholder="Cth: Akun ML Season 30, Full Hero"
+          />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Harga Jual (Rp)</label>
+            <input
+              type="number"
+              id="post-price"
+              placeholder="250000"
+              oninput="updatePricePreview()"
+            />
+            <p class="form-hint">
+              Komisi platform 5% akan dipotong saat terjual
+            </p>
+          </div>
+          <div class="form-group">
+            <label>Harga Coret (Opsional)</label>
+            <input
+              type="number"
+              id="post-orig"
+              placeholder="300000"
+              oninput="updatePricePreview()"
+            />
+          </div>
+        </div>
+        <div id="price-preview-wrap" style="display: none">
+          <div class="price-preview">
+            <div>
+              <div class="pp-lbl">Harga Tampil</div>
+              <div class="pp-val" id="pp-val">-</div>
+            </div>
+            <div>
+              <div class="pp-lbl">Kamu Terima</div>
+              <div class="pp-val" id="pp-net">-</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Rank Tertinggi</label>
+            <select id="post-rank">
+              <option value="">-- Pilih Rank --</option>
+              <option>Warrior</option>
+              <option>Elite</option>
+              <option>Master</option>
+              <option>Grandmaster</option>
+              <option>Epic</option>
+              <option>Legend</option>
+              <option>Mythic</option>
+              <option>Mythic Glory</option>
+              <option>Mythic Immortal</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Server</label>
+            <select id="post-server">
+              <option value="">-- Pilih Server --</option>
+              <option>Indonesia</option>
+              <option>Malaysia</option>
+              <option>Filipina</option>
+              <option>Thailand</option>
+              <option>Singapura</option>
+              <option>Internasional</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Jumlah Hero</label>
+            <input type="number" id="post-hero" placeholder="120" />
+          </div>
+          <div class="form-group">
+            <label>Jumlah Skin</label>
+            <input type="number" id="post-skin" placeholder="80" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Deskripsi Akun</label>
+          <textarea
+            id="post-desc"
+            placeholder="Ceritakan detail akun kamu: emblem, skin rare, achievement, dll..."
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label>Foto Akun</label>
+          <div
+            class="upload-area"
+            id="upload-area"
+            onclick="document.getElementById('file-input').click()"
+          >
+            <input
+              type="file"
+              accept="image/*"
+              id="file-input"
+              style="display: none"
+              onchange="handleFileUpload(this.files[0])"
+            />
+            <div class="upload-icon">📷</div>
+            <div class="upload-txt">Klik untuk pilih foto</div>
+            <div class="upload-txt" style="font-size: 0.72rem; margin-top: 4px">
+              PNG, JPG, JPEG maks. 5MB
+            </div>
+          </div>
+          <div id="upload-preview" style="margin-top: 10px"></div>
+          <input type="hidden" id="post-image-url" />
+        </div>
+        <div class="form-group">
+          <label>Kontak WhatsApp (untuk negosiasi)</label>
+          <input type="tel" id="post-wa" placeholder="08xxxxxxxxxx" />
+        </div>
+        <button
+          class="btn btn-gold"
+          style="
+            width: 100%;
+            justify-content: center;
+            padding: 14px;
+            font-size: 1rem;
+          "
+          onclick="submitPost()"
+        >
+          🚀 Post Akun Sekarang
+        </button>
+      </div>
+    </div>
+
+    <!-- ===== TOP UP PAGE ===== -->
+    <div class="page" id="page-topup">
+      <div class="topup-wrap">
+        <!-- HEADER -->
+        <div class="tu-header">
+          <img
+            src="https://www.mobilelegends.com/base/cvs/assets/img/header-logo.png"
+            alt="Mobile Legends"
+            class="tu-game-img"
+            onerror="this.style.display = 'none'"
+          />
+          <div>
+            <h1>💎 Top Up Diamond</h1>
+            <p class="sub">
+              Mobile Legends — Server Indonesia 🇮🇩<br />Proses cepat, aman &
+              terpercaya!
+            </p>
+          </div>
+        </div>
+
+        <!-- STEP 1: INPUT ID -->
+        <div class="tu-step-box">
+          <div class="tu-step-label">
+            <span class="tu-step-num">1</span> Masukkan Data Akun
+          </div>
+          <div class="form-row">
+            <div class="form-group" style="margin-bottom: 0">
+              <label>ID Player</label>
+              <input
+                type="text"
+                id="tu-uid"
+                placeholder="Contoh: 123456789"
+                oninput="validateUID()"
+              />
+            </div>
+            <div class="form-group" style="margin-bottom: 0">
+              <label>Server</label>
+              <input
+                type="text"
+                id="tu-server"
+                placeholder="Contoh: 1234"
+                oninput="validateUID()"
+              />
+            </div>
+          </div>
+          <p class="form-hint" style="margin-top: 8px">
+            📌 Cek ID & Server di game: Pojok kiri atas → Profil → ID Player
+            (Server)
+          </p>
+        </div>
+
+        <!-- STEP 2: PILIH NOMINAL -->
+        <div class="tu-step-box">
+          <div class="tu-step-label">
+            <span class="tu-step-num">2</span> Pilih Nominal Diamond
+          </div>
+
+          <!-- Filter tab -->
+          <div class="tu-filter-tabs" id="tu-filter-tabs">
+            <button class="tu-ftab active" onclick="filterDenom('semua', this)">
+              🎮 Semua
+            </button>
+            <button class="tu-ftab" onclick="filterDenom('special', this)">
+              🔥 Special
+            </button>
+            <button class="tu-ftab" onclick="filterDenom('regular', this)">
+              💎 Diamond
+            </button>
+          </div>
+
+          <div class="denom-grid" id="denom-grid"></div>
+        </div>
+
+        <!-- STEP 3: PEMBAYARAN (QRIS only) -->
+        <div class="tu-step-box" id="tu-payment-box" style="display: none">
+          <div class="tu-step-label">
+            <span class="tu-step-num">3</span> Metode Pembayaran
+          </div>
+          <div class="tu-qris-box">
+            <div class="tu-qris-icon">📱</div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.95rem">QRIS</div>
+              <div style="font-size: 0.78rem; color: var(--muted)">
+                Bayar via semua e-wallet & m-banking
+              </div>
+            </div>
+            <div class="tu-qris-check">✅</div>
+          </div>
+        </div>
+
+        <!-- STEP 4: NO WA -->
+        <div class="tu-step-box" id="tu-wa-box" style="display: none">
+          <div class="tu-step-label">
+            <span class="tu-step-num">4</span> No. WhatsApp Kamu
+          </div>
+          <div class="form-group" style="margin-bottom: 0">
+            <input
+              type="tel"
+              id="tu-wa-buyer"
+              placeholder="Contoh: 08xxxxxxxxxx"
+            />
+          </div>
+          <p class="form-hint" style="margin-top: 6px">
+            📲 Bukti top up akan dikirim ke nomor ini
+          </p>
+        </div>
+
+        <!-- ORDER SUMMARY -->
+        <div id="tu-summary" style="display: none">
+          <div class="order-summary">
+            <div class="order-row">
+              <span>Game</span><span>Mobile Legends</span>
+            </div>
+            <div class="order-row">
+              <span>ID Player</span><span id="tu-sum-uid">-</span>
+            </div>
+            <div class="order-row">
+              <span>Server</span><span id="tu-sum-server">-</span>
+            </div>
+            <div class="order-row">
+              <span>Nominal</span><span id="tu-sum-denom">-</span>
+            </div>
+            <div class="order-row">
+              <span>Metode Bayar</span><span>QRIS</span>
+            </div>
+            <div class="order-row total">
+              <span>TOTAL</span><span id="tu-sum-total">-</span>
+            </div>
+          </div>
+          <button
+            class="btn btn-gold"
+            style="
+              width: 100%;
+              justify-content: center;
+              padding: 14px;
+              font-size: 1rem;
+              margin-top: 4px;
+            "
+            onclick="doTopUp()"
+          >
+            🛒 Pesan Sekarang via WhatsApp
+          </button>
+          <p
+            style="
+              text-align: center;
+              font-size: 0.75rem;
+              color: var(--muted);
+              margin-top: 10px;
+            "
+          >
+            Kamu akan diarahkan ke WhatsApp untuk konfirmasi & pembayaran QRIS
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PROFILE PAGE ===== -->
+    <div class="page" id="page-profile">
+      <div class="profile-wrap">
+        <div class="profile-header">
+          <div class="profile-avatar" id="profile-av">U</div>
+          <div style="flex: 1">
+            <div class="profile-name" id="profile-name">-</div>
+            <div class="profile-email" id="profile-email">-</div>
+            <div class="profile-stats">
+              <div class="pstat">
+                <div class="pstat-val" id="ps-post">0</div>
+                <div class="pstat-lbl">Akun Dipost</div>
+              </div>
+              <div class="pstat">
+                <div class="pstat-val" id="ps-sold">0</div>
+                <div class="pstat-lbl">Terjual</div>
+              </div>
+              <div class="pstat">
+                <div class="pstat-val" id="ps-buy">0</div>
+                <div class="pstat-lbl">Pembelian</div>
+              </div>
+              <div class="pstat">
+                <div class="pstat-val" id="ps-fav">0</div>
+                <div class="pstat-lbl">Favorit</div>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-ghost" onclick="showEditProfile()">
+            ✏️ Edit Profil
+          </button>
+        </div>
+        <div class="profile-tabs">
+          <button class="ptab active" onclick="switchPTab('postings', this)">
+            📦 Postingan Saya
+          </button>
+          <button class="ptab" onclick="switchPTab('purchases', this)">
+            🛒 Riwayat Beli
+          </button>
+          <button class="ptab" onclick="switchPTab('favorites', this)">
+            ❤️ Favorit
+          </button>
+          <button class="ptab" onclick="switchPTab('settings', this)">
+            ⚙️ Pengaturan
+          </button>
+        </div>
+        <div class="profile-section active" id="psec-postings">
+          <div id="my-postings-grid" class="prod-grid"></div>
+          <div id="my-postings-empty" style="display: none" class="no-results">
+            <div class="nr-icon">📦</div>
+            <p>Belum ada akun yang dipost</p>
+            <button
+              class="btn btn-gold"
+              style="margin-top: 14px"
+              onclick="requireAuth(() => showPage('post'))"
+            >
+              Post Akun Sekarang
+            </button>
+          </div>
+        </div>
+        <div class="profile-section" id="psec-purchases">
+          <div id="my-purchases"></div>
+          <div id="my-purchases-empty" style="display: none" class="no-results">
+            <div class="nr-icon">🛒</div>
+            <p>Belum ada riwayat pembelian</p>
+          </div>
+        </div>
+        <div class="profile-section" id="psec-favorites">
+          <div id="my-fav-grid" class="prod-grid"></div>
+          <div id="my-fav-empty" style="display: none" class="no-results">
+            <div class="nr-icon">❤️</div>
+            <p>Belum ada akun favorit</p>
+          </div>
+        </div>
+        <div class="profile-section" id="psec-settings">
+          <div
+            style="
+              background: var(--card);
+              border: 1px solid var(--border);
+              border-radius: 14px;
+              padding: 24px;
+            "
+          >
+            <h3
+              style="
+                font-family: &quot;Rajdhani&quot;, sans-serif;
+                font-size: 1.3rem;
+                margin-bottom: 20px;
+              "
+            >
+              Pengaturan Akun
+            </h3>
+            <div class="form-group">
+              <label>Nama Lengkap</label
+              ><input type="text" id="set-name" placeholder="Nama kamu" />
+            </div>
+            <div class="form-group">
+              <label>No. WhatsApp</label
+              ><input type="tel" id="set-wa" placeholder="08xxxxxxxxxx" />
+            </div>
+            <div class="form-group">
+              <label>Password Baru (kosongkan jika tidak diubah)</label
+              ><input type="password" id="set-pass" placeholder="••••••••" />
+            </div>
+            <button class="btn btn-gold" onclick="saveSettings()">
+              💾 Simpan Perubahan
+            </button>
+            <div
+              style="
+                margin-top: 20px;
+                padding-top: 20px;
+                border-top: 1px solid var(--border);
+              "
+            >
+              <button class="btn btn-red" onclick="logout()">
+                🚪 Keluar dari Akun
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NOTIF PAGE ===== -->
+    <div class="page" id="page-notif">
+      <div class="notif-wrap">
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+          "
+        >
+          <h1
+            style="
+              font-family: &quot;Rajdhani&quot;, sans-serif;
+              font-size: 1.8rem;
+            "
+          >
+            🔔 Notifikasi
+          </h1>
+          <button
+            class="btn btn-ghost"
+            style="margin-left: auto; font-size: 0.78rem"
+            onclick="markAllRead()"
+          >
+            Tandai Semua Dibaca
+          </button>
+        </div>
+        <div id="notif-list"></div>
+      </div>
+    </div>
+
+    <!-- ===== PRODUCT DETAIL MODAL ===== -->
+    <div
+      class="overlay"
+      id="modal-overlay"
+      onclick="if (event.target === this) closeModal();"
+    >
+      <div class="modal" id="modal-content">
+        <button class="modal-x" onclick="closeModal()">✕</button>
+        <div class="modal-img" id="m-img">🎮</div>
+        <div class="modal-sub" id="m-code"></div>
+        <h2 id="m-title"></h2>
+        <div class="modal-price" id="m-price"></div>
+        <div class="modal-chips" id="m-chips"></div>
+        <div class="qty-row" id="m-qty-row">
+          <label>Qty:</label>
+          <div class="qty-ctrl">
+            <button onclick="changeQty(-1)">−</button>
+            <span id="m-qty">1</span>
+            <button onclick="changeQty(1)">+</button>
+          </div>
+        </div>
+        <div class="modal-act">
+          <button class="btn btn-gold" id="m-buy-btn" onclick="buyNow()">
+            🛒 Beli Sekarang
+          </button>
+          <button
+            class="btn btn-ghost"
+            id="m-cart-btn"
+            onclick="addToCartFromModal()"
+          >
+            🛒 Keranjang
+          </button>
+          <button
+            class="modal-act btn-heart"
+            id="m-like-btn"
+            onclick="toggleLikeModal()"
+          >
+            ❤️
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CHECKOUT MODAL ===== -->
+    <div
+      class="overlay"
+      id="checkout-overlay"
+      onclick="if (event.target === this) closeCheckout();"
+    >
+      <div class="modal" style="max-width: 520px">
+        <button class="modal-x" onclick="closeCheckout()">✕</button>
+        <h2
+          style="
+            font-family: &quot;Rajdhani&quot;, sans-serif;
+            margin-bottom: 20px;
+          "
+        >
+          💳 Checkout
+        </h2>
+        <div class="checkout-steps">
+          <div class="cstep active" id="cs1">
+            <div class="cstep-num">1</div>
+            <div class="cstep-lbl">Ringkasan</div>
+          </div>
+          <div class="cstep" id="cs2">
+            <div class="cstep-num">2</div>
+            <div class="cstep-lbl">Pembayaran</div>
+          </div>
+          <div class="cstep" id="cs3">
+            <div class="cstep-num">3</div>
+            <div class="cstep-lbl">Selesai</div>
+          </div>
+        </div>
+        <div id="co-step1">
+          <div class="order-summary" id="co-summary"></div>
+          <button
+            class="btn btn-gold"
+            style="width: 100%; justify-content: center; padding: 13px"
+            onclick="coNext(2)"
+          >
+            Lanjut ke Pembayaran →
+          </button>
+        </div>
+        <div id="co-step2" style="display: none">
+          <p
+            style="
+              font-size: 0.83rem;
+              color: var(--muted);
+              margin-bottom: 14px;
+              font-weight: 600;
+            "
+          >
+            Pilih metode pembayaran:
+          </p>
+          <div class="payment-methods">
+            <div class="pm" onclick="selectPM(this, 'Dana')">
+              <span class="pm-icon">💙</span>Dana
+            </div>
+            <div class="pm" onclick="selectPM(this, 'GoPay')">
+              <span class="pm-icon">💚</span>GoPay
+            </div>
+            <div class="pm" onclick="selectPM(this, 'OVO')">
+              <span class="pm-icon">💜</span>OVO
+            </div>
+            <div class="pm" onclick="selectPM(this, 'BCA')">
+              <span class="pm-icon">🏦</span>BCA
+            </div>
+            <div class="pm" onclick="selectPM(this, 'Mandiri')">
+              <span class="pm-icon">🏦</span>Mandiri
+            </div>
+            <div class="pm" onclick="selectPM(this, 'Qris')">
+              <span class="pm-icon">📱</span>QRIS
+            </div>
+          </div>
+          <div
+            id="co-pm-note"
+            style="
+              display: none;
+              background: var(--card2);
+              border: 1px solid var(--border);
+              border-radius: 8px;
+              padding: 12px;
+              font-size: 0.82rem;
+              color: var(--muted);
+              margin-bottom: 14px;
+            "
+          ></div>
+          <button
+            class="btn btn-gold"
+            style="width: 100%; justify-content: center; padding: 13px"
+            onclick="coNext(3)"
+            id="co-pay-btn"
+          >
+            Bayar Sekarang 💳
+          </button>
+        </div>
+        <div
+          id="co-step3"
+          style="display: none; text-align: center; padding: 20px 0"
+        >
+          <div style="font-size: 4rem; margin-bottom: 16px">📱</div>
+          <h3
+            style="
+              font-family: &quot;Rajdhani&quot;, sans-serif;
+              font-size: 1.5rem;
+              margin-bottom: 8px;
+              color: var(--green);
+            "
+          >
+            Pesanan Dibuat!
+          </h3>
+          <p
+            style="color: var(--muted); font-size: 0.85rem; margin-bottom: 20px"
+          >
+            WhatsApp akan terbuka otomatis. Kirim pesan ke admin untuk
+            konfirmasi pembayaran kamu.
+          </p>
+          <div
+            id="co-order-id"
+            style="
+              background: var(--card2);
+              border: 1px solid var(--border);
+              border-radius: 8px;
+              padding: 12px;
+              font-size: 0.82rem;
+              color: var(--muted);
+              margin-bottom: 20px;
+            "
+          ></div>
+          <button
+            class="btn btn-gold"
+            onclick="
+              closeCheckout();
+              showPage('home');
+            "
+          >
+            Kembali ke Beranda
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLOATING BUTTON POST AKUN -->
+    <div class="float-btn" id="float-btn" style="display: none">
+      <button onclick="requireAuth(() => showPage('post'))">
+        ➕ Post Akun
+      </button>
+    </div>
+
+    <!-- FLOATING WA BUTTON -->
+    <a
+      class="wa-float"
+      href="https://wa.me/6285790427533"
+      target="_blank"
+      title="Chat WhatsApp"
+    >
+      <svg viewBox="0 0 24 24" fill="white" width="28" height="28">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+        />
+      </svg>
+    </a>
+
+    <!-- ===== KEUNGGULAN SECTION (di home page) ===== -->
+    <div id="sec-keunggulan" style="display: none">
+      <div class="keunggulan-wrap">
+        <div class="sec-label">⚡ KEUNGGULAN KAMI</div>
+        <h2 class="keunggulan-title">
+          Mengapa beli di <span style="color: var(--gold)">GenZstore?</span>
+        </h2>
+        <div class="keunggulan-grid">
+          <div class="keunggulan-card">
+            <div class="keunggulan-icon">⚡</div>
+            <h3>Proses Kilat</h3>
+            <p>
+              Pesanan diproses cepat. Akun langsung dikirim setelah pembayaran
+              dikonfirmasi.
+            </p>
+          </div>
+          <div class="keunggulan-card">
+            <div class="keunggulan-icon">💰</div>
+            <h3>Harga Terjangkau</h3>
+            <p>
+              Harga yang kami tawarkan adalah terbaik dan bersaing di pasaran
+              Indonesia.
+            </p>
+          </div>
+          <div class="keunggulan-card">
+            <div class="keunggulan-icon">🔒</div>
+            <h3>Aman dan Terpercaya</h3>
+            <p>
+              Semua produk terjamin legal, resmi, dan tidak ada risiko banned
+              akun.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="faq-wrap">
+        <div class="faq-icon">❓</div>
+        <h2 class="faq-title">FAQ</h2>
+        <p class="faq-sub">Punya Pertanyaan? Kami Punya Jawabannya</p>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Apakah transaksi di GenZstore aman?
+              <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-a">
+              Ya, semua transaksi di GenZstore 100% aman. Kami menggunakan
+              sistem enkripsi data dan setiap akun yang dijual sudah melalui
+              verifikasi keamanan kami.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Berapa lama proses pengiriman akun?
+              <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-a">
+              Proses pengiriman akun dilakukan secara manual via WhatsApp
+              setelah pembayaran dikonfirmasi, biasanya dalam 1-30 menit di jam
+              aktif (08.00 - 22.00 WIB).
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Metode pembayaran apa saja yang tersedia?
+              <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-a">
+              Kami menerima pembayaran via QRIS (bisa digunakan dari semua
+              e-wallet seperti GoPay, OVO, Dana, ShopeePay, dan semua mobile
+              banking).
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Bagaimana cara cek status pesanan saya?
+              <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-a">
+              Kamu bisa hubungi admin via WhatsApp dengan menyertakan Order ID
+              yang sudah dikirimkan. Admin akan segera memberikan update status
+              pesananmu.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Apakah ada garansi setelah akun dibeli?
+              <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-a">
+              Kami memberikan garansi ganti akun jika terjadi masalah dalam 1x24
+              jam setelah pembelian, selama akun belum diubah email/passwordnya
+              oleh pembeli.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Bagaimana cara menjual akun di GenZstore?
+              <span class="faq-arrow">▼</span>
+            </button>
+            <div class="faq-a">
+              Daftar akun terlebih dahulu, lalu klik tombol "Post Akun". Isi
+              semua detail akun, upload foto, dan akun kamu akan langsung tampil
+              di marketplace setelah disubmit.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer id="main-footer">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo"><span>GenZstore</span></div>
+          <p>
+            Platform jual beli akun &<br />top up Mobile Legends<br />terpercaya
+            #1 Indonesia.
+          </p>
+        </div>
+        <div class="footer-payment-section">
+          <div class="footer-payment-title">Metode Pembayaran</div>
+          <div class="footer-payments">
+            <div
+              class="pay-badge"
+              style="
+                color: #00aed6;
+                font-weight: 900;
+                font-size: 0.82rem;
+                letter-spacing: 1px;
+              "
+            >
+              QRIS
+            </div>
+            <div class="pay-badge" style="background: #48a8e0; color: #fff">
+              GoPay
+            </div>
+            <div class="pay-badge" style="background: #4c3494; color: #fff">
+              OVO
+            </div>
+            <div class="pay-badge" style="background: #108fe7; color: #fff">
+              Dana
+            </div>
+            <div class="pay-badge" style="background: #ee3124; color: #fff">
+              ShopeePay
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-title">Menu</div>
+          <a onclick="showPage('home')">Beranda</a>
+          <a onclick="showPage('topup')">Top Up Diamond</a>
+          <a onclick="requireAuth(() => showPage('post'))">Jual Akun</a>
+          <a onclick="requireAuth(() => showPage('cart'))">Keranjang</a>
+          <a onclick="requireAuth(() => showPage('profile'))">Profil Saya</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Kontak Kami</div>
+          <a href="mailto:GenZstore@gmail.com">GenZstore@gmail.com</a>
+
+          <a href="https://wa.me/6285790427533" target="_blank">WhatsApp CS</a>
+          <p
+            style="
+              font-size: 0.76rem;
+              color: var(--muted);
+              margin-top: 8px;
+              line-height: 1.7;
+            "
+          >
+            Jam Aktif:<br />Senin – Minggu<br />08.00 – 23.00 WIB
+          </p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Informasi</div>
+          <a onclick="openInfoModal('tentang')">Tentang Kami</a>
+          <a onclick="openInfoModal('syarat')">Syarat &amp; Ketentuan</a>
+          <a onclick="openInfoModal('privasi')">Kebijakan Privasi</a>
+          <a onclick="openInfoModal('cara')">Cara Pembelian</a>
+          <a onclick="openInfoModal('reseller')">Program Reseller</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Sosial Media</div>
+          <div class="footer-sosmed">
+            <a href="#" class="sosmed-btn" title="TikTok">
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                width="17"
+                height="17"
+              >
+                <path
+                  d="M19.6 3.3A4.5 4.5 0 0115.1 0h-3.2v16a2.1 2.1 0 01-2.1 2 2.1 2.1 0 01-2.1-2.1 2.1 2.1 0 012.1-2.1c.2 0 .4 0 .6.1V10.6a5.3 5.3 0 00-.6 0 5.4 5.4 0 00-5.4 5.4 5.4 5.4 0 005.4 5.4 5.4 5.4 0 005.4-5.4V8.2a7.7 7.7 0 004.5 1.4V6.4a4.5 4.5 0 01-2.6-.9 4.5 4.5 0 01-1-.9z"
+                />
+              </svg>
+            </a>
+            <a href="#" class="sosmed-btn" title="Instagram">
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                width="17"
+                height="17"
+              >
+                <path
+                  d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.2 4.8 1.7 5 5 .1 1.3.1 1.6.1 4.9s0 3.6-.1 4.9c-.2 3.2-1.7 4.8-5 5-1.3.1-1.6.1-4.9.1s-3.6 0-4.9-.1c-3.3-.2-4.8-1.7-5-5C2 16.6 2 16.3 2 13s0-3.6.1-4.9c.2-3.2 1.7-4.8 5-5C8.4 2.2 8.7 2.2 12 2.2zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9C.3 21.3 2.7 23.7 7.1 23.9 8.3 24 8.7 24 12 24s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7C24 15.7 24 15.3 24 12s0-3.7-.1-4.9C23.7 2.7 21.3.3 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 100 12.4A6.2 6.2 0 0012 5.8zm0 10.2a4 4 0 110-8 4 4 0 010 8zm6.4-11.8a1.4 1.4 0 100 2.9 1.4 1.4 0 000-2.9z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://wa.me/6285790427533"
+              target="_blank"
+              class="sosmed-btn"
+              title="WhatsApp"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                width="17"
+                height="17"
+              >
+                <path
+                  d="M17.5 14.4c-.3-.1-1.8-.9-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.7-.9-2.9-1.9-4-3.7-.1-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5 0-.2 0-.4-.1-.5-.1-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4C7.3 7 6.5 7.8 6.5 9.3s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.1-1.4l-.5-.4zM12 0C5.4 0 0 5.4 0 12c0 2.1.5 4.1 1.6 5.9L0 24l6.3-1.6C8.1 23.4 10 24 12 24c6.6 0 12-5.4 12-12S18.6 0 12 0zm0 21.8c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-3.7 1 1-3.7-.3-.4C2.2 15.6 1.7 13.9 1.7 12 1.7 6.4 6.4 1.7 12 1.7S22.3 6.4 22.3 12 17.6 22.3 12 22.3z"
+                />
+              </svg>
+            </a>
+            <a href="#" class="sosmed-btn" title="Facebook">
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                width="17"
+                height="17"
+              >
+                <path
+                  d="M24 12.1C24 5.4 18.6 0 12 0S0 5.4 0 12.1C0 18.1 4.4 23 10.1 24v-8.4H7.1v-3.5h3V9.4c0-2.9 1.8-4.6 4.4-4.6 1.3 0 2.6.2 2.6.2v2.9h-1.5c-1.4 0-1.9.9-1.9 1.8v2.1h3.2l-.5 3.5H13.7V24C19.6 23 24 18.1 24 12.1z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p>
+          © 2026 GenZstore · Platform Jual Beli Akun Mobile Legends #1 Indonesia
+          🇮🇩
+        </p>
+      </div>
+    </footer>
+
+    <!-- ===== INFO MODAL ===== -->
+    <div
+      class="overlay"
+      id="info-modal-overlay"
+      onclick="if (event.target === this) closeInfoModal();"
+      style="display: none; align-items: flex-start; padding-top: 60px"
+    >
+      <div class="info-modal">
+        <button class="modal-x" onclick="closeInfoModal()">✕</button>
+        <div id="info-modal-body"></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
