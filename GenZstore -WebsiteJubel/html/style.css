@@ -253,7 +253,7 @@ body {
 /* ===== BANNER SLIDER ===== */
 /* ⬇️ GANTI 'img/banner-bg.jpg' dengan path gambar kamu */
 .banner-bg {
-  background-image: url("img/bg2.jpg");
+  background-image: url("img/bg3.jpg");
   background-color: #0d0f1a; /* fallback warna kalau gambar belum ada */
   background-size: cover;
   background-position: center;
