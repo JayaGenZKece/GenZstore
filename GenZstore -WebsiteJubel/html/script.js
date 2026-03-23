@@ -98,7 +98,7 @@ const supa = {
 // ╚══════════════════════════════════════════════════════════╝
 const BANNERS = [
   {
-    image: "img/banner1.png", // 🔁 Ganti dengan URL gambar banner slide 1
+    image: "img/banner2.png", // 🔁 Ganti dengan URL gambar banner slide 1
     //    Contoh: "images/banner1.jpg"
     title: "Jual Beli Akun",
     titleHighlight: "Mobile Legends",
