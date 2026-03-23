@@ -110,7 +110,7 @@ const BANNERS = [
     deco: "⚔️",
   },
   {
-    image: "img/banner1.png", // 🔁 Ganti dengan URL gambar banner slide 2
+    image: "img/banner2.png", // 🔁 Ganti dengan URL gambar banner slide 2
     title: "Flash Sale",
     titleHighlight: "Harga Spesial!",
     subtitle: "Dapatkan akun premium dengan harga terjangkau ✨",
