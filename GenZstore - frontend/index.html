@@ -1,0 +1,2750 @@
+<!doctype html>
+<html lang="id" class="overflow-x-hidden">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GenZstore — Top Up & Jubel Akun Game Terpercaya</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/tailwind-config.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      * {
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: #020d1f;
+      }
+
+      .bg-grid {
+        background-image: radial-gradient(
+          circle,
+          rgba(0, 168, 255, 0.07) 1px,
+          transparent 1px
+        );
+        background-size: 32px 32px;
+      }
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .orb-cyan {
+        background: rgba(0, 168, 255, 0.18);
+      }
+      .orb-blue {
+        background: rgba(0, 80, 255, 0.15);
+      }
+      .orb-purple {
+        background: rgba(120, 60, 255, 0.12);
+      }
+
+      .glass {
+        background: rgba(255, 255, 255, 0.04);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .glass-blue {
+        background: rgba(0, 80, 200, 0.12);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(0, 168, 255, 0.2);
+      }
+
+      .section-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(0, 168, 255, 0.1);
+        border: 1px solid rgba(0, 168, 255, 0.28);
+        color: #00a8ff;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 4px 14px;
+        border-radius: 100px;
+        margin-bottom: 12px;
+      }
+      .grad-text {
+        background: linear-gradient(135deg, #00a8ff, #a78bfa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .glow-divider {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 168, 255, 0.45),
+          transparent
+        );
+        margin: 0 auto;
+      }
+
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .animate-marquee {
+        animation: marquee 28s linear infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+      .float {
+        animation: float 3.5s ease-in-out infinite;
+      }
+      .float-delay {
+        animation: float 3.5s ease-in-out 1s infinite;
+      }
+      .float-delay2 {
+        animation: float 3.5s ease-in-out 2s infinite;
+      }
+
+      .scroll-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scroll-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      /* ── FADE UP + STAGGER ANIMATION ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: opacity, transform;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-stagger > * {
+        opacity: 0;
+        transform: translateY(36px);
+        transition:
+          opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: opacity, transform;
+      }
+      .reveal-stagger.visible > *:nth-child(1) {
+        transition-delay: 0ms;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-stagger.visible > *:nth-child(2) {
+        transition-delay: 90ms;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-stagger.visible > *:nth-child(3) {
+        transition-delay: 180ms;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-stagger.visible > *:nth-child(4) {
+        transition-delay: 270ms;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-stagger.visible > *:nth-child(5) {
+        transition-delay: 360ms;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-stagger.visible > *:nth-child(6) {
+        transition-delay: 450ms;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-stagger.visible > *:nth-child(n + 7) {
+        transition-delay: 540ms;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .navbar-glass {
+        background: rgba(2, 13, 31, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(0, 168, 255, 0.14);
+      }
+
+      .service-card {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 80, 200, 0.28) 0%,
+          rgba(0, 40, 120, 0.28) 100%
+        );
+        border: 1px solid rgba(0, 168, 255, 0.18);
+        cursor: pointer;
+        transition: all 0.3s;
+        overflow: hidden;
+        position: relative;
+      }
+      .service-card:hover {
+        border-color: rgba(0, 168, 255, 0.55);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(0, 168, 255, 0.12);
+      }
+      .service-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 168, 255, 0.05) 0%,
+          transparent 60%
+        );
+        pointer-events: none;
+      }
+
+      .why-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 32px 24px;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        text-align: center;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .why-card:hover {
+        background: rgba(0, 168, 255, 0.06);
+        border-color: rgba(0, 168, 255, 0.25);
+        transform: translateY(-6px);
+        box-shadow: 0 24px 50px rgba(0, 168, 255, 0.12);
+      }
+      .why-card .icon-wrap {
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        background: rgba(0, 168, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        transition: transform 0.3s;
+      }
+      .why-card:hover .icon-wrap {
+        transform: scale(1.1);
+      }
+      .why-card .top-line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #00a8ff, transparent);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .why-card:hover .top-line {
+        opacity: 1;
+      }
+
+      .news-card {
+        transition:
+          transform 0.3s,
+          border-color 0.3s,
+          box-shadow 0.3s;
+      }
+      .news-card:hover {
+        transform: translateY(-6px);
+        border-color: #00a8ff;
+        box-shadow: 0 20px 40px rgba(0, 168, 255, 0.14);
+      }
+
+      .faq-item {
+        border-radius: 14px;
+        overflow: hidden;
+        margin-bottom: 10px;
+      }
+      .faq-btn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 20px;
+        background: rgba(0, 80, 180, 0.22);
+        border: 1px solid rgba(0, 168, 255, 0.18);
+        color: white;
+        font-weight: 800;
+        font-size: 15px;
+        cursor: pointer;
+        transition: background 0.2s;
+        text-align: left;
+      }
+      .faq-btn:hover {
+        background: rgba(0, 100, 220, 0.32);
+      }
+      .faq-answer {
+        background: rgba(5, 20, 50, 0.9);
+        border-left: 3px solid #00a8ff;
+        padding: 16px 22px;
+        font-size: 14px;
+        color: #b8cce0;
+        line-height: 1.7;
+      }
+
+      .stat-box {
+        background: rgba(0, 168, 255, 0.05);
+        border: 1px solid rgba(0, 168, 255, 0.14);
+        border-radius: 20px;
+        padding: 28px 20px;
+        text-align: center;
+      }
+
+      .stock-tab-btn.active-tab {
+        background: white !important;
+        color: #041c44 !important;
+        font-weight: 900;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      }
+    </style>
+  </head>
+
+  <body class="bg-[#020d1f] text-white font-sans overflow-x-hidden pt-16">
+    <!-- ══════════════════════════════════════════ -->
+    <!-- NAVBAR -->
+    <!-- ══════════════════════════════════════════ -->
+    <header class="navbar-glass fixed top-0 left-0 right-0 z-50">
+      <div
+        class="container mx-auto px-4 max-w-[1400px] h-16 flex items-center justify-between gap-4"
+      >
+        <a href="index.html" class="flex items-center gap-2 shrink-0 group">
+          <div
+            class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00a8ff] to-[#0050ff] flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform"
+          >
+            <i class="fa-solid fa-gamepad text-sm text-white"></i>
+          </div>
+          <span class="text-lg md:text-xl font-black tracking-widest italic"
+            >GENZ<span class="text-[#F52727]">STORE</span></span
+          >
+        </a>
+
+        <nav
+          class="hidden lg:flex items-center gap-1 text-[12px] font-bold tracking-wide uppercase shrink-0"
+        >
+          <a
+            href="index.html"
+            class="flex items-center gap-1.5 text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition"
+            ><i class="fa-solid fa-house text-[#00a8ff]"></i> Beranda</a
+          >
+          <a
+            href="topup/farm.html"
+            class="flex items-center gap-1.5 text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition"
+            ><i class="fa-solid fa-layer-group text-[#00a8ff]"></i> Top Up</a
+          >
+          <a
+            href="joki/joki.html"
+            class="flex items-center gap-1.5 text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition"
+            ><i class="fa-solid fa-angles-up text-[#00a8ff]"></i> Joki</a
+          >
+          <a
+            href="beli_akun/kategori_akun.html"
+            class="flex items-center gap-1.5 text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition"
+          >
+            <i class="fa-solid fa-user-tag text-[#00a8ff]"></i> Beli Akun
+            <span
+              class="bg-red-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded animate-pulse"
+              >HOT</span
+            >
+          </a>
+          <a
+            href="Artikel_GenZstore/artikel.html"
+            class="flex items-center gap-1.5 text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition"
+            ><i class="fa-solid fa-newspaper text-[#00a8ff]"></i> Artikel</a
+          >
+        </nav>
+
+        <div class="hidden lg:flex items-center gap-3 shrink-0">
+          <div class="relative">
+            <i
+              class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs"
+            ></i>
+            <input
+              id="navbar-search"
+              type="text"
+              placeholder="Ketik nama hero / game..."
+              onkeydown="if (event.key === 'Enter') cariAkun(this.value);"
+              class="bg-white/5 border border-white/10 focus:border-[#00a8ff] text-white text-sm rounded-xl pl-8 pr-10 py-2 focus:outline-none transition w-52 xl:w-64 placeholder-gray-500"
+            />
+            <button
+              onclick="cariAkun(document.getElementById('navbar-search').value)"
+              class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#00a8ff] transition cursor-pointer"
+              title="Cari"
+            >
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </button>
+          </div>
+          <a
+            onclick="jualAkun()"
+            href="#"
+            class="bg-gradient-to-r from-[#0050ff] to-[#00a8ff] hover:brightness-110 text-white font-black text-xs uppercase px-5 py-2.5 rounded-xl shadow-[0_0_20px_rgba(0,168,255,0.35)] transition cursor-pointer"
+            >Jual Akun</a
+          >
+        </div>
+
+        <div class="flex lg:hidden items-center gap-2 flex-1 justify-end">
+          <button
+            id="hamburger-btn"
+            class="text-white text-xl p-2 rounded-lg hover:bg-white/10 transition cursor-pointer"
+          >
+            <i id="hamburger-icon" class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden bg-[#010a1a]/95 backdrop-blur-xl border-t border-white/5 absolute w-full left-0 shadow-2xl"
+      >
+        <nav
+          class="flex flex-col px-5 py-5 gap-1 text-[13px] font-bold tracking-wide uppercase"
+        >
+          <a
+            href="index.html"
+            class="flex items-center gap-3 text-white/80 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition border-b border-white/5"
+            ><i class="fa-solid fa-house w-5 text-[#00a8ff]"></i> Beranda</a
+          >
+          <a
+            href="topup/farm.html"
+            class="flex items-center gap-3 text-white/80 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition border-b border-white/5"
+            ><i class="fa-solid fa-layer-group w-5 text-[#00a8ff]"></i> Top
+            Up</a
+          >
+          <a
+            href="joki/joki.html"
+            class="flex items-center gap-3 text-white/80 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition border-b border-white/5"
+            ><i class="fa-solid fa-angles-up w-5 text-[#00a8ff]"></i> Joki</a
+          >
+          <a
+            href="beli_akun/kategori_akun.html"
+            class="flex items-center gap-3 text-white/80 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition border-b border-white/5"
+            ><i class="fa-solid fa-user-tag w-5 text-[#00a8ff]"></i> Beli
+            Akun</a
+          >
+          <a
+            href="Artikel_GenZstore/artikel.html"
+            class="flex items-center gap-3 text-white/80 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition"
+            ><i class="fa-solid fa-newspaper w-5 text-[#00a8ff]"></i> Artikel</a
+          >
+          <a
+            onclick="jualAkun()"
+            href="#"
+            class="mt-3 bg-gradient-to-r from-[#0050ff] to-[#00a8ff] text-white text-center rounded-xl py-3 font-black shadow-lg"
+            >Jual Akun</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- HERO SECTION -->
+    <!-- ══════════════════════════════════════════ -->
+    <section
+      class="relative w-full bg-cover bg-center bg-no-repeat overflow-hidden"
+      style="background-image: url(&quot;assets/img/bgbanner.jpg&quot;)"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-[#020d1f]/65 via-[#020d1f]/30 to-[#020d1f] pointer-events-none z-0"
+      ></div>
+      <div
+        class="orb orb-cyan w-[600px] h-[600px] -top-40 -left-40 opacity-35"
+      ></div>
+      <div
+        class="orb orb-blue w-[400px] h-[400px] top-10 right-0 opacity-25"
+      ></div>
+      <div
+        class="orb orb-purple w-[300px] h-[300px] bottom-0 left-1/3 opacity-20"
+      ></div>
+      <div class="absolute inset-0 bg-grid opacity-30 z-0"></div>
+
+      <main class="container mx-auto px-4 py-10 relative z-10">
+        <!-- Banner Slider -->
+        <div
+          id="banner-section"
+          class="relative w-full max-w-5xl mx-auto flex items-center gap-3 md:gap-5 transition-all duration-300"
+        >
+          <button
+            onclick="prevBanner()"
+            class="hidden md:flex shrink-0 glass text-white rounded-full w-11 h-11 items-center justify-center hover:bg-[#00a8ff] hover:border-[#00a8ff] transition cursor-pointer shadow-xl"
+          >
+            <i class="fa-solid fa-chevron-left text-sm"></i>
+          </button>
+          <div
+            class="flex-1 overflow-hidden rounded-2xl shadow-[0_30px_80px_rgba(0,0,0,0.7)] border border-white/10 relative"
+          >
+            <div
+              id="banner-track"
+              class="flex transition-transform duration-1000 ease-in-out w-full"
+            >
+              <img
+                src="assets/img/banner4.png"
+                class="w-full h-auto object-cover flex-shrink-0"
+              />
+              <img
+                src="assets/img/banner2.png"
+                class="w-full h-auto object-cover flex-shrink-0"
+              />
+              <img
+                src="assets/img/banner3.png"
+                class="w-full h-auto object-cover flex-shrink-0"
+              />
+            </div>
+            <div
+              class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#020d1f]/60 to-transparent pointer-events-none"
+            ></div>
+          </div>
+          <button
+            onclick="nextBanner()"
+            class="hidden md:flex shrink-0 glass text-white rounded-full w-11 h-11 items-center justify-center hover:bg-[#00a8ff] hover:border-[#00a8ff] transition cursor-pointer shadow-xl"
+          >
+            <i class="fa-solid fa-chevron-right text-sm"></i>
+          </button>
+        </div>
+
+        <!-- Flash Sale Content -->
+        <div
+          id="content-flash"
+          class="w-full max-w-5xl mx-auto hidden transition-all duration-300"
+        >
+          <div
+            class="bg-gradient-to-r from-[#0050cc] to-[#0090ff] rounded-2xl p-5 border border-blue-400/40 shadow-2xl relative w-full flex flex-col md:flex-row gap-5"
+          >
+            <div
+              class="relative w-full md:w-1/3 md:max-w-[250px] rounded-xl overflow-hidden border-2 border-white/20 shadow-xl"
+            >
+              <div
+                class="absolute top-2 left-2 glass text-white text-xs font-black px-3 py-1 rounded-lg z-10"
+              >
+                ML-118790
+              </div>
+              <img
+                src="https://i.pinimg.com/736x/14/9e/0f/149e0fe2099cac8756f46526040ebeb6.jpg"
+                alt="Hero Utama"
+                class="w-full h-full object-cover min-h-[200px]"
+              />
+              <div
+                class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#001040]/90 to-transparent pt-6 pb-2 px-3 flex items-center justify-center gap-2"
+              >
+                <img src="assets/img/kolsul.png" alt="Rank" class="w-10 h-10" />
+                <span class="text-white text-xs font-bold"
+                  >Kolektor Sultan</span
+                >
+              </div>
+            </div>
+            <div class="flex-1 flex flex-col justify-between py-1">
+              <div class="flex gap-2 overflow-x-auto pb-2 scroll-hide">
+                <img
+                  src="https://i.pinimg.com/736x/79/8e/66/798e66927d5cfc4aee7d4a91ace5c0e7.jpg"
+                  class="w-16 h-16 md:w-40 md:h-40 rounded-xl border-2 border-white/30 object-cover shrink-0"
+                />
+                <img
+                  src="https://i.pinimg.com/736x/8d/32/0b/8d320b09b8567e40bdc98b1c7f53a556.jpg"
+                  class="w-16 h-16 md:w-40 md:h-40 rounded-xl border-2 border-white/30 object-cover shrink-0"
+                />
+                <img
+                  src="https://i.pinimg.com/1200x/5e/5c/03/5e5c031b293f4f395aff236a23947bca.jpg"
+                  class="w-16 h-16 md:w-40 md:h-40 rounded-xl border-2 border-white/30 object-cover shrink-0"
+                />
+                <img
+                  src="https://i.pinimg.com/1200x/82/05/1b/82051b1b49f176579fdcb0fa4e4cb5d6.jpg"
+                  class="w-16 h-16 md:w-40 md:h-40 rounded-xl border-2 border-white/30 object-cover shrink-0"
+                />
+              </div>
+              <div class="flex flex-wrap items-center gap-2 mt-3 mb-3">
+                <div
+                  class="border border-red-400/60 bg-red-500/10 text-red-200 px-3 py-1 font-bold text-2xl line-through rounded-lg"
+                >
+                  Rp 5.000.000
+                </div>
+                <div
+                  class="glass text-white text-2xl font-black px-2 py-1 rounded-lg"
+                >
+                  Hero: 126
+                </div>
+                <div
+                  class="glass text-white text-2xl font-black px-2 py-1 rounded-lg"
+                >
+                  Skin: 600
+                </div>
+                <div class="ml-auto text-center">
+                  <img src="assets/img/imo.png" class="w-16 h-16 mx-auto" />
+                  <div class="text-white text-xs font-bold mt-0.5">EX 1000</div>
+                </div>
+              </div>
+              <div
+                class="glass rounded-xl py-3 px-6 flex justify-between items-center"
+              >
+                <div class="text-[#00a8ff] text-2xl">✦</div>
+                <h3
+                  class="text-white text-3xl md:text-4xl font-black tracking-tighter"
+                >
+                  RP 4.500.000
+                </h3>
+                <div class="text-[#00a8ff] text-2xl">✦</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Buttons -->
+        <div class="flex justify-center gap-3 mt-6 relative z-20">
+          <button
+            id="btn-banner"
+            onclick="switchTab('banner')"
+            class="bg-[#00a8ff] text-[#020d1f] border-2 border-[#00a8ff] font-black text-sm py-2.5 px-7 rounded-xl shadow-[0_0_20px_rgba(0,168,255,0.5)] transition hover:scale-105 cursor-pointer"
+          >
+            Banner Event
+          </button>
+          <button
+            id="btn-flash"
+            onclick="switchTab('flash')"
+            class="glass text-gray-300 font-bold text-sm py-2.5 px-7 rounded-xl transition hover:border-[#00a8ff] hover:text-white cursor-pointer"
+          >
+            Flash Sale Akun
+          </button>
+        </div>
+      </main>
+
+      <!-- Marquee -->
+      <div
+        class="relative w-full border-t border-b border-yellow-500/50 bg-[#00a8ff]/8 backdrop-blur-sm py-2.5 overflow-hidden"
+      >
+        <div class="overflow-hidden whitespace-nowrap">
+          <div class="inline-flex animate-marquee">
+            <div
+              class="inline-flex items-center gap-5 pr-20 text-sm font-bold text-white/85 uppercase tracking-wide"
+            >
+              <span class="text-yellow-400 shrink-0">🔥</span>
+              <span class="shrink-0"
+                >MABAR MAKIN GILA, SKIN MAKIN MENYALA!</span
+              >
+              <span class="text-white/30 shrink-0">|</span>
+              <a href="#" class="shrink-0 hover:text-[#00a8ff] transition"
+                >WEBSITE GENZ<span class="text-[#00a8ff]">STORE</span></a
+              >
+              <span class="text-white/30 shrink-0">|</span>
+              <a
+                href="#"
+                class="bg-yellow-400 text-[#020d1f] font-black px-4 py-0.5 rounded-lg text-xs inline-block shrink-0"
+                >DISKON AKUN 20% — KLIK DI SINI</a
+              >
+              <span class="text-white/30 shrink-0">|</span>
+              <span class="shrink-0"
+                >PASTIKAN TRANSAKSI HANYA MELALUI WEBSITE RESMI GENZSTORE</span
+              >
+              <span class="text-yellow-400 shrink-0">⚡</span>
+            </div>
+            <div
+              class="inline-flex items-center gap-5 pr-20 text-sm font-bold text-white/85 uppercase tracking-wide"
+            >
+              <span class="text-yellow-400 shrink-0">🔥</span>
+              <span class="shrink-0"
+                >MABAR MAKIN GILA, SKIN MAKIN MENYALA!</span
+              >
+              <span class="text-white/30 shrink-0">|</span>
+              <a href="#" class="shrink-0"
+                >WEBSITE GENZ<span class="text-[#00a8ff]">STORE</span></a
+              >
+              <span class="text-white/30 shrink-0">|</span>
+              <a
+                href="#"
+                class="bg-yellow-400 text-[#020d1f] font-black px-4 py-0.5 rounded-lg text-xs inline-block shrink-0"
+                >DISKON AKUN 20% — KLIK DI SINI</a
+              >
+              <span class="text-white/30 shrink-0">|</span>
+              <span class="shrink-0"
+                >PASTIKAN TRANSAKSI HANYA MELALUI WEBSITE RESMI GENZSTORE</span
+              >
+              <span class="text-yellow-400 shrink-0">⚡</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- LAYANAN UNGGULAN (ex-POPULER) -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="w-full py-16 relative overflow-hidden">
+      <div
+        class="orb orb-blue w-[500px] h-[500px] top-0 right-0 opacity-15 pointer-events-none"
+      ></div>
+      <div class="container mx-auto px-4 max-w-5xl relative z-10">
+        <div class="text-center mb-10 reveal">
+          <div class="section-pill mx-auto">
+            <i class="fa-solid fa-bolt"></i> Layanan Kami
+          </div>
+          <h2 class="text-3xl md:text-4xl font-black text-white tracking-wide">
+            LAYANAN <span class="text-[#F52727]">UNGGULAN</span>
+          </h2>
+          <p class="text-gray-500 text-sm mt-2 font-medium">
+            Semua kebutuhan gaming kamu ada di sini
+          </p>
+        </div>
+
+        <!-- Social media banner -->
+        <a href="#" class="service-card mb-4 flex-wrap md:flex-nowrap reveal">
+          <div class="flex gap-3 shrink-0">
+            <div
+              class="w-12 h-12 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 flex items-center justify-center text-white text-xl shadow-lg"
+            >
+              <i class="fa-brands fa-instagram"></i>
+            </div>
+            <div
+              class="w-12 h-12 rounded-full bg-[#2AABEE] flex items-center justify-center text-white text-xl shadow-lg"
+            >
+              <i class="fa-brands fa-telegram"></i>
+            </div>
+            <div
+              class="w-12 h-12 rounded-full bg-[#25D366] flex items-center justify-center text-white text-xl shadow-lg"
+            >
+              <i class="fa-brands fa-whatsapp"></i>
+            </div>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h3
+              class="text-white font-black text-lg md:text-2xl uppercase tracking-wide"
+            >
+              SOSIAL MEDIA RESMI GENZSTORE
+              <span class="text-[#00a8ff]">ID</span>
+            </h3>
+            <p class="text-gray-400 text-xs font-medium mt-0.5">
+              Follow untuk info promo dan update terbaru
+            </p>
+          </div>
+          <div class="hidden md:flex items-center shrink-0">
+            <div
+              class="flex items-center gap-2 glass px-4 py-2 rounded-xl text-[#00a8ff] font-bold text-sm"
+            >
+              <i class="fa-solid fa-certificate text-yellow-400"></i> Official
+            </div>
+          </div>
+        </a>
+
+        <!-- 2x2 grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 reveal-stagger">
+          <!-- Card 1 TOP UP -->
+          <a href="topup/farm.html" class="service-card group">
+            <div
+              class="w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-white/10 bg-gray-900 relative"
+            >
+              <img
+                id="card1-img"
+                src="assets/img/logoml3.jpg"
+                alt="Top Up"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 absolute inset-0"
+              />
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="mb-0.5">
+                <span
+                  class="bg-[#00a8ff]/20 text-[#00a8ff] text-[10px] font-black px-2 py-0.5 rounded-md uppercase"
+                  >Instant</span
+                >
+              </div>
+              <h3
+                id="card1-title"
+                class="text-white font-black text-base uppercase transition-opacity duration-300"
+              >
+                TOP UP ALL GAME
+              </h3>
+              <p
+                id="card1-subtitle"
+                class="text-gray-400 text-xs font-bold uppercase mt-0.5 transition-opacity duration-300"
+              >
+                E-FOOTBALL
+              </p>
+            </div>
+            <i
+              class="fa-solid fa-arrow-right text-[#00a8ff] text-sm shrink-0 group-hover:translate-x-1 transition-transform"
+            ></i>
+            <img
+              id="card1-logo"
+              src="assets/img/logoml0.png"
+              class="absolute right-3 bottom-2 w-14 opacity-10 z-0 pointer-events-none transition-opacity duration-300"
+            />
+          </a>
+
+          <!-- Card 2 JOKI -->
+          <a href="joki/joki.html" class="service-card group">
+            <div
+              class="w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-white/10 bg-gray-900 relative"
+            >
+              <img
+                id="card2-img"
+                src="assets/img/logoml1.jpg"
+                alt="Joki"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 absolute inset-0"
+              />
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="mb-0.5">
+                <span
+                  class="bg-purple-500/20 text-purple-300 text-[10px] font-black px-2 py-0.5 rounded-md uppercase"
+                  >Pro Player</span
+                >
+              </div>
+              <h3
+                id="card2-title"
+                class="text-white font-black text-base uppercase transition-opacity duration-300"
+              >
+                JOKI
+              </h3>
+              <p
+                id="card2-subtitle"
+                class="text-gray-400 text-xs font-bold uppercase mt-0.5 transition-opacity duration-300"
+              >
+                MOBILE LEGENDS
+              </p>
+            </div>
+            <i
+              class="fa-solid fa-arrow-right text-[#00a8ff] text-sm shrink-0 group-hover:translate-x-1 transition-transform"
+            ></i>
+            <img
+              id="card2-logo"
+              src="assets/img/logoml0.png"
+              class="absolute right-3 bottom-2 w-14 opacity-10 z-0 pointer-events-none transition-opacity duration-300"
+            />
+          </a>
+
+          <!-- Card 3 BELI AKUN -->
+          <a href="beli_akun/kategori_akun.html" class="service-card group">
+            <div
+              class="w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-white/10 bg-gray-900 relative"
+            >
+              <img
+                id="card3-img"
+                src="assets/img/logoml1.jpg"
+                alt="Beli Akun"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 absolute inset-0"
+              />
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="mb-0.5">
+                <span
+                  class="bg-green-500/20 text-green-300 text-[10px] font-black px-2 py-0.5 rounded-md uppercase"
+                  >Garansi</span
+                >
+              </div>
+              <h3
+                id="card3-title"
+                class="text-white font-black text-base uppercase transition-opacity duration-300"
+              >
+                BELI AKUN
+              </h3>
+              <p
+                id="card3-subtitle"
+                class="text-gray-400 text-xs font-bold uppercase mt-0.5 transition-opacity duration-300"
+              >
+                MOBILE LEGENDS
+              </p>
+            </div>
+            <i
+              class="fa-solid fa-arrow-right text-[#00a8ff] text-sm shrink-0 group-hover:translate-x-1 transition-transform"
+            ></i>
+            <img
+              id="card3-logo"
+              src="assets/img/logoml0.png"
+              class="absolute right-3 bottom-2 w-14 opacity-10 z-0 pointer-events-none transition-opacity duration-300"
+            />
+          </a>
+
+          <!-- Card 4 CS -->
+          <a href="https://wa.me/6285790427533" class="service-card group">
+            <div
+              class="w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-white/10 bg-gray-900 relative"
+            >
+              <img
+                id="card4-img"
+                src="assets/img/logocs.jpg"
+                alt="CS"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 absolute inset-0"
+              />
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="mb-0.5">
+                <span
+                  class="bg-yellow-500/20 text-yellow-300 text-[10px] font-black px-2 py-0.5 rounded-md uppercase"
+                  >24/7 Online</span
+                >
+              </div>
+              <h3
+                id="card4-title"
+                class="text-white font-black text-base uppercase transition-opacity duration-300"
+              >
+                CUSTOMER SERVICE
+              </h3>
+              <p
+                id="card4-subtitle"
+                class="text-gray-400 text-xs font-bold uppercase mt-0.5 transition-opacity duration-300"
+              >
+                GENZSTORE
+              </p>
+            </div>
+            <i
+              class="fa-brands fa-whatsapp text-green-400 text-xl shrink-0 group-hover:scale-110 transition-transform"
+            ></i>
+            <img
+              id="card4-logo"
+              src="assets/img/logocs24.png"
+              class="absolute right-3 bottom-2 w-10 opacity-10 z-0 pointer-events-none transition-opacity duration-300"
+            />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="glow-divider max-w-5xl w-full mx-auto px-4"></div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- PILIHAN STOCK -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="w-full py-16 relative">
+      <div
+        class="orb orb-purple w-[400px] h-[400px] top-20 left-0 opacity-12 pointer-events-none"
+      ></div>
+      <div class="container mx-auto px-4 max-w-6xl relative z-10">
+        <!-- Header -->
+        <div
+          class="flex flex-col md:flex-row justify-between items-center mb-8"
+        >
+          <div class="text-center md:text-left mb-4 md:mb-0">
+            <p
+              class="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-1"
+            >
+              Akun Terjual
+            </p>
+
+            <p class="text-[#00a8ff] font-black text-2xl">
+              <span id="total-stock">10.000</span> Akun
+            </p>
+          </div>
+          <div class="text-center">
+            <div class="section-pill mx-auto">
+              <i class="fa-solid fa-layer-group"></i> Stok Pilihan
+            </div>
+            <h2
+              class="text-3xl md:text-4xl font-black text-white tracking-wider uppercase"
+            >
+              PILIHAN <span class="text-[#F52727]">STOCK</span>
+            </h2>
+          </div>
+          <div class="text-center md:text-right mt-4 md:mt-0">
+            <p
+              class="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-1"
+            >
+              Tersedia
+            </p>
+            <p class="text-[#00a8ff] font-black text-2xl">
+              <span id="total-stock">1000</span> Akun
+            </p>
+          </div>
+        </div>
+
+        <!-- Game tabs -->
+        <div
+          class="flex justify-center flex-wrap gap-2 md:gap-3 mb-3 relative z-20"
+        >
+          <button
+            onclick="switchStockTab('ml')"
+            id="tab-btn-ml"
+            class="stock-tab-btn active-tab px-7 md:px-10 py-2.5 md:py-3 rounded-full font-bold text-sm uppercase transition-all cursor-pointer"
+          >
+            Mobile Legends
+          </button>
+          <button
+            onclick="switchStockTab('ff')"
+            id="tab-btn-ff"
+            class="stock-tab-btn glass text-gray-400 px-7 md:px-10 py-2.5 md:py-3 rounded-full font-bold text-sm uppercase transition-all cursor-pointer hover:text-white hover:border-[#00a8ff]"
+          >
+            Free-Fire
+          </button>
+          <button
+            onclick="switchStockTab('efootball')"
+            id="tab-btn-efootball"
+            class="stock-tab-btn glass text-gray-400 px-7 md:px-10 py-2.5 md:py-3 rounded-full font-bold text-sm uppercase transition-all cursor-pointer hover:text-white hover:border-[#00a8ff]"
+          >
+            E-Football
+          </button>
+        </div>
+        <div class="flex justify-end mb-4 relative z-20">
+          <a
+            href="beli_akun/katalogML.html"
+            class="glass hover:bg-[#00a8ff] hover:text-[#020d1f] text-[#00a8ff] text-xs font-bold py-2 px-5 rounded-xl transition-all flex items-center gap-2 cursor-pointer border border-[#00a8ff]/30"
+          >
+            Stock Lainnya <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Tab contents -->
+        <div class="relative w-full">
+          <!-- ML -->
+          <div
+            id="tab-content-ml"
+            class="stock-content transition-opacity duration-500 opacity-100 block w-full relative pt-4 pb-12"
+          >
+            <div
+              class="w-full max-w-5xl mx-auto flex items-center gap-2 md:gap-4"
+            >
+              <button
+                onclick="moveStock('prev')"
+                class="shrink-0 z-50 glass-blue text-white rounded-full w-11 h-11 flex items-center justify-center transition-all hover:bg-[#00a8ff] cursor-pointer shadow-lg"
+              >
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+              <div
+                class="relative flex-1 h-[480px] md:h-[550px] overflow-hidden"
+                style="perspective: 1200px"
+              >
+                <div
+                  id="stock-carousel"
+                  class="relative w-full h-full flex items-center justify-center"
+                >
+                  <a href="beli_akun/detail_akun.html?id=ml-001" class="block"
+                    ><div
+                      class="stock-card absolute w-[240px] md:w-[320px] rounded-2xl overflow-hidden bg-[#0d0820] border border-purple-500/60 shadow-[0_0_40px_rgba(0,0,0,0.9)] transition-all duration-500 cursor-pointer flex flex-col"
+                    >
+                      <div class="relative h-[250px] md:h-[300px] w-full">
+                        <div
+                          class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-black px-3 py-1 rounded-bl-xl z-20"
+                        >
+                          DISKON
+                        </div>
+                        <img
+                          src="assets/img/stok1.jpg"
+                          class="w-full h-full object-cover"
+                        />
+                        <div
+                          class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0d0820] to-transparent z-10"
+                        ></div>
+                      </div>
+                      <div
+                        class="p-4 bg-[#0d0820] flex-1 flex flex-col justify-center relative z-20 -mt-6"
+                      >
+                        <div class="flex items-center justify-between mb-1">
+                          <span class="text-red-400 font-black italic text-sm"
+                            >HEMAT 20%</span
+                          ><span
+                            class="text-gray-500 text-xs line-through font-bold"
+                            >Rp 1.000.000</span
+                          >
+                        </div>
+                        <h3
+                          class="text-yellow-400 text-2xl md:text-3xl font-black mb-2 tracking-tighter"
+                        >
+                          Rp 800.000
+                        </h3>
+                        <div
+                          class="flex items-center justify-between border-t border-purple-800/50 pt-3"
+                        >
+                          <div class="flex items-center gap-1.5">
+                            <i
+                              class="fa-solid fa-user text-purple-400 text-sm"
+                            ></i
+                            ><span class="text-xs font-bold text-gray-300"
+                              >131</span
+                            >
+                          </div>
+                          <div class="flex items-center gap-1.5">
+                            <i
+                              class="fa-solid fa-shirt text-purple-400 text-sm"
+                            ></i
+                            ><span class="text-xs font-bold text-gray-300"
+                              >489</span
+                            >
+                          </div>
+                          <div class="flex items-center gap-1.5">
+                            <i
+                              class="fa-solid fa-star text-yellow-400 text-sm"
+                            ></i
+                            ><span class="text-xs font-bold text-gray-300"
+                              >EX 87</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="bg-[#0a1a3a] border-t border-[#00a8ff]/40 p-2.5 text-center"
+                      >
+                        <h4
+                          class="text-white font-black text-sm uppercase tracking-wide truncate"
+                        >
+                          BENEDETA VESSEL
+                        </h4>
+                      </div>
+                    </div></a
+                  >
+                  <a href="beli_akun/detail_akun.html?id=ml-002" class="block"
+                    ><div
+                      class="stock-card absolute w-[240px] md:w-[320px] rounded-2xl overflow-hidden bg-[#0d0820] border border-purple-500/60 shadow-[0_0_40px_rgba(0,0,0,0.9)] transition-all duration-500 cursor-pointer flex flex-col"
+                    >
+                      <div class="relative h-[250px] md:h-[300px] w-full">
+                        <div
+                          class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-black px-3 py-1 rounded-bl-xl z-20"
+                        >
+                          DISKON
+                        </div>
+                        <img
+                          src="assets/img/stok1.jpg"
+                          class="w-full h-full object-cover"
+                        />
+                        <div
+                          class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0d0820] to-transparent z-10"
+                        ></div>
+                      </div>
+                      <div
+                        class="p-4 bg-[#0d0820] flex-1 flex flex-col justify-center relative z-20 -mt-6"
+                      >
+                        <div class="flex items-center justify-between mb-1">
+                          <span class="text-red-400 font-black italic text-sm"
+                            >HEMAT 20%</span
+                          ><span
+                            class="text-gray-500 text-xs line-through font-bold"
+                            >Rp 1.000.000</span
+                          >
+                        </div>
+                        <h3
+                          class="text-yellow-400 text-2xl md:text-3xl font-black mb-2 tracking-tighter"
+                        >
+                          Rp 800.000
+                        </h3>
+                        <div
+                          class="flex items-center justify-between border-t border-purple-800/50 pt-3"
+                        >
+                          <div class="flex items-center gap-1.5">
+                            <i
+                              class="fa-solid fa-user text-purple-400 text-sm"
+                            ></i
+                            ><span class="text-xs font-bold text-gray-300"
+                              >120</span
+                            >
+                          </div>
+                          <div class="flex items-center gap-1.5">
+                            <i
+                              class="fa-solid fa-shirt text-purple-400 text-sm"
+                            ></i
+                            ><span class="text-xs font-bold text-gray-300"
+                              >350</span
+                            >
+                          </div>
+                          <div class="flex items-center gap-1.5">
+                            <i
+                              class="fa-solid fa-star text-yellow-400 text-sm"
+                            ></i
+                            ><span class="text-xs font-bold text-gray-300"
+                              >EX 73</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="bg-[#0a1a3a] border-t border-[#00a8ff]/40 p-2.5 text-center"
+                      >
+                        <h4
+                          class="text-white font-black text-sm uppercase tracking-wide truncate"
+                        >
+                          FANNY LEGEND
+                        </h4>
+                      </div>
+                    </div></a
+                  >
+                  <a href="beli_akun/detail_akun.html?id=ml-003" class="block"
+                    ><div
+                      class="stock-card absolute w-[240px] md:w-[320px] rounded-2xl overflow-hidden bg-[#0d0820] border border-purple-500/60 shadow-[0_0_40px_rgba(0,0,0,0.9)] transition-all duration-500 cursor-pointer flex flex-col"
+                    >
+                      <div class="relative h-[250px] md:h-[300px] w-full">
+                        <div
+                          class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-black px-3 py-1 rounded-bl-xl z-20"
+                        >
+                          DISKON
+                        </div>
+                        <img
+                          src="assets/img/stok1.jpg"
+                          class="w-full h-full object-cover"
+                        />
+                        <div
+                          class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0d0820] to-transparent z-10"
+                        ></div>
+                      </div>
+                      <div
+                        class="p-4 bg-[#0d0820] flex-1 flex flex-col justify-center relative z-20 -mt-6"
+                      >
+                        <div class="flex items-center justify-between mb-1">
+                          <span class="text-red-400 font-black italic text-sm"
+                            >HEMAT 20%</span
+                          ><span
+                            class="text-gray-500 text-xs line-through font-bold"
+                            >Rp 1.000.000</span
+                          >
+                        </div>
+                        <h3
+                          class="text-yellow-400 text-2xl md:text-3xl font-black mb-2 tracking-tighter"
+                        >
+                          Rp 800.000
+                        </h3>
+                        <div
+                          class="flex items-center justify-between border-t border-purple-800/50 pt-3"
+                        >
+                          <div class="flex items-center gap-1.5">
+                            <i
+                              class="fa-solid fa-user text-purple-400 text-sm"
+                            ></i
+                            ><span class="text-xs font-bold text-gray-300"
+                              >121</span
+                            >
+                          </div>
+                          <div class="flex items-center gap-1.5">
+                            <i
+                              class="fa-solid fa-shirt text-purple-400 text-sm"
+                            ></i
+                            ><span class="text-xs font-bold text-gray-300"
+                              >302</span
+                            >
+                          </div>
+                          <div class="flex items-center gap-1.5">
+                            <i
+                              class="fa-solid fa-star text-yellow-400 text-sm"
+                            ></i
+                            ><span class="text-xs font-bold text-gray-300"
+                              >EX 90</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="bg-[#0a1a3a] border-t border-[#00a8ff]/40 p-2.5 text-center"
+                      >
+                        <h4
+                          class="text-white font-black text-sm uppercase tracking-wide truncate"
+                        >
+                          GUSION LEGEND
+                        </h4>
+                      </div>
+                    </div></a
+                  >
+                  <a href="beli_akun/detail_akun.html?id=ml-004" class="block"
+                    ><div
+                      class="stock-card absolute w-[240px] md:w-[320px] rounded-2xl overflow-hidden bg-[#0d0820] border border-purple-500/60 shadow-[0_0_40px_rgba(0,0,0,0.9)] transition-all duration-500 cursor-pointer flex flex-col"
+                    >
+                      <div class="relative h-[250px] md:h-[300px] w-full">
+                        <div
+                          class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-black px-3 py-1 rounded-bl-xl z-20"
+                        >
+                          DISKON
+                        </div>
+                        <img
+                          src="assets/img/stok1.jpg"
+                          class="w-full h-full object-cover"
+                        />
+                        <div
+                          class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0d0820] to-transparent z-10"
+                        ></div>
+                      </div>
+                      <div
+                        class="p-4 bg-[#0d0820] flex-1 flex flex-col justify-center relative z-20 -mt-6"
+                      >
+                        <div class="flex items-center justify-between mb-1">
+                          <span class="text-red-400 font-black italic text-sm"
+                            >HEMAT 20%</span
+                          ><span
+                            class="text-gray-500 text-xs line-through font-bold"
+                            >Rp 1.000.000</span
+                          >
+                        </div>
+                        <h3
+                          class="text-yellow-400 text-2xl md:text-3xl font-black mb-2 tracking-tighter"
+                        >
+                          Rp 800.000
+                        </h3>
+                        <div
+                          class="flex items-center justify-between border-t border-purple-800/50 pt-3"
+                        >
+                          <div class="flex items-center gap-1.5">
+                            <i
+                              class="fa-solid fa-user text-purple-400 text-sm"
+                            ></i
+                            ><span class="text-xs font-bold text-gray-300"
+                              >124</span
+                            >
+                          </div>
+                          <div class="flex items-center gap-1.5">
+                            <i
+                              class="fa-solid fa-shirt text-purple-400 text-sm"
+                            ></i
+                            ><span class="text-xs font-bold text-gray-300"
+                              >415</span
+                            >
+                          </div>
+                          <div class="flex items-center gap-1.5">
+                            <i
+                              class="fa-solid fa-star text-yellow-400 text-sm"
+                            ></i
+                            ><span class="text-xs font-bold text-gray-300"
+                              >EX 112</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="bg-[#0a1a3a] border-t border-[#00a8ff]/40 p-2.5 text-center"
+                      >
+                        <h4
+                          class="text-white font-black text-sm uppercase tracking-wide truncate"
+                        >
+                          CHOU IORI YAGAMI
+                        </h4>
+                      </div>
+                    </div></a
+                  >
+                  <a href="beli_akun/detail_akun.html?id=ml-005" class="block"
+                    ><div
+                      class="stock-card absolute w-[240px] md:w-[320px] rounded-2xl overflow-hidden bg-[#0d0820] border border-purple-500/60 shadow-[0_0_40px_rgba(0,0,0,0.9)] transition-all duration-500 cursor-pointer flex flex-col"
+                    >
+                      <div class="relative h-[250px] md:h-[300px] w-full">
+                        <div
+                          class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-black px-3 py-1 rounded-bl-xl z-20"
+                        >
+                          DISKON
+                        </div>
+                        <img
+                          src="assets/img/stok1.jpg"
+                          class="w-full h-full object-cover"
+                        />
+                        <div
+                          class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0d0820] to-transparent z-10"
+                        ></div>
+                      </div>
+                      <div
+                        class="p-4 bg-[#0d0820] flex-1 flex flex-col justify-center relative z-20 -mt-6"
+                      >
+                        <div class="flex items-center justify-between mb-1">
+                          <span class="text-red-400 font-black italic text-sm"
+                            >HEMAT 70%</span
+                          ><span
+                            class="text-gray-500 text-xs line-through font-bold"
+                            >Rp 3.100.000</span
+                          >
+                        </div>
+                        <h3
+                          class="text-yellow-400 text-2xl md:text-3xl font-black mb-2 tracking-tighter"
+                        >
+                          Rp 930.000
+                        </h3>
+                        <div
+                          class="flex items-center justify-between border-t border-purple-800/50 pt-3"
+                        >
+                          <div class="flex items-center gap-1.5">
+                            <i
+                              class="fa-solid fa-user text-purple-400 text-sm"
+                            ></i
+                            ><span class="text-xs font-bold text-gray-300"
+                              >110</span
+                            >
+                          </div>
+                          <div class="flex items-center gap-1.5">
+                            <i
+                              class="fa-solid fa-shirt text-purple-400 text-sm"
+                            ></i
+                            ><span class="text-xs font-bold text-gray-300"
+                              >250</span
+                            >
+                          </div>
+                          <div class="flex items-center gap-1.5">
+                            <i
+                              class="fa-solid fa-star text-yellow-400 text-sm"
+                            ></i
+                            ><span class="text-xs font-bold text-gray-300"
+                              >EX 60</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="bg-[#0a1a3a] border-t border-[#00a8ff]/40 p-2.5 text-center"
+                      >
+                        <h4
+                          class="text-white font-black text-sm uppercase tracking-wide truncate"
+                        >
+                          LING M-WORLD
+                        </h4>
+                      </div>
+                    </div></a
+                  >
+                </div>
+              </div>
+              <button
+                onclick="moveStock('next')"
+                class="shrink-0 z-50 glass-blue text-white rounded-full w-11 h-11 flex items-center justify-center transition-all hover:bg-[#00a8ff] cursor-pointer shadow-lg"
+              >
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- FF -->
+          <div
+            id="tab-content-ff"
+            class="stock-content transition-opacity duration-500 opacity-0 hidden w-full relative pt-4 pb-12"
+          >
+            <div
+              class="w-full max-w-5xl mx-auto flex items-center gap-2 md:gap-4"
+            >
+              <button
+                onclick="moveStock('prev')"
+                class="shrink-0 z-50 glass-blue text-white rounded-full w-11 h-11 flex items-center justify-center transition-all hover:bg-[#00a8ff] cursor-pointer shadow-lg"
+              >
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+              <div
+                class="relative flex-1 h-[480px] md:h-[550px] overflow-hidden"
+                style="perspective: 1200px"
+              >
+                <div
+                  class="relative w-full h-full flex items-center justify-center"
+                >
+                  <a
+                    href="beli_akun/detail_akun.html?id=idx-ff-001"
+                    class="block"
+                    ><div
+                      class="stock-card absolute w-[240px] md:w-[320px] rounded-2xl overflow-hidden bg-[#1a0808] border-2 border-red-500/60 shadow-[0_0_40px_rgba(0,0,0,0.9)] transition-all duration-500 cursor-pointer flex flex-col"
+                    >
+                      <div class="relative h-[250px] md:h-[300px] w-full">
+                        <div
+                          class="absolute top-0 right-0 bg-yellow-400 text-[#020d1f] text-[10px] font-black px-3 py-1 rounded-bl-xl z-20"
+                        >
+                          PROMO FF
+                        </div>
+                        <img
+                          src="assets/img/logoff.jpg"
+                          class="w-full h-full object-cover"
+                        />
+                        <div
+                          class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#1a0808] to-transparent z-10"
+                        ></div>
+                      </div>
+                      <div class="p-4 bg-[#1a0808] flex-1 z-20 -mt-6">
+                        <h3 class="text-red-400 text-2xl font-black mb-2">
+                          Rp 504.000
+                        </h3>
+                      </div>
+                      <div
+                        class="bg-red-900/60 border-t border-red-500/40 p-2 text-center"
+                      >
+                        <h4 class="text-white font-black text-sm uppercase">
+                          BUNDLE ALOK 1
+                        </h4>
+                      </div>
+                    </div></a
+                  >
+                  <a
+                    href="beli_akun/detail_akun.html?id=idx-ff-002"
+                    class="block"
+                    ><div
+                      class="stock-card absolute w-[240px] md:w-[320px] rounded-2xl overflow-hidden bg-[#1a0808] border-2 border-red-500/60 shadow-[0_0_40px_rgba(0,0,0,0.9)] transition-all duration-500 cursor-pointer flex flex-col"
+                    >
+                      <div class="relative h-[250px] md:h-[300px] w-full">
+                        <div
+                          class="absolute top-0 right-0 bg-yellow-400 text-[#020d1f] text-[10px] font-black px-3 py-1 rounded-bl-xl z-20"
+                        >
+                          PROMO FF
+                        </div>
+                        <img
+                          src="assets/img/logoff.jpg"
+                          class="w-full h-full object-cover"
+                        />
+                        <div
+                          class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#1a0808] to-transparent z-10"
+                        ></div>
+                      </div>
+                      <div class="p-4 bg-[#1a0808] flex-1 z-20 -mt-6">
+                        <h3 class="text-red-400 text-2xl font-black mb-2">
+                          Rp 300.000
+                        </h3>
+                      </div>
+                      <div
+                        class="bg-red-900/60 border-t border-red-500/40 p-2 text-center"
+                      >
+                        <h4 class="text-white font-black text-sm uppercase">
+                          BUNDLE ALOK 2
+                        </h4>
+                      </div>
+                    </div></a
+                  >
+                  <a
+                    href="beli_akun/detail_akun.html?id=idx-ff-003"
+                    class="block"
+                    ><div
+                      class="stock-card absolute w-[240px] md:w-[320px] rounded-2xl overflow-hidden bg-[#1a0808] border-2 border-red-500/60 shadow-[0_0_40px_rgba(0,0,0,0.9)] transition-all duration-500 cursor-pointer flex flex-col"
+                    >
+                      <div class="relative h-[250px] md:h-[300px] w-full">
+                        <div
+                          class="absolute top-0 right-0 bg-yellow-400 text-[#020d1f] text-[10px] font-black px-3 py-1 rounded-bl-xl z-20"
+                        >
+                          PROMO FF
+                        </div>
+                        <img
+                          src="assets/img/logoff.jpg"
+                          class="w-full h-full object-cover"
+                        />
+                        <div
+                          class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#1a0808] to-transparent z-10"
+                        ></div>
+                      </div>
+                      <div class="p-4 bg-[#1a0808] flex-1 z-20 -mt-6">
+                        <h3 class="text-red-400 text-2xl font-black mb-2">
+                          Rp 450.000
+                        </h3>
+                      </div>
+                      <div
+                        class="bg-red-900/60 border-t border-red-500/40 p-2 text-center"
+                      >
+                        <h4 class="text-white font-black text-sm uppercase">
+                          BUNDLE ALOK 3
+                        </h4>
+                      </div>
+                    </div></a
+                  >
+                  <a
+                    href="beli_akun/detail_akun.html?id=idx-ff-004"
+                    class="block"
+                    ><div
+                      class="stock-card absolute w-[240px] md:w-[320px] rounded-2xl overflow-hidden bg-[#1a0808] border-2 border-red-500/60 shadow-[0_0_40px_rgba(0,0,0,0.9)] transition-all duration-500 cursor-pointer flex flex-col"
+                    >
+                      <div class="relative h-[250px] md:h-[300px] w-full">
+                        <div
+                          class="absolute top-0 right-0 bg-yellow-400 text-[#020d1f] text-[10px] font-black px-3 py-1 rounded-bl-xl z-20"
+                        >
+                          PROMO FF
+                        </div>
+                        <img
+                          src="assets/img/logoff.jpg"
+                          class="w-full h-full object-cover"
+                        />
+                        <div
+                          class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#1a0808] to-transparent z-10"
+                        ></div>
+                      </div>
+                      <div class="p-4 bg-[#1a0808] flex-1 z-20 -mt-6">
+                        <h3 class="text-red-400 text-2xl font-black mb-2">
+                          Rp 200.000
+                        </h3>
+                      </div>
+                      <div
+                        class="bg-red-900/60 border-t border-red-500/40 p-2 text-center"
+                      >
+                        <h4 class="text-white font-black text-sm uppercase">
+                          BUNDLE ALOK 4
+                        </h4>
+                      </div>
+                    </div></a
+                  >
+                  <a
+                    href="beli_akun/detail_akun.html?id=idx-ff-005"
+                    class="block"
+                    ><div
+                      class="stock-card absolute w-[240px] md:w-[320px] rounded-2xl overflow-hidden bg-[#1a0808] border-2 border-red-500/60 shadow-[0_0_40px_rgba(0,0,0,0.9)] transition-all duration-500 cursor-pointer flex flex-col"
+                    >
+                      <div class="relative h-[250px] md:h-[300px] w-full">
+                        <div
+                          class="absolute top-0 right-0 bg-yellow-400 text-[#020d1f] text-[10px] font-black px-3 py-1 rounded-bl-xl z-20"
+                        >
+                          PROMO FF
+                        </div>
+                        <img
+                          src="assets/img/logoff.jpg"
+                          class="w-full h-full object-cover"
+                        />
+                        <div
+                          class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#1a0808] to-transparent z-10"
+                        ></div>
+                      </div>
+                      <div class="p-4 bg-[#1a0808] flex-1 z-20 -mt-6">
+                        <h3 class="text-red-400 text-2xl font-black mb-2">
+                          Rp 650.000
+                        </h3>
+                      </div>
+                      <div
+                        class="bg-red-900/60 border-t border-red-500/40 p-2 text-center"
+                      >
+                        <h4 class="text-white font-black text-sm uppercase">
+                          BUNDLE ALOK 5
+                        </h4>
+                      </div>
+                    </div></a
+                  >
+                </div>
+              </div>
+              <button
+                onclick="moveStock('next')"
+                class="shrink-0 z-50 glass-blue text-white rounded-full w-11 h-11 flex items-center justify-center transition-all hover:bg-[#00a8ff] cursor-pointer shadow-lg"
+              >
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- eFootball -->
+          <div
+            id="tab-content-efootball"
+            class="stock-content transition-opacity duration-500 opacity-0 hidden w-full relative pt-4 pb-12"
+          >
+            <div
+              class="w-full max-w-5xl mx-auto flex items-center gap-2 md:gap-4"
+            >
+              <button
+                onclick="moveStock('prev')"
+                class="shrink-0 z-50 glass-blue text-white rounded-full w-11 h-11 flex items-center justify-center transition-all hover:bg-[#00a8ff] cursor-pointer shadow-lg"
+              >
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+              <div
+                class="relative flex-1 h-[480px] md:h-[550px] overflow-hidden"
+                style="perspective: 1200px"
+              >
+                <div
+                  class="relative w-full h-full flex items-center justify-center"
+                >
+                  <a
+                    href="beli_akun/detail_akun.html?id=idx-ef-001"
+                    class="block"
+                    ><div
+                      class="stock-card absolute w-[240px] md:w-[320px] rounded-2xl overflow-hidden bg-[#081220] border-2 border-blue-400/60 shadow-[0_0_40px_rgba(0,0,0,0.9)] transition-all duration-500 cursor-pointer flex flex-col"
+                    >
+                      <div class="relative h-[250px] md:h-[300px] w-full">
+                        <img
+                          src="assets/img/logoefb.jpg"
+                          class="w-full h-full object-cover"
+                        />
+                        <div
+                          class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#081220] to-transparent z-10"
+                        ></div>
+                      </div>
+                      <div class="p-4 bg-[#081220] flex-1 z-20 -mt-6">
+                        <h3 class="text-blue-400 text-2xl font-black mb-2">
+                          Rp 199.000
+                        </h3>
+                      </div>
+                      <div
+                        class="bg-blue-900/50 border-t border-blue-400/40 p-2 text-center"
+                      >
+                        <h4 class="text-white font-black text-sm uppercase">
+                          MESSI ICONIC
+                        </h4>
+                      </div>
+                    </div></a
+                  >
+                  <a
+                    href="beli_akun/detail_akun.html?id=idx-ef-002"
+                    class="block"
+                    ><div
+                      class="stock-card absolute w-[240px] md:w-[320px] rounded-2xl overflow-hidden bg-[#081220] border-2 border-blue-400/60 shadow-[0_0_40px_rgba(0,0,0,0.9)] transition-all duration-500 cursor-pointer flex flex-col"
+                    >
+                      <div class="relative h-[250px] md:h-[300px] w-full">
+                        <img
+                          src="assets/img/logoefb.jpg"
+                          class="w-full h-full object-cover"
+                        />
+                        <div
+                          class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#081220] to-transparent z-10"
+                        ></div>
+                      </div>
+                      <div class="p-4 bg-[#081220] flex-1 z-20 -mt-6">
+                        <h3 class="text-blue-400 text-2xl font-black mb-2">
+                          Rp 250.000
+                        </h3>
+                      </div>
+                      <div
+                        class="bg-blue-900/50 border-t border-blue-400/40 p-2 text-center"
+                      >
+                        <h4 class="text-white font-black text-sm uppercase">
+                          RONALDO
+                        </h4>
+                      </div>
+                    </div></a
+                  >
+                  <a
+                    href="beli_akun/detail_akun.html?id=idx-ef-003"
+                    class="block"
+                    ><div
+                      class="stock-card absolute w-[240px] md:w-[320px] rounded-2xl overflow-hidden bg-[#081220] border-2 border-blue-400/60 shadow-[0_0_40px_rgba(0,0,0,0.9)] transition-all duration-500 cursor-pointer flex flex-col"
+                    >
+                      <div class="relative h-[250px] md:h-[300px] w-full">
+                        <img
+                          src="assets/img/logoefb.jpg"
+                          class="w-full h-full object-cover"
+                        />
+                        <div
+                          class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#081220] to-transparent z-10"
+                        ></div>
+                      </div>
+                      <div class="p-4 bg-[#081220] flex-1 z-20 -mt-6">
+                        <h3 class="text-blue-400 text-2xl font-black mb-2">
+                          Rp 350.000
+                        </h3>
+                      </div>
+                      <div
+                        class="bg-blue-900/50 border-t border-blue-400/40 p-2 text-center"
+                      >
+                        <h4 class="text-white font-black text-sm uppercase">
+                          NEYMAR
+                        </h4>
+                      </div>
+                    </div></a
+                  >
+                  <a
+                    href="beli_akun/detail_akun.html?id=idx-ef-004"
+                    class="block"
+                    ><div
+                      class="stock-card absolute w-[240px] md:w-[320px] rounded-2xl overflow-hidden bg-[#081220] border-2 border-blue-400/60 shadow-[0_0_40px_rgba(0,0,0,0.9)] transition-all duration-500 cursor-pointer flex flex-col"
+                    >
+                      <div class="relative h-[250px] md:h-[300px] w-full">
+                        <img
+                          src="assets/img/logoefb.jpg"
+                          class="w-full h-full object-cover"
+                        />
+                        <div
+                          class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#081220] to-transparent z-10"
+                        ></div>
+                      </div>
+                      <div class="p-4 bg-[#081220] flex-1 z-20 -mt-6">
+                        <h3 class="text-blue-400 text-2xl font-black mb-2">
+                          Rp 450.000
+                        </h3>
+                      </div>
+                      <div
+                        class="bg-blue-900/50 border-t border-blue-400/40 p-2 text-center"
+                      >
+                        <h4 class="text-white font-black text-sm uppercase">
+                          MBAPPE
+                        </h4>
+                      </div>
+                    </div></a
+                  >
+                  <a
+                    href="beli_akun/detail_akun.html?id=idx-ef-005"
+                    class="block"
+                    ><div
+                      class="stock-card absolute w-[240px] md:w-[320px] rounded-2xl overflow-hidden bg-[#081220] border-2 border-blue-400/60 shadow-[0_0_40px_rgba(0,0,0,0.9)] transition-all duration-500 cursor-pointer flex flex-col"
+                    >
+                      <div class="relative h-[250px] md:h-[300px] w-full">
+                        <img
+                          src="assets/img/logoefb.jpg"
+                          class="w-full h-full object-cover"
+                        />
+                        <div
+                          class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#081220] to-transparent z-10"
+                        ></div>
+                      </div>
+                      <div class="p-4 bg-[#081220] flex-1 z-20 -mt-6">
+                        <h3 class="text-blue-400 text-2xl font-black mb-2">
+                          Rp 550.000
+                        </h3>
+                      </div>
+                      <div
+                        class="bg-blue-900/50 border-t border-blue-400/40 p-2 text-center"
+                      >
+                        <h4 class="text-white font-black text-sm uppercase">
+                          HAALAND
+                        </h4>
+                      </div>
+                    </div></a
+                  >
+                </div>
+              </div>
+              <button
+                onclick="moveStock('next')"
+                class="shrink-0 z-50 glass-blue text-white rounded-full w-11 h-11 flex items-center justify-center transition-all hover:bg-[#00a8ff] cursor-pointer shadow-lg"
+              >
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="glow-divider max-w-5xl w-full mx-auto px-4"></div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- WHY GENZSTORE -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="w-full py-20 relative overflow-hidden">
+      <div
+        class="orb orb-cyan w-[500px] h-[500px] -bottom-20 right-0 opacity-10 pointer-events-none"
+      ></div>
+      <div
+        class="orb orb-purple w-[300px] h-[300px] top-0 left-10 opacity-08 pointer-events-none"
+      ></div>
+      <div class="container mx-auto px-4 max-w-5xl relative z-10">
+        <div class="text-center mb-14 reveal">
+          <div class="section-pill mx-auto">
+            <i class="fa-solid fa-shield-halved"></i> Kepercayaan
+          </div>
+          <h2 class="text-3xl md:text-4xl font-black text-white tracking-wide">
+            WHY <span class="italic">GENZ</span
+            ><span class="text-[#F52727]">STORE</span> ?
+          </h2>
+          <p class="text-gray-500 text-sm mt-3 max-w-md mx-auto">
+            Ribuan gamer udah percaya sama kami. Ini alasannya.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal-stagger">
+          <div class="why-card group float">
+            <div class="top-line rounded-t-3xl"></div>
+            <div class="icon-wrap">
+              <img
+                src="assets/img/icon 1.png"
+                alt="Proses Kilat"
+                class="w-16 h-16 object-contain drop-shadow-xl"
+              />
+            </div>
+            <h3
+              class="text-white font-black text-lg uppercase tracking-wide mb-2 group-hover:text-[#00a8ff] transition-colors"
+            >
+              PROSES KILAT
+            </h3>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              Top Up diproses otomatis dalam
+              <strong class="text-gray-300">1-3 detik</strong>. Akun & Joki
+              maksimal 15 menit.
+            </p>
+          </div>
+          <div class="why-card group float-delay">
+            <div class="top-line rounded-t-3xl"></div>
+            <div class="icon-wrap">
+              <img
+                src="assets/img/icon 2.png"
+                alt="Aman"
+                class="w-16 h-16 object-contain drop-shadow-xl"
+              />
+            </div>
+            <h3
+              class="text-white font-black text-lg uppercase tracking-wide mb-2 group-hover:text-[#00a8ff] transition-colors"
+            >
+              AMAN & BERGARANSI
+            </h3>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              Anti hack-back.
+              <strong class="text-gray-300"
+                >Garansi uang kembali seumur hidup</strong
+              >
+              kalau ada masalah.
+            </p>
+          </div>
+          <div class="why-card group float-delay2">
+            <div class="top-line rounded-t-3xl"></div>
+            <div class="icon-wrap">
+              <img
+                src="assets/img/icon 3.png"
+                alt="Terpercaya"
+                class="w-16 h-16 object-contain drop-shadow-xl"
+              />
+            </div>
+            <h3
+              class="text-white font-black text-lg uppercase tracking-wide mb-2 group-hover:text-[#00a8ff] transition-colors"
+            >
+              TERPERCAYA
+            </h3>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              CS aktif <strong class="text-gray-300">24/7</strong>. Rating
+              bintang 5 dari ribuan pelanggan setia.
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-wrap justify-center gap-3 mt-12">
+          <div
+            class="flex items-center gap-2 glass px-5 py-2.5 rounded-full text-sm font-bold text-gray-300"
+          >
+            <i class="fa-solid fa-shield-halved text-green-400"></i> Anti
+            Hack-back
+          </div>
+          <div
+            class="flex items-center gap-2 glass px-5 py-2.5 rounded-full text-sm font-bold text-gray-300"
+          >
+            <i class="fa-solid fa-rotate-left text-[#00a8ff]"></i> Garansi
+            Lifetime
+          </div>
+          <div
+            class="flex items-center gap-2 glass px-5 py-2.5 rounded-full text-sm font-bold text-gray-300"
+          >
+            <i class="fa-solid fa-headset text-yellow-400"></i> CS 24/7
+          </div>
+          <div
+            class="flex items-center gap-2 glass px-5 py-2.5 rounded-full text-sm font-bold text-gray-300"
+          >
+            <i class="fa-solid fa-bolt text-orange-400"></i> Transaksi Instan
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="glow-divider max-w-5xl w-full mx-auto px-4"></div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- BERITA TERBARU -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="w-full py-16 relative">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="text-center mb-10 reveal">
+          <div class="section-pill mx-auto">
+            <i class="fa-solid fa-newspaper"></i> Artikel & Info
+          </div>
+          <h2 class="text-3xl md:text-4xl font-black text-white tracking-wide">
+            BERITA TERBARU <span class="italic">GENZ</span
+            ><span class="text-[#F52727]">STORE</span>
+          </h2>
+        </div>
+        <div class="relative w-full overflow-hidden px-10">
+          <button
+            onclick="moveNews('prev')"
+            class="absolute left-0 top-1/2 -translate-y-1/2 z-20 glass-blue text-white rounded-full w-10 h-10 flex items-center justify-center transition-all hover:bg-[#00a8ff] border border-[#00a8ff]/40 cursor-pointer shadow-xl"
+          >
+            <i class="fa-solid fa-chevron-left text-sm"></i>
+          </button>
+          <div
+            id="news-track"
+            class="flex gap-5 overflow-x-auto scroll-hide pb-2"
+          >
+            <div
+              onclick="openNewsModal('berita1')"
+              class="news-card w-[280px] md:w-[320px] shrink-0 rounded-2xl overflow-hidden border border-white/8 cursor-pointer group flex flex-col"
+              style="background: rgba(255, 255, 255, 0.03)"
+            >
+              <div class="h-44 relative overflow-hidden">
+                <img
+                  src="assets/img/berita1.jpg"
+                  alt="Berita 1"
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+                ></div>
+                <div
+                  class="absolute top-3 left-3 bg-[#00a8ff] text-[#020d1f] text-[10px] font-black px-2.5 py-1 rounded-lg"
+                >
+                  TIP & TRICK
+                </div>
+              </div>
+              <div class="p-5 flex flex-col flex-1 justify-between">
+                <h3
+                  class="text-white font-bold text-base leading-snug mb-3 group-hover:text-[#00a8ff] transition-colors line-clamp-2"
+                >
+                  5 Metode Pembayaran Top Up ML Paling Murah (Dana, QRIS,
+                  Pulsa?)
+                </h3>
+                <div
+                  class="flex items-center gap-2 pt-3 border-t border-white/8"
+                >
+                  <i
+                    class="fa-regular fa-calendar-days text-[#00a8ff] text-sm"
+                  ></i
+                  ><span class="text-gray-500 text-xs font-semibold"
+                    >11-03-2026</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              onclick="openNewsModal('berita2')"
+              class="news-card w-[280px] md:w-[320px] shrink-0 rounded-2xl overflow-hidden border border-white/8 cursor-pointer group flex flex-col"
+              style="background: rgba(255, 255, 255, 0.03)"
+            >
+              <div class="h-44 relative overflow-hidden">
+                <img
+                  src="assets/img/berita2.jpg"
+                  alt="Berita 2"
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+                ></div>
+                <div
+                  class="absolute top-3 left-3 bg-purple-500 text-white text-[10px] font-black px-2.5 py-1 rounded-lg"
+                >
+                  GAMING
+                </div>
+              </div>
+              <div class="p-5 flex flex-col flex-1 justify-between">
+                <h3
+                  class="text-white font-bold text-base leading-snug mb-3 group-hover:text-[#00a8ff] transition-colors line-clamp-2"
+                >
+                  Jam Terbaik Top Up Mobile Legends Biar Dapat Harga Lebih Murah
+                </h3>
+                <div
+                  class="flex items-center gap-2 pt-3 border-t border-white/8"
+                >
+                  <i
+                    class="fa-regular fa-calendar-days text-[#00a8ff] text-sm"
+                  ></i
+                  ><span class="text-gray-500 text-xs font-semibold"
+                    >09-03-2026</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              onclick="openNewsModal('berita3')"
+              class="news-card w-[280px] md:w-[320px] shrink-0 rounded-2xl overflow-hidden border border-white/8 cursor-pointer group flex flex-col"
+              style="background: rgba(255, 255, 255, 0.03)"
+            >
+              <div class="h-44 relative overflow-hidden">
+                <img
+                  src="assets/img/berita3.jpg"
+                  alt="Berita 3"
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+                ></div>
+                <div
+                  class="absolute top-3 left-3 bg-red-500 text-white text-[10px] font-black px-2.5 py-1 rounded-lg"
+                >
+                  WASPADA
+                </div>
+              </div>
+              <div class="p-5 flex flex-col flex-1 justify-between">
+                <h3
+                  class="text-white font-bold text-base leading-snug mb-3 group-hover:text-[#00a8ff] transition-colors line-clamp-2"
+                >
+                  Jangan Asal Top Up! Ini 5 Ciri Website ML Yang Berbahaya
+                </h3>
+                <div
+                  class="flex items-center gap-2 pt-3 border-t border-white/8"
+                >
+                  <i
+                    class="fa-regular fa-calendar-days text-[#00a8ff] text-sm"
+                  ></i
+                  ><span class="text-gray-500 text-xs font-semibold"
+                    >08-03-2026</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              onclick="openNewsModal('berita4')"
+              class="news-card w-[280px] md:w-[320px] shrink-0 rounded-2xl overflow-hidden border border-white/8 cursor-pointer group flex flex-col"
+              style="background: rgba(255, 255, 255, 0.03)"
+            >
+              <div class="h-44 relative overflow-hidden">
+                <img
+                  src="assets/img/berita4.jpg"
+                  alt="Berita 4"
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+                ></div>
+                <div
+                  class="absolute top-3 left-3 bg-yellow-500 text-[#020d1f] text-[10px] font-black px-2.5 py-1 rounded-lg"
+                >
+                  BOCORAN
+                </div>
+              </div>
+              <div class="p-5 flex flex-col flex-1 justify-between">
+                <h3
+                  class="text-white font-bold text-base leading-snug mb-3 group-hover:text-[#00a8ff] transition-colors line-clamp-2"
+                >
+                  Bocoran Skin Baru Free Fire Spesial Ramadhan 2026
+                </h3>
+                <div
+                  class="flex items-center gap-2 pt-3 border-t border-white/8"
+                >
+                  <i
+                    class="fa-regular fa-calendar-days text-[#00a8ff] text-sm"
+                  ></i
+                  ><span class="text-gray-500 text-xs font-semibold"
+                    >05-03-2026</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            onclick="moveNews('next')"
+            class="absolute right-0 top-1/2 -translate-y-1/2 z-20 glass-blue text-white rounded-full w-10 h-10 flex items-center justify-center transition-all hover:bg-[#00a8ff] border border-[#00a8ff]/40 cursor-pointer shadow-xl"
+          >
+            <i class="fa-solid fa-chevron-right text-sm"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- News Modal -->
+    <div
+      id="news-modal"
+      class="fixed inset-0 z-[100] bg-black/80 backdrop-blur-md hidden items-center justify-center opacity-0 transition-opacity duration-300 p-4"
+    >
+      <div
+        class="bg-[#020d1f] border border-white/10 rounded-3xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl transform scale-95 transition-transform duration-300"
+        id="news-modal-content"
+      >
+        <div
+          class="bg-[#041c44] px-6 py-4 flex justify-between items-center border-b border-white/10"
+        >
+          <div class="flex items-center gap-3">
+            <div
+              class="bg-[#00a8ff] text-[#020d1f] px-3 py-1 rounded-lg text-xs font-black flex items-center gap-1.5"
+            >
+              <i class="fa-regular fa-calendar-days"></i
+              ><span id="modal-date">-</span>
+            </div>
+            <span class="text-white/60 font-bold text-sm uppercase"
+              ><i class="fa-solid fa-globe text-[#00a8ff]"></i> WORLD NEWS</span
+            >
+          </div>
+          <button
+            onclick="closeNewsModal()"
+            class="text-white/60 hover:text-red-400 transition cursor-pointer p-1 rounded-lg hover:bg-white/5"
+          >
+            <i class="fa-solid fa-xmark text-xl"></i>
+          </button>
+        </div>
+        <div class="p-6 md:p-8 overflow-y-auto flex-1 text-white">
+          <h2
+            id="modal-title"
+            class="text-2xl md:text-3xl font-black leading-tight mb-5"
+          ></h2>
+          <div
+            class="w-full rounded-2xl overflow-hidden mb-6 border border-white/10"
+          >
+            <img
+              id="modal-img"
+              src=""
+              class="w-full h-auto object-cover max-h-[260px]"
+            />
+          </div>
+          <div
+            id="modal-body"
+            class="text-gray-300 text-sm md:text-base leading-relaxed space-y-4"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glow-divider max-w-5xl w-full mx-auto px-4"></div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- FAQ -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="w-full py-16 relative">
+      <div
+        class="orb orb-blue w-[400px] h-[400px] bottom-0 right-0 opacity-10 pointer-events-none"
+      ></div>
+      <div class="container mx-auto px-4 max-w-4xl relative z-10">
+        <div class="text-center mb-10 reveal">
+          <div class="section-pill mx-auto">
+            <i class="fa-solid fa-circle-question"></i> FAQ
+          </div>
+          <h2 class="text-3xl md:text-4xl font-black text-white tracking-wide">
+            FREQUENTLY ASKED <span class="text-[#F52727]">QUESTION</span>
+          </h2>
+        </div>
+        <div class="reveal-stagger">
+          <div class="faq-item">
+            <button onclick="toggleFaq(1)" class="faq-btn">
+              <div class="flex items-center gap-3">
+                <span
+                  class="w-7 h-7 rounded-lg bg-[#00a8ff]/15 flex items-center justify-center shrink-0"
+                  ><i
+                    id="faq-plus-1"
+                    class="fa-solid fa-plus text-[#00a8ff] text-xs"
+                  ></i></span
+                ><span class="text-sm md:text-base"
+                  >Apa saja layanan yang tersedia di GenZstore?</span
+                >
+              </div>
+              <i
+                id="faq-arrow-1"
+                class="fa-solid fa-caret-down text-[#00a8ff] text-xl transition-transform duration-300 shrink-0"
+              ></i>
+            </button>
+            <div id="faq-answer-1" class="hidden faq-answer">
+              Kami menyediakan layanan lengkap:
+              <strong class="text-white">Top Up Diamond/UC/CP</strong> all game
+              dengan proses instan,
+              <strong class="text-white">Jual Beli Akun Sultan</strong> (ML,
+              Free Fire, eFootball) aman dari hack-back, serta
+              <strong class="text-white">Jasa Joki Rank</strong> bersama pro
+              player terpercaya.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button onclick="toggleFaq(2)" class="faq-btn">
+              <div class="flex items-center gap-3">
+                <span
+                  class="w-7 h-7 rounded-lg bg-[#00a8ff]/15 flex items-center justify-center shrink-0"
+                  ><i
+                    id="faq-plus-2"
+                    class="fa-solid fa-plus text-[#00a8ff] text-xs"
+                  ></i></span
+                ><span class="text-sm md:text-base"
+                  >Apakah transaksi di GenZstore 100% aman?</span
+                >
+              </div>
+              <i
+                id="faq-arrow-2"
+                class="fa-solid fa-caret-down text-[#00a8ff] text-xl transition-transform duration-300 shrink-0"
+              ></i>
+            </button>
+            <div id="faq-answer-2" class="hidden faq-answer">
+              Tentu saja! Semua akun sudah melewati verifikasi ketat (Anti
+              Hack-back) dan kami berani memberikan
+              <strong class="text-white"
+                >Garansi Uang Kembali Seumur Hidup</strong
+              >
+              jika ada masalah.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button onclick="toggleFaq(3)" class="faq-btn">
+              <div class="flex items-center gap-3">
+                <span
+                  class="w-7 h-7 rounded-lg bg-[#00a8ff]/15 flex items-center justify-center shrink-0"
+                  ><i
+                    id="faq-plus-3"
+                    class="fa-solid fa-plus text-[#00a8ff] text-xs"
+                  ></i></span
+                ><span class="text-sm md:text-base"
+                  >Berapa lama proses pesanan saya selesai?</span
+                >
+              </div>
+              <i
+                id="faq-arrow-3"
+                class="fa-solid fa-caret-down text-[#00a8ff] text-xl transition-transform duration-300 shrink-0"
+              ></i>
+            </button>
+            <div id="faq-answer-3" class="hidden faq-answer">
+              Super Kilat! <strong class="text-white">Top Up</strong> diproses
+              otomatis dalam <strong class="text-white">1-3 detik</strong>. Akun
+              atau Joki maksimal
+              <strong class="text-white">5-15 menit</strong> setelah pembayaran
+              dikonfirmasi.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button onclick="toggleFaq(4)" class="faq-btn">
+              <div class="flex items-center gap-3">
+                <span
+                  class="w-7 h-7 rounded-lg bg-[#00a8ff]/15 flex items-center justify-center shrink-0"
+                  ><i
+                    id="faq-plus-4"
+                    class="fa-solid fa-plus text-[#00a8ff] text-xs"
+                  ></i></span
+                ><span class="text-sm md:text-base"
+                  >Metode pembayaran apa saja yang didukung?</span
+                >
+              </div>
+              <i
+                id="faq-arrow-4"
+                class="fa-solid fa-caret-down text-[#00a8ff] text-xl transition-transform duration-300 shrink-0"
+              ></i>
+            </button>
+            <div id="faq-answer-4" class="hidden faq-answer">
+              Lengkap! <strong class="text-white">QRIS</strong> (semua m-banking
+              &amp; e-wallet), E-Wallet (DANA, GoPay, OVO, ShopeePay), Transfer
+              Bank, hingga
+              <strong class="text-white">Alfamart/Indomaret</strong>.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button onclick="toggleFaq(5)" class="faq-btn">
+              <div class="flex items-center gap-3">
+                <span
+                  class="w-7 h-7 rounded-lg bg-[#00a8ff]/15 flex items-center justify-center shrink-0"
+                  ><i
+                    id="faq-plus-5"
+                    class="fa-solid fa-plus text-[#00a8ff] text-xs"
+                  ></i></span
+                ><span class="text-sm md:text-base"
+                  >Bagaimana jika pesanan saya mengalami kendala?</span
+                >
+              </div>
+              <i
+                id="faq-arrow-5"
+                class="fa-solid fa-caret-down text-[#00a8ff] text-xl transition-transform duration-300 shrink-0"
+              ></i>
+            </button>
+            <div id="faq-answer-5" class="hidden faq-answer">
+              Tim
+              <strong class="text-white"
+                >Customer Service GenZstore selalu online 24/7</strong
+              >. Klik tombol WhatsApp di website untuk bantuan instan dari admin
+              yang super ramah.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- ABOUT & STATS -->
+    <!-- ══════════════════════════════════════════ -->
+    <section
+      class="w-full py-20 relative overflow-hidden"
+      style="
+        background: linear-gradient(
+          180deg,
+          transparent,
+          rgba(0, 168, 255, 0.03) 50%,
+          transparent
+        );
+      "
+    >
+      <div
+        class="orb orb-cyan w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-6 pointer-events-none"
+      ></div>
+      <div class="absolute inset-0 bg-grid opacity-25"></div>
+      <div class="container mx-auto px-4 max-w-5xl relative z-10">
+        <div class="text-center mb-6 reveal">
+          <h1 class="text-6xl md:text-8xl font-black tracking-tighter">
+            <span class="text-white italic">GENZ</span
+            ><span class="text-[#F52727] italic">STORE</span>
+          </h1>
+        </div>
+        <p
+          class="text-center text-gray-500 font-medium text-sm md:text-base leading-relaxed mb-16 max-w-3xl mx-auto reveal"
+        >
+          Pusat jual beli akun Mobile Legends & game populer dengan sistem
+          transaksi aman, anti-hackback, dan garansi 100% uang kembali. Dari
+          entry-level hingga sultan — semuanya terverifikasi, bebas risiko.
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 reveal-stagger">
+          <div class="stat-box">
+            <div
+              class="w-10 h-10 rounded-xl bg-[#00a8ff]/15 flex items-center justify-center mx-auto mb-3"
+            >
+              <i class="fa-solid fa-users text-[#00a8ff]"></i>
+            </div>
+            <h3
+              class="text-4xl md:text-5xl font-black text-white mb-1 stat-counter"
+              data-target="1000"
+            >
+              0
+            </h3>
+            <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">
+              User Member
+            </p>
+          </div>
+          <div class="stat-box">
+            <div
+              class="w-10 h-10 rounded-xl bg-[#00a8ff]/15 flex items-center justify-center mx-auto mb-3"
+            >
+              <i class="fa-solid fa-layer-group text-[#00a8ff]"></i>
+            </div>
+            <h3
+              class="text-4xl md:text-5xl font-black text-white mb-1 stat-counter"
+              data-target="1000"
+            >
+              0
+            </h3>
+            <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">
+              Total Top Up
+            </p>
+          </div>
+          <div class="stat-box">
+            <div
+              class="w-10 h-10 rounded-xl bg-[#00a8ff]/15 flex items-center justify-center mx-auto mb-3"
+            >
+              <i class="fa-solid fa-angles-up text-[#00a8ff]"></i>
+            </div>
+            <h3
+              class="text-4xl md:text-5xl font-black text-white mb-1 stat-counter"
+              data-target="1000"
+            >
+              0
+            </h3>
+            <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">
+              Total Joki
+            </p>
+          </div>
+          <div class="stat-box">
+            <div
+              class="w-10 h-10 rounded-xl bg-[#00a8ff]/15 flex items-center justify-center mx-auto mb-3"
+            >
+              <i class="fa-solid fa-user-tag text-[#00a8ff]"></i>
+            </div>
+            <h3
+              class="text-4xl md:text-5xl font-black text-white mb-1 stat-counter"
+              data-target="1000"
+            >
+              0
+            </h3>
+            <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">
+              Akun Terjual
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- FOOTER -->
+    <!-- ══════════════════════════════════════════ -->
+    <footer
+      style="
+        background: linear-gradient(180deg, #020d1f, #010812);
+        border-top: 1px solid rgba(0, 168, 255, 0.14);
+      "
+    >
+      <div class="container mx-auto px-4 max-w-6xl pt-14 pb-8">
+        <div class="flex items-center gap-4 mb-10 pb-8 border-b border-white/8">
+          <div
+            class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#00a8ff] to-[#0050ff] flex items-center justify-center shadow-lg"
+          >
+            <i class="fa-solid fa-gamepad text-xl text-white"></i>
+          </div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-black italic tracking-wider">
+              <span class="text-white">GENZ</span
+              ><span class="text-[#F52727]">STORE</span>
+            </h2>
+            <p
+              class="text-gray-500 text-xs font-bold tracking-widest uppercase mt-0.5"
+            >
+              MURAH · AMAN · TERPERCAYA
+            </p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+          <div class="space-y-5">
+            <div>
+              <h3
+                class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-3"
+              >
+                GENZSTORE
+              </h3>
+              <p class="text-gray-500 text-sm leading-relaxed">
+                Bisnis yang bergerak di bidang pelayanan top-up dan upgrade
+                level dalam berbagai game mobile Indonesia.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-2"
+              >
+                Kantor Pusat
+              </h3>
+              <p class="text-gray-500 text-sm">
+                Kota Sidoarjo, Provinsi Jawa Timur, Indonesia
+              </p>
+            </div>
+          </div>
+          <div>
+            <h3
+              class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-4"
+            >
+              Customer Service
+            </h3>
+            <ul class="space-y-2.5">
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Top Up</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Joki</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Service</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Beli Mobile Legends</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Beli Free Fire</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Beli Efootball</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div class="mb-7">
+              <h3
+                class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-4"
+              >
+                Social Media Resmi
+              </h3>
+              <ul class="space-y-2.5">
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                    ><div
+                      class="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-white/10 flex items-center justify-center transition"
+                    >
+                      <i class="fa-solid fa-link text-sm"></i>
+                    </div>
+                    Linktree</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                    ><div
+                      class="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-white/10 flex items-center justify-center transition"
+                    >
+                      <i class="fa-brands fa-tiktok text-sm"></i>
+                    </div>
+                    TikTok</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                    ><div
+                      class="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-white/10 flex items-center justify-center transition"
+                    >
+                      <i class="fa-brands fa-instagram text-sm"></i>
+                    </div>
+                    Instagram</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3
+                class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-3"
+              >
+                Peta Situs
+              </h3>
+              <ul class="space-y-1.5">
+                <li>
+                  <a
+                    href="topup/farm.html"
+                    class="text-gray-500 hover:text-white transition text-sm"
+                    >Top Up</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="joki/joki.html"
+                    class="text-gray-500 hover:text-white transition text-sm"
+                    >Joki</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="beli_akun/kategori_akun.html"
+                    class="text-gray-500 hover:text-white transition text-sm"
+                    >Beli Akun</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-white/5 pt-6 text-center">
+          <p class="text-gray-600 text-xs font-medium">
+            Copyright &copy; 2026 <span class="text-gray-400">GENZSTORE</span>.
+            All rights reserved. Powered by GENZSTORE.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a
+      href="https://wa.me/6285790427533"
+      class="fixed bottom-6 right-6 z-[90] w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-[0_8px_30px_rgba(37,211,102,0.5)] hover:scale-110 transition-transform cursor-pointer"
+      title="Chat CS via WhatsApp"
+    >
+      <i class="fa-brands fa-whatsapp text-2xl text-white"></i>
+    </a>
+
+    <script src="js/main.js"></script>
+
+    <script>
+      // ── FAQ ACCORDION (satu terbuka, lainnya menutup) ──────────
+      // Override fungsi toggleFaq dari main.js
+      const FAQ_TOTAL = 5;
+
+      function toggleFaq(id) {
+        const answer = document.getElementById("faq-answer-" + id);
+        const arrow = document.getElementById("faq-arrow-" + id);
+        const plus = document.getElementById("faq-plus-" + id);
+        if (!answer) return;
+
+        const isOpen = !answer.classList.contains("hidden");
+
+        // Tutup semua dulu
+        for (let i = 1; i <= FAQ_TOTAL; i++) {
+          const a = document.getElementById("faq-answer-" + i);
+          const r = document.getElementById("faq-arrow-" + i);
+          const p = document.getElementById("faq-plus-" + i);
+          if (a) a.classList.add("hidden");
+          if (r) r.classList.remove("rotate-180");
+          if (p) {
+            p.classList.remove("fa-minus");
+            p.classList.add("fa-plus");
+          }
+        }
+
+        // Kalau tadi tertutup → buka yang ini
+        if (!isOpen) {
+          answer.classList.remove("hidden");
+          if (arrow) arrow.classList.add("rotate-180");
+          if (plus) {
+            plus.classList.remove("fa-plus");
+            plus.classList.add("fa-minus");
+          }
+        }
+      }
+    </script>
+
+    <!-- ── COUNT-UP ANIMATION ── -->
+    <script>
+      (function () {
+        function animateCounter(el) {
+          var target = parseInt(el.getAttribute("data-target"), 10);
+          var duration = 2500;
+          function easeOutQuart(t) {
+            return 1 - Math.pow(1 - t, 4);
+          }
+          var startTime = performance.now();
+          function update(now) {
+            var progress = Math.min((now - startTime) / duration, 1);
+            el.textContent = Math.floor(
+              easeOutQuart(progress) * target,
+            ).toLocaleString("id-ID");
+            if (progress < 1) requestAnimationFrame(update);
+            else el.textContent = target.toLocaleString("id-ID");
+          }
+          requestAnimationFrame(update);
+        }
+        var obs = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting && !e.target.dataset.animated) {
+                e.target.dataset.animated = "true";
+                animateCounter(e.target);
+              }
+            });
+          },
+          { threshold: 0.3 },
+        );
+        document.querySelectorAll(".stat-counter").forEach(function (el) {
+          obs.observe(el);
+        });
+      })();
+    </script>
+
+    <!-- ── SCROLL REVEAL (Fade Up + Stagger) ── -->
+    <script>
+      (function () {
+        var revealObs = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add("visible");
+                revealObs.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12 },
+        );
+
+        var staggerObs = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add("visible");
+                staggerObs.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.08 },
+        );
+
+        document.querySelectorAll(".reveal").forEach(function (el) {
+          revealObs.observe(el);
+        });
+        document.querySelectorAll(".reveal-stagger").forEach(function (el) {
+          staggerObs.observe(el);
+        });
+      })();
+    </script>
+  </body>
+</html>

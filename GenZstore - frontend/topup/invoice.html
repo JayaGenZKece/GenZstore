@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invoice Pembayaran - GenZstore</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body class="bg-[#0a1128] text-white font-sans pb-10">
+    <div class="container mx-auto px-4 max-w-md pt-10">
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <h1 class="text-2xl font-black italic tracking-widest text-white">
+          GENZ<span class="text-red-600">STORE</span>
+        </h1>
+        <p class="text-gray-400 text-sm">Selesaikan Pembayaran Anda</p>
+      </div>
+
+      <!-- Box Invoice -->
+      <div
+        class="bg-[#0d1b2a] border border-cyanaccent/30 rounded-2xl overflow-hidden shadow-2xl"
+      >
+        <!-- Status & Order ID -->
+        <div
+          class="bg-[#1a2b4c] p-4 flex justify-between items-center border-b border-cyanaccent/20"
+        >
+          <div>
+            <p class="text-[10px] text-gray-400 uppercase font-bold">
+              Order ID
+            </p>
+            <p id="inv-orderid" class="text-sm font-black text-cyanaccent">
+              GENZ-LOADING...
+            </p>
+          </div>
+          <div
+            class="bg-yellow-500/10 border border-yellow-500 text-yellow-500 px-3 py-1 rounded-full text-[10px] font-black uppercase"
+          >
+            Menunggu Pembayaran
+          </div>
+        </div>
+
+        <!-- Detail Pesanan -->
+        <div class="p-6">
+          <div class="flex items-center gap-4 mb-6">
+            <img
+              id="inv-logo"
+              src="https://via.placeholder.com/80"
+              class="w-16 h-16 rounded-xl border border-cyanaccent/50 shadow-lg"
+            />
+            <div>
+              <h2 id="inv-produk" class="font-black text-lg text-white">
+                Diamond ML
+              </h2>
+              <p id="inv-target" class="text-gray-400 text-xs font-bold">
+                User ID: -
+              </p>
+              <p
+                id="inv-nickname"
+                class="text-cyanaccent text-xs font-black italic"
+              >
+                Nickname: -
+              </p>
+            </div>
+          </div>
+
+          <hr class="border-gray-700 mb-6" />
+
+          <!-- QRIS Box -->
+          <div class="text-center">
+            <p class="text-xs text-gray-400 font-bold uppercase mb-3">
+              Pindai Kode QRIS Di Bawah Ini
+            </p>
+            <div
+              class="bg-white p-4 rounded-2xl inline-block shadow-inner mb-3"
+            >
+              <img
+                id="inv-qris"
+                src="https://via.placeholder.com/200"
+                alt="QRIS"
+                class="w-52 h-52"
+              />
+            </div>
+            <div
+              class="flex items-center justify-center gap-2 text-[#ffcc00] mb-2"
+            >
+              <i class="fa-solid fa-bolt-lightning"></i>
+              <p class="text-sm font-black uppercase">Otomatis Lunas</p>
+            </div>
+          </div>
+
+          <div
+            class="bg-[#1a2b4c] rounded-xl p-4 mt-4 text-center border border-dashed border-gray-600"
+          >
+            <p class="text-gray-400 text-xs font-bold uppercase">Total Bayar</p>
+            <h3 id="inv-total" class="text-3xl font-black text-[#ffcc00] mt-1">
+              Rp 0
+            </h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Instruksi -->
+      <div class="mt-6 space-y-3">
+        <button
+          onclick="cekStatus()"
+          class="w-full bg-cyanaccent text-[#0a1128] font-black py-4 rounded-xl hover:brightness-110 shadow-lg transition flex items-center justify-center gap-2"
+        >
+          <i class="fa-solid fa-rotate"></i> Cek Status Pembayaran
+        </button>
+        <a
+          href="index.html"
+          class="block w-full text-center py-4 text-gray-400 font-bold text-sm hover:text-white transition"
+        >
+          Kembali ke Beranda
+        </a>
+      </div>
+    </div>
+
+    <script>
+      // Ambil data yang dikirim dari halaman order.html lewat localStorage
+      const dataOrder = JSON.parse(localStorage.getItem("last_order"));
+
+      if (dataOrder) {
+        document.getElementById("inv-orderid").innerText = dataOrder.orderId;
+        document.getElementById("inv-produk").innerText = dataOrder.item;
+        document.getElementById("inv-target").innerText =
+          `User ID: ${dataOrder.userId} (${dataOrder.zoneId})`;
+        document.getElementById("inv-nickname").innerText =
+          `Nickname: ${dataOrder.nickname}`;
+        document.getElementById("inv-total").innerText =
+          `Rp ${new Intl.NumberFormat("id-ID").format(dataOrder.harga)}`;
+        document.getElementById("inv-qris").src = dataOrder.qr_img;
+      } else {
+        alert("Data invoice tidak ditemukan!");
+        window.location.href = "index.html";
+      }
+
+      function cekStatus() {
+        alert(
+          "Sistem sedang mengecek pembayaran kamu ke Pakasir. Tunggu sebentar ya!",
+        );
+        // Nanti di sini kita bikin fungsi nanya ke backend apakah statusnya sudah PAID
+      }
+    </script>
+  </body>
+</html>

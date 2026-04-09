@@ -1,0 +1,987 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Katalog Akun - GENZSTORE ID</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              navybg: "#0a1128",
+              navblue: "#001f54",
+              cyanaccent: "#00bfff",
+              darktext: "#0E1B31",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .tab-btn.active {
+        background: #00bfff;
+        color: #001f54;
+        font-weight: 900;
+        border-color: #00bfff;
+      }
+      .cat-btn.active {
+        opacity: 1;
+        outline: 3px solid white;
+        outline-offset: 2px;
+      }
+      .card-item {
+        display: block;
+      }
+      .card-item.hidden-card {
+        display: none;
+      }
+    </style>
+  </head>
+
+    <style>
+      * {
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: #020d1f;
+      }
+
+      .bg-grid {
+        background-image: radial-gradient(
+          circle,
+          rgba(0, 168, 255, 0.07) 1px,
+          transparent 1px
+        );
+        background-size: 32px 32px;
+      }
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .orb-cyan {
+        background: rgba(0, 168, 255, 0.18);
+      }
+      .orb-blue {
+        background: rgba(0, 80, 255, 0.15);
+      }
+      .orb-purple {
+        background: rgba(120, 60, 255, 0.12);
+      }
+
+      .glass {
+        background: rgba(255, 255, 255, 0.04);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .glass-blue {
+        background: rgba(0, 80, 200, 0.12);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(0, 168, 255, 0.2);
+      }
+
+      .section-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(0, 168, 255, 0.1);
+        border: 1px solid rgba(0, 168, 255, 0.28);
+        color: #00a8ff;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 4px 14px;
+        border-radius: 100px;
+        margin-bottom: 12px;
+      }
+      .grad-text {
+        background: linear-gradient(135deg, #00a8ff, #a78bfa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .glow-divider {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 168, 255, 0.45),
+          transparent
+        );
+        margin: 0 auto;
+      }
+
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .animate-marquee {
+        animation: marquee 28s linear infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+      .float {
+        animation: float 3.5s ease-in-out infinite;
+      }
+      .float-delay {
+        animation: float 3.5s ease-in-out 1s infinite;
+      }
+      .float-delay2 {
+        animation: float 3.5s ease-in-out 2s infinite;
+      }
+
+      .scroll-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scroll-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      .navbar-glass {
+        background: rgba(2, 13, 31, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(0, 168, 255, 0.14);
+      }
+
+      .service-card {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 80, 200, 0.28) 0%,
+          rgba(0, 40, 120, 0.28) 100%
+        );
+        border: 1px solid rgba(0, 168, 255, 0.18);
+        cursor: pointer;
+        transition: all 0.3s;
+        overflow: hidden;
+        position: relative;
+      }
+      .service-card:hover {
+        border-color: rgba(0, 168, 255, 0.55);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(0, 168, 255, 0.12);
+      }
+      .service-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 168, 255, 0.05) 0%,
+          transparent 60%
+        );
+        pointer-events: none;
+      }
+
+      .why-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 32px 24px;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        text-align: center;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .why-card:hover {
+        background: rgba(0, 168, 255, 0.06);
+        border-color: rgba(0, 168, 255, 0.25);
+        transform: translateY(-6px);
+        box-shadow: 0 24px 50px rgba(0, 168, 255, 0.12);
+      }
+      .why-card .icon-wrap {
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        background: rgba(0, 168, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        transition: transform 0.3s;
+      }
+      .why-card:hover .icon-wrap {
+        transform: scale(1.1);
+      }
+      .why-card .top-line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #00a8ff, transparent);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .why-card:hover .top-line {
+        opacity: 1;
+      }
+
+      .news-card {
+        transition:
+          transform 0.3s,
+          border-color 0.3s,
+          box-shadow 0.3s;
+      }
+      .news-card:hover {
+        transform: translateY(-6px);
+        border-color: #00a8ff;
+        box-shadow: 0 20px 40px rgba(0, 168, 255, 0.14);
+      }
+
+      .faq-item {
+        border-radius: 14px;
+        overflow: hidden;
+        margin-bottom: 10px;
+      }
+      .faq-btn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 20px;
+        background: rgba(0, 80, 180, 0.22);
+        border: 1px solid rgba(0, 168, 255, 0.18);
+        color: white;
+        font-weight: 800;
+        font-size: 15px;
+        cursor: pointer;
+        transition: background 0.2s;
+        text-align: left;
+      }
+      .faq-btn:hover {
+        background: rgba(0, 100, 220, 0.32);
+      }
+      .faq-answer {
+        background: rgba(5, 20, 50, 0.9);
+        border-left: 3px solid #00a8ff;
+        padding: 16px 22px;
+        font-size: 14px;
+        color: #b8cce0;
+        line-height: 1.7;
+      }
+
+      .stat-box {
+        background: rgba(0, 168, 255, 0.05);
+        border: 1px solid rgba(0, 168, 255, 0.14);
+        border-radius: 20px;
+        padding: 28px 20px;
+        text-align: center;
+      }
+
+      .stock-tab-btn.active-tab {
+        background: white !important;
+        color: #041c44 !important;
+        font-weight: 900;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      }
+    </style>
+  </head>
+
+  <body class="bg-[#020d1f] text-white font-sans overflow-x-hidden pt-16">
+    <!-- ══════════════════════════════════════════ -->
+    <!-- NAVBAR -->
+    <!-- ══════════════════════════════════════════ -->
+    <header class="navbar-glass fixed top-0 left-0 right-0 z-50">
+      <div
+        class="container mx-auto px-4 max-w-[1400px] h-16 flex items-center justify-between gap-4"
+      >
+        <a href="../index.html" class="flex items-center gap-2 shrink-0 group">
+          <div
+            class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00a8ff] to-[#0050ff] flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform"
+          >
+            <i class="fa-solid fa-gamepad text-sm text-white"></i>
+          </div>
+          <span class="text-lg md:text-xl font-black tracking-widest italic"
+            >GENZ<span class="text-[#F52727]">STORE</span></span
+          >
+        </a>
+
+        <nav
+          class="hidden lg:flex items-center gap-1 text-[12px] font-bold tracking-wide uppercase shrink-0"
+        >
+          <a
+            href="../index.html"
+            class="flex items-center gap-1.5 text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition"
+            ><i class="fa-solid fa-house text-[#00a8ff]"></i> Beranda</a
+          >
+          <a
+            href="../topup/farm.html"
+            class="flex items-center gap-1.5 text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition"
+            ><i class="fa-solid fa-layer-group text-[#00a8ff]"></i> Top Up</a
+          >
+          <a
+            href="../joki/joki.html"
+            class="flex items-center gap-1.5 text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition"
+            ><i class="fa-solid fa-angles-up text-[#00a8ff]"></i> Joki</a
+          >
+          <a
+            href="../beli_akun/kategori_akun.html"
+            class="flex items-center gap-1.5 text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition"
+          >
+            <i class="fa-solid fa-user-tag text-[#00a8ff]"></i> Beli Akun
+            <span
+              class="bg-red-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded animate-pulse"
+              >HOT</span
+            >
+          </a>
+          <a
+            href="../Artikel_GenZstore/artikel.html"
+            class="flex items-center gap-1.5 text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition"
+            ><i class="fa-solid fa-newspaper text-[#00a8ff]"></i> Artikel</a
+          >
+        </nav>
+
+        <div class="flex lg:hidden items-center gap-2 flex-1 justify-end">
+          <button
+            id="hamburger-btn"
+            class="text-white text-xl p-2 rounded-lg hover:bg-white/10 transition cursor-pointer"
+          >
+            <i id="hamburger-icon" class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden bg-[#010a1a]/95 backdrop-blur-xl border-t border-white/5 absolute w-full left-0 shadow-2xl"
+      >
+        <nav
+          class="flex flex-col px-5 py-5 gap-1 text-[13px] font-bold tracking-wide uppercase"
+        >
+          <a
+            href="../index.html"
+            class="flex items-center gap-3 text-white/80 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition border-b border-white/5"
+            ><i class="fa-solid fa-house w-5 text-[#00a8ff]"></i> Beranda</a
+          >
+          <a
+            href="../topup/farm.html"
+            class="flex items-center gap-3 text-white/80 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition border-b border-white/5"
+            ><i class="fa-solid fa-layer-group w-5 text-[#00a8ff]"></i> Top
+            Up</a
+          >
+          <a
+            href="../joki/joki.html"
+            class="flex items-center gap-3 text-white/80 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition border-b border-white/5"
+            ><i class="fa-solid fa-angles-up w-5 text-[#00a8ff]"></i> Joki</a
+          >
+          <a
+            href="../beli_akun/kategori_akun.html"
+            class="flex items-center gap-3 text-white/80 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition border-b border-white/5"
+            ><i class="fa-solid fa-user-tag w-5 text-[#00a8ff]"></i> Beli
+            Akun</a
+          >
+          <a
+            href="../Artikel_GenZstore/artikel.html"
+            class="flex items-center gap-3 text-white/80 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition"
+            ><i class="fa-solid fa-newspaper w-5 text-[#00a8ff]"></i> Artikel</a
+          >
+          <a
+            onclick="jualAkun()"
+            href="#"
+            class="mt-3 bg-gradient-to-r from-[#0050ff] to-[#00a8ff] text-white text-center rounded-xl py-3 font-black shadow-lg"
+            >Jual Akun</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- HERO HEADER                                 -->
+    <!-- ========================================== -->
+    <div class="bg-[#0b1b38] w-full pt-10 pb-8 shadow-lg">
+      <div class="container mx-auto px-4 max-w-5xl text-center">
+        <h1
+          class="text-3xl md:text-5xl font-black text-white uppercase tracking-widest drop-shadow-lg mb-8"
+        >
+          PUSAT AKUN <span class="text-cyanaccent">GANTENG</span> INDONESIA
+        </h1>
+
+        <!-- TAB GAME -->
+        <div class="flex flex-wrap justify-center gap-2 md:gap-3">
+          <button
+            onclick="switchGame('cuci')"
+            id="tab-cuci"
+            class="tab-btn px-5 py-2.5 rounded-full border-2 border-gray-500 text-gray-300 font-bold text-sm transition-all hover:border-cyanaccent hover:text-white cursor-pointer"
+          >
+            Stock Cuci Gudang
+          </button>
+          <button
+            onclick="switchGame('ml')"
+            id="tab-ml"
+            class="tab-btn active px-5 py-2.5 rounded-full border-2 font-bold text-sm transition-all cursor-pointer"
+          >
+            Stock Mobile Legends
+          </button>
+          <button
+            onclick="switchGame('ff')"
+            id="tab-ff"
+            class="tab-btn px-5 py-2.5 rounded-full border-2 border-gray-500 text-gray-300 font-bold text-sm transition-all hover:border-cyanaccent hover:text-white cursor-pointer"
+          >
+            Stock Free Fire
+          </button>
+          <button
+            onclick="switchGame('ef')"
+            id="tab-ef"
+            class="tab-btn px-5 py-2.5 rounded-full border-2 border-gray-500 text-gray-300 font-bold text-sm transition-all hover:border-cyanaccent hover:text-white cursor-pointer"
+          >
+            Akun E-Football
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MAIN CONTENT                               -->
+    <!-- ========================================== -->
+    <main class="container mx-auto px-4 max-w-6xl py-8">
+      <!-- INSTAGRAM BANNER -->
+      <div
+        class="bg-[#0f203b] border border-[#1a3a6a] rounded-2xl px-6 py-4 flex flex-col sm:flex-row items-center justify-center gap-3 mb-8 shadow-lg"
+      >
+        <span
+          class="text-white font-black text-sm md:text-base uppercase tracking-wider text-center"
+        >
+          OFFICIAL INSTAGRAM RESMI GENZSTORE SAAT INI ADALAH
+        </span>
+        <a
+          href="https://instagram.com/genzstore.id"
+          target="_blank"
+          class="flex items-center gap-2 bg-white text-navblue font-black text-sm px-4 py-2 rounded-full shadow hover:bg-cyanaccent hover:text-white transition-all shrink-0"
+        >
+          <i class="fa-brands fa-instagram"></i> @GENZSTORE.ID
+        </a>
+      </div>
+
+      <!-- KATEGORI HARGA -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+        <button
+          onclick="filterKategori('semua')"
+          id="cat-semua"
+          class="cat-btn active bg-gray-700 text-white font-black py-3 px-4 rounded-2xl text-sm uppercase tracking-wide hover:brightness-110 transition-all cursor-pointer border-2 border-transparent"
+        >
+          <div class="text-base font-black">SEMUA</div>
+          <div class="text-xs font-bold opacity-80 mt-0.5">Semua Harga</div>
+        </button>
+        <button
+          onclick="filterKategori('gagah')"
+          id="cat-gagah"
+          class="cat-btn bg-gradient-to-b from-green-500 to-green-700 text-white font-black py-3 px-4 rounded-2xl text-sm uppercase tracking-wide hover:brightness-110 transition-all cursor-pointer border-2 border-transparent"
+        >
+          <div class="text-base font-black">STOK GAGAH</div>
+          <div class="text-yellow-300 text-xs font-bold mt-0.5">0 - 499K</div>
+        </button>
+        <button
+          onclick="filterKategori('mewah')"
+          id="cat-mewah"
+          class="cat-btn bg-gradient-to-b from-yellow-500 to-yellow-700 text-white font-black py-3 px-4 rounded-2xl text-sm uppercase tracking-wide hover:brightness-110 transition-all cursor-pointer border-2 border-transparent"
+        >
+          <div class="text-base font-black">STOK MEWAH</div>
+          <div class="text-yellow-200 text-xs font-bold mt-0.5">
+            500K - 999K
+          </div>
+        </button>
+        <button
+          onclick="filterKategori('megah')"
+          id="cat-megah"
+          class="cat-btn bg-gradient-to-b from-purple-600 to-purple-800 text-white font-black py-3 px-4 rounded-2xl text-sm uppercase tracking-wide hover:brightness-110 transition-all cursor-pointer border-2 border-transparent"
+        >
+          <div class="text-base font-black">STOK MEGAH</div>
+          <div class="text-yellow-300 text-xs font-bold mt-0.5">
+            1JT - 1.99JT
+          </div>
+        </button>
+      </div>
+      <!-- Baris kedua: Sultan sendiri atau bisa pakai col-span -->
+      <div class="grid grid-cols-1 mb-8 -mt-4">
+        <button
+          onclick="filterKategori('sultan')"
+          id="cat-sultan"
+          class="cat-btn bg-gradient-to-b from-red-600 to-red-800 text-white font-black py-3 px-4 rounded-2xl text-sm uppercase tracking-wide hover:brightness-110 transition-all cursor-pointer border-2 border-transparent"
+        >
+          <div class="text-base font-black">STOK SULTAN</div>
+          <div class="text-yellow-300 text-xs font-bold mt-0.5">
+            2JT - 100JT
+          </div>
+        </button>
+      </div>
+
+      <!-- SEARCH & FILTER -->
+      <div
+        class="bg-[#0f203b] border border-[#1a3a6a] rounded-2xl p-5 mb-8 shadow-lg"
+      >
+        <!-- Search bar -->
+        <div class="flex gap-3 mb-4">
+          <input
+            id="search-input"
+            type="text"
+            placeholder="Cari berdasarkan nama akun..."
+            oninput="applyFilters()"
+            class="flex-1 bg-[#0a1128] border border-gray-600 focus:border-cyanaccent text-white placeholder-gray-500 text-sm rounded-xl px-4 py-3 outline-none transition"
+          />
+          <button
+            onclick="applyFilters()"
+            class="bg-cyanaccent hover:brightness-110 text-navblue font-black px-6 py-3 rounded-xl text-sm uppercase tracking-wide transition cursor-pointer"
+          >
+            CARI
+          </button>
+        </div>
+
+        <!-- Advanced filters -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div>
+            <label
+              class="flex items-center gap-1.5 text-cyanaccent text-xs font-bold mb-1.5"
+            >
+              <i class="fa-solid fa-tag text-[10px]"></i> Harga Minimal
+            </label>
+            <input
+              id="filter-harga-min"
+              type="number"
+              placeholder="Harga Min"
+              oninput="applyFilters()"
+              class="w-full bg-[#0a1128] border border-gray-600 focus:border-cyanaccent text-white placeholder-gray-500 text-sm rounded-xl px-3 py-2.5 outline-none transition"
+            />
+          </div>
+          <div>
+            <label
+              class="flex items-center gap-1.5 text-cyanaccent text-xs font-bold mb-1.5"
+            >
+              <i class="fa-solid fa-tag text-[10px]"></i> Harga Maksimal
+            </label>
+            <input
+              id="filter-harga-max"
+              type="number"
+              placeholder="Harga Max"
+              oninput="applyFilters()"
+              class="w-full bg-[#0a1128] border border-gray-600 focus:border-cyanaccent text-white placeholder-gray-500 text-sm rounded-xl px-3 py-2.5 outline-none transition"
+            />
+          </div>
+          <div>
+            <label
+              class="flex items-center gap-1.5 text-cyanaccent text-xs font-bold mb-1.5"
+            >
+              <i class="fa-solid fa-user text-[10px]"></i> Jumlah Hero Minimal
+            </label>
+            <input
+              id="filter-hero-min"
+              type="number"
+              placeholder="Min Hero"
+              oninput="applyFilters()"
+              class="w-full bg-[#0a1128] border border-gray-600 focus:border-cyanaccent text-white placeholder-gray-500 text-sm rounded-xl px-3 py-2.5 outline-none transition"
+            />
+          </div>
+          <div>
+            <label
+              class="flex items-center gap-1.5 text-cyanaccent text-xs font-bold mb-1.5"
+            >
+              <i class="fa-solid fa-shirt text-[10px]"></i> Jumlah Skin Minimal
+            </label>
+            <input
+              id="filter-skin-min"
+              type="number"
+              placeholder="Min Skin"
+              oninput="applyFilters()"
+              class="w-full bg-[#0a1128] border border-gray-600 focus:border-cyanaccent text-white placeholder-gray-500 text-sm rounded-xl px-3 py-2.5 outline-none transition"
+            />
+          </div>
+        </div>
+
+        <!-- Reset filter -->
+        <div class="flex justify-end mt-3">
+          <button
+            onclick="resetFilters()"
+            class="text-gray-400 hover:text-white text-xs font-bold flex items-center gap-1.5 transition cursor-pointer"
+          >
+            <i class="fa-solid fa-rotate-left"></i> Reset Filter
+          </button>
+        </div>
+      </div>
+
+      <!-- RESULT INFO -->
+      <div class="flex items-center justify-between mb-4">
+        <p id="result-info" class="text-gray-400 text-sm font-bold">
+          Menampilkan semua akun...
+        </p>
+        <p class="text-gray-500 text-xs">
+          Urutkan: <span class="text-cyanaccent font-bold">Terbaru</span>
+        </p>
+      </div>
+
+      <!-- KATALOG GRID -->
+      <div
+        id="katalog-container"
+        class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5 min-h-[200px]"
+      >
+        <!-- Diisi JS -->
+      </div>
+
+      <!-- EMPTY STATE -->
+      <div id="empty-state" class="hidden text-center py-20">
+        <i class="fa-solid fa-box-open text-5xl text-gray-600 mb-4"></i>
+        <p class="text-gray-400 font-bold text-lg">Tidak ada akun yang cocok</p>
+        <p class="text-gray-500 text-sm mt-1">
+          Coba ubah filter atau kata kunci pencarian
+        </p>
+        <button
+          onclick="resetFilters()"
+          class="mt-4 bg-cyanaccent text-navblue font-black px-6 py-2.5 rounded-xl text-sm hover:brightness-110 transition cursor-pointer"
+        >
+          Reset Filter
+        </button>
+      </div>
+
+      <!-- PAGINATION -->
+      <div
+        id="pagination-wrapper"
+        class="flex flex-wrap items-center justify-center gap-2 mt-10"
+      >
+        <button
+          onclick="changePage('prev')"
+          class="bg-[#0f203b] border border-gray-600 text-white font-bold px-4 py-2 rounded-lg hover:bg-cyanaccent hover:text-navblue hover:border-cyanaccent transition text-sm cursor-pointer"
+        >
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <div id="page-buttons" class="flex gap-2">
+          <!-- Diisi JS -->
+        </div>
+        <button
+          onclick="changePage('next')"
+          class="bg-[#0f203b] border border-gray-600 text-white font-bold px-4 py-2 rounded-lg hover:bg-cyanaccent hover:text-navblue hover:border-cyanaccent transition text-sm cursor-pointer"
+        >
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+        <div class="flex items-center gap-2 ml-2">
+          <span class="text-gray-400 text-sm">Hal.</span>
+          <input
+            id="page-input"
+            type="number"
+            min="1"
+            value="1"
+            onchange="goToPage(this.value)"
+            class="w-14 bg-[#0f203b] border border-gray-600 text-white text-center text-sm py-2 rounded-lg outline-none focus:border-cyanaccent"
+          />
+        </div>
+      </div>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- MODAL BERITA                               -->
+    <!-- ========================================== -->
+    <div
+      id="news-modal"
+      class="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm hidden items-center justify-center opacity-0 transition-opacity duration-300 p-4"
+    >
+      <div
+        class="bg-white rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl transform scale-95 transition-transform duration-300"
+        id="news-modal-content"
+      >
+        <div
+          class="bg-navblue p-4 flex justify-between items-center border-b border-cyanaccent"
+        >
+          <div class="flex items-center gap-2">
+            <div
+              class="bg-cyanaccent text-navblue px-3 py-1 rounded text-xs font-black flex items-center gap-1.5"
+            >
+              <i class="fa-regular fa-calendar-days"></i>
+              <span id="modal-date">-</span>
+            </div>
+            <span class="text-white font-bold text-sm ml-2 uppercase"
+              ><i class="fa-solid fa-globe text-cyanaccent"></i> WORLD
+              NEWS</span
+            >
+          </div>
+          <button
+            onclick="closeNewsModal()"
+            class="text-white hover:text-red-500 transition cursor-pointer p-1"
+          >
+            <i class="fa-solid fa-xmark text-2xl"></i>
+          </button>
+        </div>
+        <div class="p-6 md:p-8 overflow-y-auto flex-1 text-navblue">
+          <h2
+            id="modal-title"
+            class="text-2xl md:text-3xl font-black leading-tight mb-4"
+          ></h2>
+          <div
+            class="w-full rounded-xl overflow-hidden mb-6 border-2 border-gray-200"
+          >
+            <img
+              id="modal-img"
+              src=""
+              class="w-full h-auto object-cover max-h-[300px]"
+            />
+          </div>
+          <div
+            id="modal-body"
+            class="prose prose-blue max-w-none text-gray-700 text-sm md:text-base leading-relaxed space-y-4"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- FOOTER -->
+    <!-- ══════════════════════════════════════════ -->
+    <footer
+      style="
+        background: linear-gradient(180deg, #020d1f, #010812);
+        border-top: 1px solid rgba(0, 168, 255, 0.14);
+      "
+    >
+      <div class="container mx-auto px-4 max-w-6xl pt-14 pb-8">
+        <div class="flex items-center gap-4 mb-10 pb-8 border-b border-white/8">
+          <div
+            class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#00a8ff] to-[#0050ff] flex items-center justify-center shadow-lg"
+          >
+            <i class="fa-solid fa-gamepad text-xl text-white"></i>
+          </div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-black italic tracking-wider">
+              <span class="text-white">GENZ</span
+              ><span class="text-[#F52727]">STORE</span>
+            </h2>
+            <p
+              class="text-gray-500 text-xs font-bold tracking-widest uppercase mt-0.5"
+            >
+              MURAH · AMAN · TERPERCAYA
+            </p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+          <div class="space-y-5">
+            <div>
+              <h3
+                class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-3"
+              >
+                GENZSTORE
+              </h3>
+              <p class="text-gray-500 text-sm leading-relaxed">
+                Bisnis yang bergerak di bidang pelayanan top-up dan upgrade
+                level dalam berbagai game mobile Indonesia.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-2"
+              >
+                Kantor Pusat
+              </h3>
+              <p class="text-gray-500 text-sm">
+                Kota Sidoarjo, Provinsi Jawa Timur, Indonesia
+              </p>
+            </div>
+          </div>
+          <div>
+            <h3
+              class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-4"
+            >
+              Customer Service
+            </h3>
+            <ul class="space-y-2.5">
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Top Up</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Joki</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Service</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Beli Mobile Legends</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Beli Free Fire</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Beli Efootball</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div class="mb-7">
+              <h3
+                class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-4"
+              >
+                Social Media Resmi
+              </h3>
+              <ul class="space-y-2.5">
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                    ><div
+                      class="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-white/10 flex items-center justify-center transition"
+                    >
+                      <i class="fa-solid fa-link text-sm"></i>
+                    </div>
+                    Linktree</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                    ><div
+                      class="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-white/10 flex items-center justify-center transition"
+                    >
+                      <i class="fa-brands fa-tiktok text-sm"></i>
+                    </div>
+                    TikTok</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                    ><div
+                      class="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-white/10 flex items-center justify-center transition"
+                    >
+                      <i class="fa-brands fa-instagram text-sm"></i>
+                    </div>
+                    Instagram</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3
+                class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-3"
+              >
+                Peta Situs
+              </h3>
+              <ul class="space-y-1.5">
+                <li>
+                  <a
+                    href="../topup/farm.html"
+                    class="text-gray-500 hover:text-white transition text-sm"
+                    >Top Up</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="../joki/joki.html"
+                    class="text-gray-500 hover:text-white transition text-sm"
+                    >Joki</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="../beli_akun/kategori_akun.html"
+                    class="text-gray-500 hover:text-white transition text-sm"
+                    >Beli Akun</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-white/5 pt-6 text-center">
+          <p class="text-gray-600 text-xs font-medium">
+            Copyright &copy; 2026 <span class="text-gray-400">GENZSTORE</span>.
+            All rights reserved. Powered by GENZSTORE.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+<!-- WhatsApp Float Button -->
+    <a
+      href="https://wa.me/6285790427533"
+      class="fixed bottom-6 right-6 z-[90] w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-[0_8px_30px_rgba(37,211,102,0.5)] hover:scale-110 transition-transform cursor-pointer"
+      title="Chat CS via WhatsApp"
+    >
+      <i class="fa-brands fa-whatsapp text-2xl text-white"></i>
+    </a>
+
+
+    <!-- Load database -->
+    <script src="data_akun.js"></script>
+    <!-- Load logic katalog -->
+    <script src="katalog.js"></script>
+  </body>
+</html>
