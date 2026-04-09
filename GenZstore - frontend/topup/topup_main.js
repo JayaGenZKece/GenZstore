@@ -193,7 +193,7 @@ function muatProdukFF() {
 
   tampilLoadingGrid();
 
-  fetch("https://api-genzstore.vercel.app/api/produk-ff")
+  fetch("https://genztore-backend.vercel.app/api/produk-ff")
     .then((res) => res.json())
     .then((data) => {
       if (data.status !== "sukses" || !data.data || data.data.length === 0) {
@@ -224,7 +224,7 @@ function muatProdukMLGlobal() {
 
   tampilLoadingGrid();
 
-  fetch("https://api-genzstore.vercel.app/api/produk-mlglobal")
+  fetch("https://genztore-backend.vercel.app/api/produk-mlglobal")
     .then((res) => res.json())
     .then((data) => {
       if (data.status !== "sukses" || !data.data || data.data.length === 0) {
@@ -254,7 +254,7 @@ function buatFungsiMuatProduk(gameKey, endpoint) {
 
     tampilLoadingGrid();
 
-    fetch(`https://api-genzstore.vercel.app${endpoint}`)
+    fetch(`https://genztore-backend.vercel.app${endpoint}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.status !== "sukses" || !data.data || data.data.length === 0) {
