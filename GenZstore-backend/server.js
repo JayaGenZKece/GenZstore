@@ -50,9 +50,8 @@ const MARGIN = {
 // ==========================================
 // KONFIGURASI SUPABASE
 // ==========================================
-const supabaseUrl = "https://hbbbuskvtqoetlfmiiyb.supabase.co";
-const supabaseKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhiYmJ1c2t2dHFvZXRsZm1paXliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3NTkyOTEsImV4cCI6MjA5MDMzNTI5MX0.lx5pwxd81FtXiXh_sDxO3IDLk1PWB5IF7P1w7IzFr2g";
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 async function cekKoneksi() {
