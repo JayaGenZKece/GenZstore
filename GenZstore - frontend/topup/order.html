@@ -1039,7 +1039,7 @@
               <p class="text-gray-400 text-sm font-bold animate-pulse">Mengambil harga terbaru...</p>
             </div>`;
 
-          fetch("https://api-genzstore.vercel.app/api/produk-ml")
+          fetch("https://genztore-backend.vercel.app/api/produk-ml")
             .then((r) => r.json())
             .then((hasil) => {
               if (hasil.status !== "sukses" || !hasil.data.length) {
@@ -1147,7 +1147,7 @@
               <p class="text-gray-400 text-sm font-bold animate-pulse">Mengambil harga terbaru...</p>
             </div>`;
 
-          fetch("https://api-genzstore.vercel.app/api/produk-mlglobal")
+          fetch("https://genztore-backend.vercel.app/api/produk-mlglobal")
             .then((r) => r.json())
             .then((hasil) => {
               if (hasil.status !== "sukses" || !hasil.data.length) {
@@ -1535,7 +1535,7 @@
             "text-yellow-400 animate-pulse text-sm font-black";
 
           // NEMBAK KE BACKEND NODE.JS LU SENDIRI
-          fetch("https://api-genzstore.vercel.app/api/cek-nickname", {
+          fetch("https://genztore-backend.vercel.app/api/cek-nickname", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -1604,7 +1604,7 @@
 
         try {
           const respons = await fetch(
-            "https://api-genzstore.vercel.app/api/create-transaction",
+            "https://genztore-backend.vercel.app/api/create-transaction",
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -1628,7 +1628,7 @@
             btnLanjut.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Membuat QRIS...`;
 
             const resQR = await fetch(
-              "https://api-genzstore.vercel.app/api/get-qris",
+              "https://genztore-backend.vercel.app/api/get-qris",
               {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
