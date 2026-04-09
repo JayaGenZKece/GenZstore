@@ -17,15 +17,14 @@ app.use(cors());
 // ==========================================
 // KONFIGURASI TOKOVOUCHER
 // ==========================================
-const TV_MEMBER_CODE = "M260330PRHL4521UQ";
-const TV_SECRET =
-  "e2acf6a81220213845c5f66547ab4e5d9be610ad5b62ee3495c068793b9cea57";
-const TV_BASE_URL = "https://api.tokovoucher.net/v1";
+const TV_MEMBER_CODE = process.env.TV_MEMBER_CODE;
+const TV_SECRET = process.env.TV_SECRET;
+const TV_BASE_URL = process.env.TV_BASE_URL;
 
 // ==========================================
 // KONFIGURASI PAKASIR
 // ==========================================
-const PAKASIR_SLUG = "genzstore";
+const PAKASIR_SLUG = process.env.PAKASIR_SLUG;
 
 // ==========================================
 // KONFIGURASI MARGIN HARGA JUAL
@@ -82,7 +81,7 @@ function buatSignatureTV(refId) {
 // ==========================================
 // Signature default statis dari dashboard TokoVoucher
 // (Pengaturan > Secret Key > Signature)
-const TV_SIGNATURE_DEFAULT = "a522624414eff2782c8d33c1575cec65";
+const TV_SIGNATURE_DEFAULT = process.env.TV_SIGNATURE_DEFAULT;
 
 // ==========================================
 // HELPER: KONVERSI KREDIT KE RUPIAH + MARGIN
@@ -287,8 +286,8 @@ app.post("/api/get-qris", async (req, res) => {
   const { orderId, harga } = req.body;
 
   try {
-    const linkKembali = `https://genzstore-web.vercel.app/topup/invoice_akhir.html?order_id=${orderId}`;
-    const checkoutUrl = `https://app.pakasir.com/pay/genzstore/${harga}?order_id=${orderId}&qris_only=1&redirect=${encodeURIComponent(linkKembali)}`;
+    const linkKembali = `${process.env.FRONTEND_URL}/topup/invoice_akhir.html?order_id=${orderId}`;
+    const checkoutUrl = `https://app.pakasir.com/pay/${process.env.PAKASIR_SLUG}/${harga}?order_id=${orderId}&qris_only=1&redirect=${encodeURIComponent(linkKembali)}`;
 
     res.json({ status: "sukses", checkout_url: checkoutUrl });
   } catch (error) {
