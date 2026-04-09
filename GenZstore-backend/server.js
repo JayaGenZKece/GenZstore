@@ -1003,6 +1003,14 @@ app.get(
   buatRouteProduk("HOK", "hok", "Honor of Kings", HOK_WHITELIST),
 );
 
+app.get("/api/debug-env", (req, res) => {
+  res.json({
+    FRONTEND_URL: process.env.FRONTEND_URL,
+    PAKASIR_SLUG: process.env.PAKASIR_SLUG,
+    TV_BASE_URL: process.env.TV_BASE_URL,
+  });
+});
+
 // ==========================================
 // NYALAIN SERVER
 // ==========================================
