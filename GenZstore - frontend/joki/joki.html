@@ -1,210 +1,184 @@
 <!doctype html>
-<html lang="id">
+<html lang="id" class="overflow-x-hidden">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Joki ML - GENZSTORE</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
       rel="stylesheet"
     />
-    <style>
-      *,
-      *::before,
-      *::after {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      :root {
-        --bg: #0c0c0c;
-        --bg2: #141414;
-        --bg3: #1c1c1c;
-        --card: #181818;
-        --card2: #202020;
-        --border: #2c2c2c;
-        --red: #e53935;
-        --red2: #ff5252;
-        --red-bg: rgba(229, 57, 53, 0.12);
-        --text: #f2f2f2;
-        --muted: #888;
-        --gold: #f5a623;
-        --silver: #a0aec0;
-      }
 
-      html {
+    <style>
+      /* ─── STYLE BAWAAN GENZSTORE (Navbar & Utilities) ─── */
+      * {
         scroll-behavior: smooth;
       }
       body {
-        background: var(--bg);
-        color: var(--text);
+        background-color: #020d1f;
+      }
+      .navbar-glass {
+        background: rgba(2, 13, 31, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(0, 168, 255, 0.14);
+      }
+      .scroll-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scroll-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      /* ─── STYLE TEMA BARU JOKI ─── */
+      :root {
+        --bg: #020d1f;
+        --bg2: rgba(4, 28, 68, 0.4);
+        --bg3: rgba(0, 168, 255, 0.05);
+        --card: rgba(255, 255, 255, 0.03);
+        --card2: rgba(0, 168, 255, 0.08);
+        --border: rgba(0, 168, 255, 0.18);
+        --primary: #00a8ff;
+        --primary-hover: #0080ff;
+        --primary-bg: rgba(0, 168, 255, 0.15);
+        --danger: #f52727;
+        --text: #ffffff;
+        --muted: #8ba3b8;
+        --gold: #f5a623;
+
+        /* Tambahan Variabel untuk Form */
+        --form-bg: #121212;
+        --form-input: #1a1a1a;
+      }
+
+      /* Reset font untuk area konten joki */
+      .joki-content {
         font-family: "Barlow", sans-serif;
-        min-height: 100vh;
+        background-color: var(--bg);
       }
 
-      /* ─── NAVBAR ─────────────────────────────────────── */
-      nav {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        background: rgba(12, 12, 12, 0.95);
-        backdrop-filter: blur(12px);
-        border-bottom: 1px solid var(--border);
-        display: flex;
-        align-items: center;
-        padding: 0 32px;
-        height: 64px;
-        gap: 32px;
-      }
-      .nav-logo {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 22px;
-        letter-spacing: 2px;
-        color: var(--text);
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .nav-logo span {
-        color: var(--red);
-      }
-      .nav-links {
-        display: flex;
-        gap: 24px;
-        flex: 1;
-      }
-      .nav-links a {
-        color: var(--muted);
-        text-decoration: none;
-        font-size: 15px;
-        font-weight: 500;
-        transition: color 0.2s;
-      }
-      .nav-links a:hover,
-      .nav-links a.active {
-        color: var(--text);
-      }
-      .nav-links a.active {
-        color: var(--red);
-      }
-      .nav-actions {
-        display: flex;
-        gap: 10px;
-        margin-left: auto;
-      }
-      .btn-outline {
-        padding: 8px 18px;
-        border: 1px solid var(--border);
-        background: transparent;
-        color: var(--text);
-        border-radius: 6px;
-        font-size: 14px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: border-color 0.2s;
-      }
-      .btn-outline:hover {
-        border-color: var(--red);
-      }
-      .btn-red {
-        padding: 8px 18px;
-        background: var(--red);
-        color: #fff;
-        border: none;
-        border-radius: 6px;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background 0.2s;
-      }
-      .btn-red:hover {
-        background: var(--red2);
-      }
-
-      /* ─── HERO BANNER ────────────────────────────────── */
-      .hero {
-        background: linear-gradient(
-          135deg,
-          #1a0000 0%,
-          #0c0c0c 50%,
-          #0a0d1a 100%
-        );
-        padding: 60px 32px 48px;
+      /* =========================================================
+         NEW: HERO IMAGE SLIDER / CAROUSEL
+         ========================================================= */
+      .hero-slider-container {
+        max-width: 1200px;
+        margin: 85px auto 30px auto; /* 85px memberikan jarak dari navbar */
         position: relative;
         overflow: hidden;
-      }
-      .hero::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(
-          ellipse 60% 80% at 20% 50%,
-          rgba(229, 57, 53, 0.15) 0%,
-          transparent 70%
-        );
-        pointer-events: none;
-      }
-      .hero-inner {
-        max-width: 1200px;
-        margin: 0 auto;
-        position: relative;
-      }
-      .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        background: var(--red-bg);
-        border: 1px solid rgba(229, 57, 53, 0.4);
-        color: var(--red2);
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        padding: 5px 12px;
-        border-radius: 20px;
-        margin-bottom: 16px;
-      }
-      .hero h1 {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: clamp(42px, 7vw, 80px);
-        line-height: 1;
-        letter-spacing: 3px;
-        margin-bottom: 16px;
-      }
-      .hero h1 em {
-        color: var(--red);
-        font-style: normal;
-      }
-      .hero p {
-        color: var(--muted);
-        font-size: 16px;
-        max-width: 560px;
-        line-height: 1.7;
-        margin-bottom: 28px;
-      }
-      .hero-stats {
-        display: flex;
-        gap: 32px;
-        flex-wrap: wrap;
-      }
-      .hero-stat strong {
-        display: block;
-        font-size: 26px;
-        font-weight: 700;
-        color: var(--text);
-        font-family: "Bebas Neue", sans-serif;
-        letter-spacing: 1px;
-      }
-      .hero-stat span {
-        font-size: 13px;
-        color: var(--muted);
+        border-radius: 16px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
       }
 
-      /* ─── TABS ───────────────────────────────────────── */
+      .slider-wrapper {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        width: 100%;
+      }
+
+      .slide {
+        min-width: 100%;
+      }
+
+      .slide img {
+        width: 100%;
+        display: block;
+        object-fit: cover;
+        aspect-ratio: 21 / 7; /* Ratio banner memanjang seperti referensi */
+      }
+
+      /* Tombol Panah Kiri Kanan */
+      .slider-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        transition: all 0.3s ease;
+        z-index: 10;
+        backdrop-filter: blur(4px);
+      }
+
+      .slider-arrow:hover {
+        background: var(--primary);
+        border-color: var(--primary);
+      }
+
+      .slider-arrow.prev {
+        left: 20px;
+      }
+      .slider-arrow.next {
+        right: 20px;
+      }
+
+      /* Titik-titik Pagination di bawah banner */
+      .slider-dots {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 10;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .dot.active {
+        background: white;
+        width: 24px;
+        border-radius: 10px;
+      }
+
+      @media (max-width: 768px) {
+        .hero-slider-container {
+          margin-top: 64px; /* Rapat ke atas untuk HP */
+          border-radius: 0; /* Full width di HP */
+        }
+        .slide img {
+          aspect-ratio: 16 / 7;
+        } /* Sedikit lebih tinggi di layar kecil */
+        .slider-arrow {
+          width: 32px;
+          height: 32px;
+          font-size: 14px;
+        }
+        .slider-arrow.prev {
+          left: 10px;
+        }
+        .slider-arrow.next {
+          right: 10px;
+        }
+      }
+
+      /* TABS */
       .tabs-wrap {
         background: var(--bg2);
         border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(10px);
       }
       .tabs {
         max-width: 1200px;
@@ -230,11 +204,11 @@
         color: var(--text);
       }
       .tab-btn.active {
-        color: var(--red);
-        border-bottom-color: var(--red);
+        color: var(--primary);
+        border-bottom-color: var(--primary);
       }
 
-      /* ─── SECTION LAYOUT ─────────────────────────────── */
+      /* SECTION LAYOUT */
       .section {
         max-width: 1200px;
         margin: 0 auto;
@@ -252,7 +226,7 @@
         margin-bottom: 36px;
       }
 
-      /* ─── KALKULATOR SECTION ─────────────────────────── */
+      /* KALKULATOR SECTION */
       .calc-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -264,9 +238,9 @@
           grid-template-columns: 1fr;
         }
       }
-
       .card {
         background: var(--card);
+        backdrop-filter: blur(16px);
         border: 1px solid var(--border);
         border-radius: 12px;
         padding: 28px;
@@ -283,7 +257,6 @@
         line-height: 1.6;
         margin-bottom: 28px;
       }
-
       .form-row {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -303,7 +276,7 @@
       .form-group input {
         width: 100%;
         padding: 12px 16px;
-        background: var(--bg3);
+        background: rgba(0, 0, 0, 0.2);
         border: 1px solid var(--border);
         border-radius: 8px;
         color: var(--text);
@@ -315,44 +288,44 @@
         -webkit-appearance: none;
       }
       .form-group select {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2300a8ff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
         background-repeat: no-repeat;
         background-position: right 14px center;
         padding-right: 36px;
       }
       .form-group select:focus,
       .form-group input:focus {
-        border-color: var(--red);
+        border-color: var(--primary);
       }
       .form-group select option {
-        background: var(--bg3);
+        background: #041c44;
       }
 
       .btn-calc {
         width: 100%;
         padding: 15px;
         margin-top: 8px;
-        background: var(--red);
-        color: #fff;
+        background: var(--primary);
+        color: #020d1f;
         border: none;
         border-radius: 8px;
         font-size: 16px;
-        font-weight: 700;
+        font-weight: 800;
         font-family: "Barlow", sans-serif;
         cursor: pointer;
         letter-spacing: 0.5px;
-        transition:
-          background 0.2s,
-          transform 0.1s;
+        transition: all 0.3s;
       }
       .btn-calc:hover {
-        background: var(--red2);
+        background: var(--primary-hover);
+        color: #fff;
+        box-shadow: 0 0 15px rgba(0, 168, 255, 0.4);
       }
       .btn-calc:active {
         transform: scale(0.98);
       }
 
-      /* price list */
+      /* PRICE LIST */
       .price-list {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -366,20 +339,27 @@
         border: 1px solid var(--border);
         border-radius: 10px;
         padding: 14px 16px;
-        transition: border-color 0.2s;
+        transition: all 0.3s;
       }
       .price-item:hover {
-        border-color: rgba(229, 57, 53, 0.4);
+        border-color: var(--primary);
+        background: var(--card2);
+        transform: translateY(-2px);
       }
+
+      /* Mengatur wadah agar image rank pas di tengah */
       .rank-icon {
-        width: 40px;
-        height: 40px;
+        width: 44px;
+        height: 44px;
         border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 20px;
         flex-shrink: 0;
+        background: var(--primary-bg);
+        border: 1px solid var(--border);
+        overflow: hidden;
+        padding: 4px;
       }
       .price-info strong {
         display: block;
@@ -388,8 +368,8 @@
       }
       .price-info span {
         font-size: 13px;
-        color: var(--red2);
-        font-weight: 600;
+        color: var(--primary);
+        font-weight: 700;
       }
       .price-info small {
         display: block;
@@ -401,15 +381,15 @@
       .note-box {
         margin-top: 16px;
         padding: 14px 16px;
-        background: rgba(229, 57, 53, 0.08);
-        border: 1px solid rgba(229, 57, 53, 0.25);
+        background: rgba(245, 39, 39, 0.08);
+        border: 1px solid rgba(245, 39, 39, 0.25);
         border-radius: 8px;
       }
       .note-label {
         font-size: 11px;
         font-weight: 700;
         letter-spacing: 1px;
-        color: var(--red2);
+        color: var(--danger);
         text-transform: uppercase;
         margin-bottom: 6px;
       }
@@ -419,7 +399,7 @@
         line-height: 1.6;
       }
 
-      /* ─── PROMO SECTION ──────────────────────────────── */
+      /* PROMO SECTION */
       .promo-header {
         display: flex;
         align-items: flex-end;
@@ -429,10 +409,10 @@
       }
       .promo-tag {
         display: inline-block;
-        background: var(--red);
-        color: #fff;
+        background: var(--primary);
+        color: #020d1f;
         font-size: 11px;
-        font-weight: 700;
+        font-weight: 800;
         letter-spacing: 1px;
         text-transform: uppercase;
         padding: 3px 10px;
@@ -445,13 +425,11 @@
       .promo-header .section-sub {
         margin-bottom: 0;
       }
-
       .promo-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: 14px;
       }
-
       .promo-card {
         background: var(--card);
         border: 1px solid var(--border);
@@ -461,27 +439,30 @@
         align-items: center;
         gap: 16px;
         cursor: pointer;
-        transition:
-          border-color 0.2s,
-          transform 0.15s,
-          background 0.2s;
+        transition: all 0.3s;
         position: relative;
+        backdrop-filter: blur(10px);
       }
       .promo-card:hover {
-        border-color: rgba(229, 57, 53, 0.5);
+        border-color: var(--primary);
         background: var(--card2);
-        transform: translateY(-2px);
+        transform: translateY(-4px);
+        box-shadow: 0 10px 20px rgba(0, 168, 255, 0.1);
       }
+
+      /* Promo image container */
       .promo-rank-icon {
-        width: 52px;
-        height: 52px;
+        width: 56px;
+        height: 56px;
         flex-shrink: 0;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 28px;
         border-radius: 10px;
-        background: var(--bg3);
+        background: var(--primary-bg);
+        border: 1px solid var(--border);
+        padding: 4px;
+        overflow: hidden;
       }
       .promo-info {
         flex: 1;
@@ -507,9 +488,8 @@
       .promo-price {
         font-size: 18px;
         font-weight: 700;
-        color: var(--text);
+        color: var(--primary);
       }
-
       .add-btn {
         position: absolute;
         top: 14px;
@@ -517,9 +497,9 @@
         width: 28px;
         height: 28px;
         border-radius: 50%;
-        background: rgba(229, 57, 53, 0.15);
-        border: 1px solid rgba(229, 57, 53, 0.3);
-        color: var(--red2);
+        background: var(--primary-bg);
+        border: 1px solid rgba(0, 168, 255, 0.3);
+        color: var(--primary);
         font-size: 18px;
         line-height: 1;
         display: flex;
@@ -529,25 +509,25 @@
         transition: background 0.2s;
       }
       .add-btn:hover {
-        background: var(--red);
-        color: #fff;
+        background: var(--primary);
+        color: #020d1f;
       }
 
-      /* divider */
-      .divider {
+      /* DIVIDER JOKI */
+      .divider-joki {
         border: none;
         border-top: 1px solid var(--border);
         margin: 0 32px;
       }
 
-      /* ─── MODAL ──────────────────────────────────────── */
+      /* MODAL JOKI (HASIL ESTIMASI) */
       .modal-overlay {
         display: none;
         position: fixed;
         inset: 0;
         z-index: 200;
-        background: rgba(0, 0, 0, 0.75);
-        backdrop-filter: blur(6px);
+        background: rgba(2, 13, 31, 0.8);
+        backdrop-filter: blur(8px);
         align-items: center;
         justify-content: center;
       }
@@ -563,15 +543,15 @@
           opacity: 1;
         }
       }
-
       .modal {
-        background: #1e1e1e;
-        border: 1px solid var(--border);
+        background: #041c44;
+        border: 1px solid var(--primary);
         border-radius: 16px;
         padding: 32px 36px;
         width: 440px;
         max-width: 92vw;
         animation: slideUp 0.25s ease;
+        box-shadow: 0 0 40px rgba(0, 168, 255, 0.2);
       }
       @keyframes slideUp {
         from {
@@ -583,12 +563,12 @@
           opacity: 1;
         }
       }
-
       .modal h3 {
         font-family: "Bebas Neue", sans-serif;
         font-size: 24px;
         letter-spacing: 1.5px;
         margin-bottom: 24px;
+        color: var(--primary);
       }
       .modal-rank-row {
         display: flex;
@@ -604,12 +584,14 @@
         width: 72px;
         height: 72px;
         border-radius: 14px;
-        background: var(--bg3);
+        background: var(--primary-bg);
+        border: 1px solid var(--border);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 38px;
         margin: 0 auto 10px;
+        overflow: hidden;
+        padding: 6px;
       }
       .modal-rank p {
         font-size: 13px;
@@ -621,16 +603,14 @@
       }
       .arrow {
         font-size: 24px;
-        color: var(--red);
+        color: var(--primary);
         margin-top: -20px;
       }
-
       .modal-divider {
         border: none;
         border-top: 1px solid var(--border);
         margin: 0 0 24px;
       }
-
       .modal-total {
         text-align: center;
         margin-bottom: 8px;
@@ -647,7 +627,6 @@
         font-family: "Bebas Neue", sans-serif;
         letter-spacing: 1px;
       }
-
       .modal-note {
         text-align: center;
         font-size: 12px;
@@ -661,861 +640,2094 @@
       .btn-ghost {
         flex: 1;
         padding: 13px;
-        background: var(--bg3);
+        background: rgba(0, 0, 0, 0.2);
         border: 1px solid var(--border);
         color: var(--text);
         border-radius: 8px;
         font-size: 14px;
         font-weight: 600;
         cursor: pointer;
-        transition: border-color 0.2s;
+        transition: all 0.2s;
       }
       .btn-ghost:hover {
-        border-color: var(--muted);
+        border-color: var(--primary);
+        background: var(--primary-bg);
       }
       .btn-order {
         flex: 2;
         padding: 13px;
-        background: var(--red);
-        color: #fff;
+        background: var(--primary);
+        color: #020d1f;
         border: none;
         border-radius: 8px;
         font-size: 14px;
-        font-weight: 700;
+        font-weight: 800;
         cursor: pointer;
-        transition: background 0.2s;
+        transition: all 0.2s;
       }
       .btn-order:hover {
-        background: var(--red2);
+        background: var(--primary-hover);
+        color: #fff;
+        box-shadow: 0 0 15px rgba(0, 168, 255, 0.4);
       }
 
-      /* ─── FOOTER ─────────────────────────────────────── */
-      footer {
-        background: var(--bg2);
-        border-top: 1px solid var(--border);
-        padding: 40px 32px;
-        text-align: center;
-        color: var(--muted);
-        font-size: 13px;
+      /* =========================================================
+         NEW: FORMULIR PEMESANAN & ERROR MODAL STYLES
+         ========================================================= */
+
+      /* Scrollbar khusus Modal Form */
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
       }
-      footer a {
-        color: var(--red);
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: var(--form-bg);
+        border-radius: 10px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 10px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+
+      .modal-form-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 250;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(5px);
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .modal-form-overlay.open {
+        display: flex;
+        animation: fadeIn 0.2s ease;
+      }
+      .modal-form-box {
+        background: #1c1c1c;
+        border: 1px solid #333;
+        border-radius: 12px;
+        width: 100%;
+        max-width: 850px;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        animation: slideUp 0.3s ease;
+        overflow: hidden;
+      }
+      .modal-form-header {
+        padding: 20px 24px;
+        border-bottom: 1px solid #333;
+        font-size: 18px;
+        font-weight: 600;
+        color: #fff;
+      }
+      .modal-form-body {
+        padding: 24px;
+        overflow-y: auto;
+        flex: 1;
+      }
+
+      /* Rank Info di dalam Form */
+      .form-rank-display {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        background: #242424;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 24px;
+        border: 1px solid #333;
+      }
+      .fr-item {
+        text-align: center;
+      }
+      .fr-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 8px;
+      }
+      .fr-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .fr-name {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 2px;
+      }
+      .fr-star {
+        font-size: 12px;
+        color: var(--gold);
+      }
+      .fr-arrow {
+        font-size: 20px;
+        color: var(--danger);
+      }
+
+      /* Input Styles */
+      .input-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px 20px;
+        margin-bottom: 24px;
+      }
+      @media (max-width: 640px) {
+        .input-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .input-group label {
+        font-size: 13px;
+        color: #ccc;
+      }
+      .input-group label span {
+        color: var(--danger);
+      }
+      .input-control {
+        width: 100%;
+        background: #141414;
+        border: 1px solid #333;
+        padding: 14px 16px;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 14px;
+        outline: none;
+        transition: border 0.2s;
+      }
+      .input-control:focus {
+        border-color: var(--danger);
+      }
+      .input-control::placeholder {
+        color: #555;
+      }
+      select.input-control {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 16px;
+        padding-right: 40px;
+      }
+      .input-phone {
+        display: flex;
+      }
+      .input-phone .country-code {
+        background: #242424;
+        border: 1px solid #333;
+        border-right: none;
+        padding: 14px;
+        border-radius: 8px 0 0 8px;
+        color: #fff;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .input-phone input {
+        border-radius: 0 8px 8px 0;
+      }
+
+      /* Kupon Section */
+      .kupon-section {
+        margin-bottom: 24px;
+      }
+      .kupon-title {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #ccc;
+      }
+      .kupon-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      .kupon-card {
+        background: #242424;
+        border: 1px solid #333;
+        padding: 16px;
+        border-radius: 8px;
+        position: relative;
+        opacity: 0.6;
+      }
+      .kupon-card h5 {
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 4px;
+        color: #aaa;
+      }
+      .kupon-card .off {
+        font-size: 12px;
+        color: #888;
+        margin-bottom: 8px;
+      }
+      .kupon-card ul {
+        list-style: none;
+        font-size: 11px;
+        color: #666;
+      }
+      .kupon-card i.fa-lock {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        color: #555;
+      }
+      .kupon-alert {
+        background: rgba(245, 166, 35, 0.1);
+        border: 1px solid rgba(245, 166, 35, 0.3);
+        padding: 12px 16px;
+        border-radius: 8px;
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+      }
+      .kupon-alert i {
+        color: var(--gold);
+        margin-top: 2px;
+      }
+      .kupon-alert p {
+        font-size: 13px;
+        color: var(--gold);
+        font-weight: 600;
+        margin-bottom: 2px;
+      }
+      .kupon-alert span {
+        font-size: 12px;
+        color: #aaa;
+      }
+
+      /* Summary Box */
+      .summary-box {
+        background: #242424;
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+      .sum-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+        font-size: 14px;
+        color: #ccc;
+      }
+      .sum-row.total {
+        margin-bottom: 0;
+        padding-top: 12px;
+        border-top: 1px solid #444;
+        font-weight: 700;
+        color: #fff;
+        font-size: 16px;
+      }
+      .sum-row.total span:last-child {
+        color: var(--danger);
+        font-size: 18px;
+      }
+
+      /* Footer Modal Form */
+      .modal-form-footer {
+        padding: 20px 24px;
+        border-top: 1px solid #333;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #1c1c1c;
+      }
+      .footer-terms {
+        font-size: 12px;
+        color: #888;
+      }
+      .footer-terms a {
+        color: var(--danger);
         text-decoration: none;
+      }
+      .footer-actions {
+        display: flex;
+        gap: 12px;
+      }
+      .btn-cancel {
+        padding: 10px 20px;
+        background: #333;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .btn-submit {
+        padding: 10px 20px;
+        background: var(--danger);
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      /* ERROR MODAL (Form Belum Lengkap) */
+      .modal-error-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 300;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(3px);
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .modal-error-overlay.open {
+        display: flex;
+        animation: fadeIn 0.2s ease;
+      }
+      .modal-error-box {
+        background: #242424;
+        border: 1px solid #444;
+        border-radius: 12px;
+        width: 100%;
+        max-width: 450px;
+        padding: 24px;
+        animation: slideUp 0.2s ease;
+      }
+      .error-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 16px;
+      }
+      .error-header i {
+        color: var(--danger);
+        font-size: 22px;
+      }
+      .error-desc {
+        font-size: 14px;
+        color: #ccc;
+        margin-bottom: 16px;
+      }
+      .error-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 20px;
+        max-height: 200px;
+        overflow-y: auto;
+      }
+      .error-item {
+        background: rgba(245, 39, 39, 0.1);
+        border: 1px solid rgba(245, 39, 39, 0.3);
+        padding: 12px;
+        border-radius: 6px;
+        font-size: 13px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .error-item i {
+        color: var(--danger);
+      }
+      .error-note {
+        background: rgba(0, 168, 255, 0.1);
+        border: 1px solid rgba(0, 168, 255, 0.3);
+        padding: 12px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+      }
+      .error-note h6 {
+        font-size: 12px;
+        color: var(--primary);
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+      .error-note p {
+        font-size: 12px;
+        color: #aaa;
+      }
+      .error-btn-wrap {
+        text-align: right;
+      }
+      .btn-mengerti {
+        padding: 10px 24px;
+        background: var(--danger);
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
       }
     </style>
   </head>
-  <body>
-    <!-- NAVBAR -->
-    <nav>
-      <a href="../index.html" class="nav-logo">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <path
-            d="M10 2L2 7v6l8 5 8-5V7L10 2z"
-            stroke="#e53935"
-            stroke-width="1.5"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M10 7v6M7 8.5l3-1.5 3 1.5"
-            stroke="#e53935"
-            stroke-width="1.5"
-            stroke-linecap="round"
-          />
-        </svg>
-        GENZ<span>STORE</span>
-      </a>
-      <div class="nav-links">
-        <a href="../index.html">Beranda</a>
-        <a href="../topup/farm.html">Top Up</a>
-        <a href="joki.html" class="active">Joki</a>
-        <a href="../beli_akun/kategori_akun.html">Beli Akun</a>
-        <a href="../Artikel_GenZstore/artikel.html">Artikel</a>
-        <a href="#">Jual Akun</a>
-      </div>
-      <div class="nav-actions">
-        <button class="btn-outline">Masuk</button>
-        <button class="btn-red">+ Daftar</button>
-      </div>
-    </nav>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="hero-badge">⚡ Pro Player Terpercaya</div>
-        <h1>JOKI RANK<br /><em>MOBILE LEGENDS</em></h1>
-        <p>
-          Raih rank impian kamu bersama pro player GENZSTORE. Proses cepat,
-          aman, dan terjamin. Dari Grandmaster hingga Mythic Immortal!
-        </p>
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <strong>2.500+</strong>
-            <span>Joki Selesai</span>
+  <body class="bg-[#020d1f] text-white font-sans overflow-x-hidden pt-16">
+    <header class="navbar-glass fixed top-0 left-0 right-0 z-50">
+      <div
+        class="container mx-auto px-4 max-w-[1400px] h-16 flex items-center justify-between gap-4"
+      >
+        <a href="../index.html" class="flex items-center gap-2 shrink-0 group">
+          <div
+            class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00a8ff] to-[#0050ff] flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform"
+          >
+            <i class="fa-solid fa-gamepad text-sm text-white"></i>
           </div>
-          <div class="hero-stat">
-            <strong>15 Menit</strong>
-            <span>Proses Mulai</span>
-          </div>
-          <div class="hero-stat">
-            <strong>100%</strong>
-            <span>Aman & Bergaransi</span>
-          </div>
-          <div class="hero-stat">
-            <strong>24/7</strong>
-            <span>CS Online</span>
-          </div>
-        </div>
-      </div>
-    </section>
+          <span class="text-lg md:text-xl font-black tracking-widest italic"
+            >GENZ<span class="text-[#F52727]">STORE</span></span
+          >
+        </a>
 
-    <!-- TABS -->
-    <div class="tabs-wrap">
-      <div class="tabs">
-        <button
-          class="tab-btn active"
-          onclick="switchTab('mobile-legends', this)"
+        <nav
+          class="hidden lg:flex items-center gap-1 text-[12px] font-bold tracking-wide uppercase shrink-0"
         >
-          Mobile Legends
-        </button>
-        <button class="tab-btn" onclick="switchTab('no-request', this)">
-          Joki ML No Request
-        </button>
-      </div>
-    </div>
+          <a
+            href="../index.html"
+            class="flex items-center gap-1.5 text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition"
+            ><i class="fa-solid fa-house text-[#00a8ff]"></i> Beranda</a
+          >
+          <a
+            href="../topup/farm.html"
+            class="flex items-center gap-1.5 text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition"
+            ><i class="fa-solid fa-layer-group text-[#00a8ff]"></i> Top Up</a
+          >
+          <a
+            href="../joki/joki.html"
+            class="flex items-center gap-1.5 text-[#00a8ff] px-3 py-2 rounded-lg hover:bg-white/5 transition"
+            ><i class="fa-solid fa-angles-up text-[#00a8ff]"></i> Joki</a
+          >
+          <a
+            href="../beli_akun/kategori_akun.html"
+            class="flex items-center gap-1.5 text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition"
+          >
+            <i class="fa-solid fa-user-tag text-[#00a8ff]"></i> Beli Akun
+            <span
+              class="bg-red-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded animate-pulse"
+              >HOT</span
+            >
+          </a>
+          <a
+            href="../Artikel_GenZstore/artikel.html"
+            class="flex items-center gap-1.5 text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition"
+            ><i class="fa-solid fa-newspaper text-[#00a8ff]"></i> Artikel</a
+          >
+        </nav>
 
-    <!-- ──────────────── MAIN CONTENT ──────────────── -->
-    <div id="tab-mobile-legends">
-      <!-- KALKULATOR + DAFTAR HARGA -->
-      <div class="section">
-        <div class="calc-grid">
-          <!-- LEFT: KALKULATOR -->
-          <div class="card">
-            <div class="card-title">KALKULATOR JOKI</div>
-            <p class="card-desc">
-              Kalkulator Joki Rank membantu kamu mengetahui estimasi biaya joki
-              di GENZSTORE. Kamu juga bisa langsung menghubungi admin melalui
-              hasil kalkulator.
-            </p>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label>Rank Sekarang</label>
-                <select id="rankFrom" onchange="updateStarsFrom()">
-                  <option value="">Pilih Rank</option>
-                  <option value="grandmaster">Grandmaster</option>
-                  <option value="epic">Epic</option>
-                  <option value="legend">Legend</option>
-                  <option value="mythic">Mythic</option>
-                  <option value="mythic_honor">Mythic Honor</option>
-                  <option value="mythic_glory">Mythic Glory</option>
-                  <option value="mythic_immortal">Mythic Immortal</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Bintang Sekarang</label>
-                <input
-                  type="number"
-                  id="starsFrom"
-                  placeholder="Bintang Sekarang"
-                  min="1"
-                  max="10"
-                />
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label>Rank Tujuan</label>
-                <select id="rankTo" onchange="updateStarsTo()">
-                  <option value="">Pilih Rank</option>
-                  <option value="grandmaster">Grandmaster</option>
-                  <option value="epic">Epic</option>
-                  <option value="legend">Legend</option>
-                  <option value="mythic">Mythic</option>
-                  <option value="mythic_honor">Mythic Honor</option>
-                  <option value="mythic_glory">Mythic Glory</option>
-                  <option value="mythic_immortal">Mythic Immortal</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Bintang Tujuan</label>
-                <input
-                  type="number"
-                  id="starsTo"
-                  placeholder="Bintang Tujuan"
-                  min="1"
-                  max="10"
-                />
-              </div>
-            </div>
-
-            <button class="btn-calc" onclick="hitungEstimasi()">
-              Hitung Estimasi Biaya
-            </button>
-          </div>
-
-          <!-- RIGHT: DAFTAR HARGA -->
-          <div class="card">
-            <div class="card-title">DAFTAR HARGA</div>
-            <p class="card-desc">
-              Harga dapat berubah sewaktu-waktu, menyesuaikan dengan periode
-              season: awal, pertengahan, atau akhir season.
-            </p>
-
-            <div class="price-list">
-              <div class="price-item">
-                <div class="rank-icon" style="background: #1e2a1e">🛡️</div>
-                <div class="price-info">
-                  <strong>Grandmaster</strong>
-                  <span>Rp 4.500</span>
-                  <small>/bintang</small>
-                </div>
-              </div>
-              <div class="price-item">
-                <div class="rank-icon" style="background: #1a1f2e">💎</div>
-                <div class="price-info">
-                  <strong>Epic</strong>
-                  <span>Rp 6.000</span>
-                  <small>/bintang</small>
-                </div>
-              </div>
-              <div class="price-item">
-                <div class="rank-icon" style="background: #2a1e0a">🏅</div>
-                <div class="price-info">
-                  <strong>Legend</strong>
-                  <span>Rp 7.000</span>
-                  <small>/bintang</small>
-                </div>
-              </div>
-              <div class="price-item">
-                <div class="rank-icon" style="background: #2a1a2a">⚡</div>
-                <div class="price-info">
-                  <strong>Mythic Base</strong>
-                  <span>Rp 16.000</span>
-                  <small>/bintang</small>
-                </div>
-              </div>
-              <div class="price-item">
-                <div class="rank-icon" style="background: #1a2030">🌟</div>
-                <div class="price-info">
-                  <strong>Mythic Honor</strong>
-                  <span>Rp 18.000</span>
-                  <small>/bintang</small>
-                </div>
-              </div>
-              <div class="price-item">
-                <div class="rank-icon" style="background: #2a2010">👑</div>
-                <div class="price-info">
-                  <strong>Mythic Glory</strong>
-                  <span>Rp 24.000</span>
-                  <small>/bintang</small>
-                </div>
-              </div>
-              <div class="price-item" style="grid-column: span 2">
-                <div class="rank-icon" style="background: #2a1010">🔥</div>
-                <div class="price-info">
-                  <strong>Mythic Immortal</strong>
-                  <span>Rp 27.000</span>
-                  <small>/bintang</small>
-                </div>
-              </div>
-            </div>
-
-            <div class="note-box">
-              <div class="note-label">⚠️ Catatan Penting</div>
-              <p>
-                Harga joki gendong lebih tinggi
-                <strong>Rp 2.000,-</strong> dibandingkan dengan joki biasa.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <hr class="divider" />
-
-      <!-- PROMO WEEKDAY -->
-      <div class="section">
-        <div class="promo-header">
-          <div>
-            <div class="promo-tag">🔥 Promo Terbatas</div>
-            <div class="section-title">PROMO WEEKDAY</div>
-            <p class="section-sub">
-              Promo khusus hari Senin–Jumat. Berlaku selama stok tersedia.
-            </p>
-          </div>
-        </div>
-
-        <div class="promo-grid">
-          <!-- Glory -->
-          <div
-            class="promo-card"
-            onclick="
-              openOrder(
-                'Promo 9 Star Bonus 1 Star Glory',
-                'mythic_glory',
-                10,
-                'Rp 210.000',
-              )
-            "
+        <div class="flex lg:hidden items-center gap-2 flex-1 justify-end">
+          <button
+            id="hamburger-btn"
+            class="text-white text-xl p-2 rounded-lg hover:bg-white/10 transition cursor-pointer"
           >
-            <div class="promo-rank-icon">👑</div>
-            <div class="promo-info">
-              <h4>Promo 9 Star Bonus 1 Star Glory</h4>
-              <div class="promo-rank-label">
-                Glory <span class="stars">★★★★★★★★★★</span> 10
-              </div>
-              <div class="promo-price">Rp 210.000</div>
-            </div>
-            <div class="add-btn">+</div>
-          </div>
-          <div
-            class="promo-card"
-            onclick="
-              openOrder(
-                'Promo 9 Star Bonus 1 Star Honor',
-                'mythic_honor',
-                10,
-                'Rp 157.000',
-              )
-            "
-          >
-            <div class="promo-rank-icon">🌟</div>
-            <div class="promo-info">
-              <h4>Promo 9 Star Bonus 1 Star Honor</h4>
-              <div class="promo-rank-label">
-                Honor <span class="stars">★★★★★★★★★★</span> 10
-              </div>
-              <div class="promo-price">Rp 157.000</div>
-            </div>
-            <div class="add-btn">+</div>
-          </div>
-          <div
-            class="promo-card"
-            onclick="
-              openOrder(
-                'Promo 9 Star Bonus 1 Star Mythic',
-                'mythic',
-                9,
-                'Rp 135.000',
-              )
-            "
-          >
-            <div class="promo-rank-icon">⚡</div>
-            <div class="promo-info">
-              <h4>Promo 9 Star Bonus 1 Star Mythic</h4>
-              <div class="promo-rank-label">
-                Mythic <span class="stars">★★★★★★★★★</span> 9
-              </div>
-              <div class="promo-price">Rp 135.000</div>
-            </div>
-            <div class="add-btn">+</div>
-          </div>
-          <div
-            class="promo-card"
-            onclick="
-              openOrder('Promo 5 Star Glory', 'mythic_glory', 5, 'Rp 115.000')
-            "
-          >
-            <div class="promo-rank-icon">👑</div>
-            <div class="promo-info">
-              <h4>Promo 5 Star Glory</h4>
-              <div class="promo-rank-label">
-                Glory <span class="stars">★★★★★</span> 5
-              </div>
-              <div class="promo-price">Rp 115.000</div>
-            </div>
-            <div class="add-btn">+</div>
-          </div>
-          <div
-            class="promo-card"
-            onclick="
-              openOrder('Promo 5 Star Honor', 'mythic_honor', 5, 'Rp 80.000')
-            "
-          >
-            <div class="promo-rank-icon">🌟</div>
-            <div class="promo-info">
-              <h4>Promo 5 Star Honor</h4>
-              <div class="promo-rank-label">
-                Honor <span class="stars">★★★★★</span> 5
-              </div>
-              <div class="promo-price">Rp 80.000</div>
-            </div>
-            <div class="add-btn">+</div>
-          </div>
-          <div
-            class="promo-card"
-            onclick="openOrder('Promo 5 Star Mythic', 'mythic', 5, 'Rp 70.000')"
-          >
-            <div class="promo-rank-icon">⚡</div>
-            <div class="promo-info">
-              <h4>Promo 5 Star Mythic</h4>
-              <div class="promo-rank-label">
-                Mythic <span class="stars">★★★★★</span> 5
-              </div>
-              <div class="promo-price">Rp 70.000</div>
-            </div>
-            <div class="add-btn">+</div>
-          </div>
-          <div
-            class="promo-card"
-            onclick="
-              openOrder(
-                'Promo 9 Star Bonus 1 Star Legend',
-                'legend',
-                10,
-                'Rp 60.000',
-              )
-            "
-          >
-            <div class="promo-rank-icon">🏅</div>
-            <div class="promo-info">
-              <h4>Promo 9 Star Bonus 1 Star Legend</h4>
-              <div class="promo-rank-label">
-                Legend <span class="stars">★★★★★★★★★★</span> 10
-              </div>
-              <div class="promo-price">Rp 60.000</div>
-            </div>
-            <div class="add-btn">+</div>
-          </div>
-          <div
-            class="promo-card"
-            onclick="
-              openOrder(
-                'Promo 9 Star Bonus 1 Star Epic',
-                'epic',
-                10,
-                'Rp 52.000',
-              )
-            "
-          >
-            <div class="promo-rank-icon">💎</div>
-            <div class="promo-info">
-              <h4>Promo 9 Star Bonus 1 Star Epic</h4>
-              <div class="promo-rank-label">
-                Epic <span class="stars">★★★★★★★★★★</span> 10
-              </div>
-              <div class="promo-price">Rp 52.000</div>
-            </div>
-            <div class="add-btn">+</div>
-          </div>
-          <div
-            class="promo-card"
-            onclick="openOrder('Promo 5 Star Legend', 'legend', 5, 'Rp 31.500')"
-          >
-            <div class="promo-rank-icon">🏅</div>
-            <div class="promo-info">
-              <h4>Promo 5 Star Legend</h4>
-              <div class="promo-rank-label">
-                Legend <span class="stars">★★★★★</span> 5
-              </div>
-              <div class="promo-price">Rp 31.500</div>
-            </div>
-            <div class="add-btn">+</div>
-          </div>
-          <div
-            class="promo-card"
-            onclick="openOrder('Promo 5 Star Epic', 'epic', 5, 'Rp 28.000')"
-          >
-            <div class="promo-rank-icon">💎</div>
-            <div class="promo-info">
-              <h4>Promo 5 Star Epic</h4>
-              <div class="promo-rank-label">
-                Epic <span class="stars">★★★★★</span> 5
-              </div>
-              <div class="promo-price">Rp 28.000</div>
-            </div>
-            <div class="add-btn">+</div>
-          </div>
-        </div>
-      </div>
-
-      <hr class="divider" />
-
-      <!-- PROMO 10 STAR BONUS 1 STAR -->
-      <div class="section">
-        <div class="promo-header">
-          <div>
-            <div class="promo-tag">⭐ Awal Season</div>
-            <div class="section-title">PROMO 10 STAR BONUS 1 STAR</div>
-            <p class="section-sub">
-              Promo 10 Star Awal Season — beli 10 bintang, bonus 1 bintang
-              ekstra!
-            </p>
-          </div>
-        </div>
-
-        <div class="promo-grid">
-          <div
-            class="promo-card"
-            onclick="
-              openOrder(
-                'Bundle 10 Star Bonus 1 Star Mythic Immortal',
-                'mythic_immortal',
-                11,
-                'Rp 270.000',
-              )
-            "
-          >
-            <div class="promo-rank-icon">🔥</div>
-            <div class="promo-info">
-              <h4>Bundle 10 Star Bonus 1 Star Mythic Immortal</h4>
-              <div class="promo-rank-label">
-                Mythic Immortal <span class="stars">★★★★★★★★★★★</span> 11
-              </div>
-              <div class="promo-price">Rp 270.000</div>
-            </div>
-            <div class="add-btn">+</div>
-          </div>
-          <div
-            class="promo-card"
-            onclick="
-              openOrder(
-                'Bundle 10 Star Bonus 1 Star Mythic Glory',
-                'mythic_glory',
-                11,
-                'Rp 235.000',
-              )
-            "
-          >
-            <div class="promo-rank-icon">👑</div>
-            <div class="promo-info">
-              <h4>Bundle 10 Star Bonus 1 Star Mythic Glory</h4>
-              <div class="promo-rank-label">
-                Mythic Glory <span class="stars">★★★★★★★★★★★</span> 11
-              </div>
-              <div class="promo-price">Rp 235.000</div>
-            </div>
-            <div class="add-btn">+</div>
-          </div>
-          <div
-            class="promo-card"
-            onclick="
-              openOrder(
-                'Bundle 10 Star Bonus 1 Star Mythic Honor',
-                'mythic_honor',
-                11,
-                'Rp 175.000',
-              )
-            "
-          >
-            <div class="promo-rank-icon">🌟</div>
-            <div class="promo-info">
-              <h4>Bundle 10 Star Bonus 1 Star Mythic Honor</h4>
-              <div class="promo-rank-label">
-                Mythic Honor <span class="stars">★★★★★★★★★★★</span> 11
-              </div>
-              <div class="promo-price">Rp 175.000</div>
-            </div>
-            <div class="add-btn">+</div>
-          </div>
-          <div
-            class="promo-card"
-            onclick="
-              openOrder(
-                'Bundle 10 Star Bonus 1 Star Mythic',
-                'mythic',
-                11,
-                'Rp 155.000',
-              )
-            "
-          >
-            <div class="promo-rank-icon">⚡</div>
-            <div class="promo-info">
-              <h4>Bundle 10 Star Bonus 1 Star Mythic</h4>
-              <div class="promo-rank-label">
-                Mythic <span class="stars">★★★★★★★★★★★</span> 11
-              </div>
-              <div class="promo-price">Rp 155.000</div>
-            </div>
-            <div class="add-btn">+</div>
-          </div>
-          <div
-            class="promo-card"
-            onclick="
-              openOrder(
-                'Bundle 10 Star Bonus 1 Star Legend',
-                'legend',
-                11,
-                'Rp 65.000',
-              )
-            "
-          >
-            <div class="promo-rank-icon">🏅</div>
-            <div class="promo-info">
-              <h4>Bundle 10 Star Bonus 1 Star Legend</h4>
-              <div class="promo-rank-label">
-                Legend <span class="stars">★★★★★★★★★★★</span> 11
-              </div>
-              <div class="promo-price">Rp 65.000</div>
-            </div>
-            <div class="add-btn">+</div>
-          </div>
-          <div
-            class="promo-card"
-            onclick="
-              openOrder(
-                'Bundle 10 Star Bonus 1 Star Epic',
-                'epic',
-                11,
-                'Rp 55.000',
-              )
-            "
-          >
-            <div class="promo-rank-icon">💎</div>
-            <div class="promo-info">
-              <h4>Bundle 10 Star Bonus 1 Star Epic</h4>
-              <div class="promo-rank-label">
-                Epic <span class="stars">★★★★★★★★★★★</span> 11
-              </div>
-              <div class="promo-price">Rp 55.000</div>
-            </div>
-            <div class="add-btn">+</div>
-          </div>
-          <div
-            class="promo-card"
-            onclick="
-              openOrder(
-                'Bundle 10 Star Bonus 1 Star Grandmaster',
-                'grandmaster',
-                11,
-                'Rp 40.000',
-              )
-            "
-          >
-            <div class="promo-rank-icon">🛡️</div>
-            <div class="promo-info">
-              <h4>Bundle 10 Star Bonus 1 Star Grandmaster</h4>
-              <div class="promo-rank-label">
-                Grandmaster <span class="stars">★★★★★★★★★★★</span> 11
-              </div>
-              <div class="promo-price">Rp 40.000</div>
-            </div>
-            <div class="add-btn">+</div>
-          </div>
-        </div>
-      </div>
-
-      <hr class="divider" />
-
-      <!-- PROMO 15 STAR BONUS 2 STAR -->
-      <div class="section">
-        <div class="promo-header">
-          <div>
-            <div class="promo-tag">🎯 Awal Season</div>
-            <div class="section-title">PROMO 15 STAR BONUS 2 STAR</div>
-            <p class="section-sub">
-              Promo 15 Star Awal Season — beli 15 bintang, bonus 2 bintang
-              ekstra!
-            </p>
-          </div>
-        </div>
-
-        <div class="promo-grid">
-          <div
-            class="promo-card"
-            onclick="
-              openOrder(
-                'Promo 15 Star Glory Bonus 2 Star',
-                'mythic_glory',
-                17,
-                'Rp 352.500',
-              )
-            "
-          >
-            <div class="promo-rank-icon">👑</div>
-            <div class="promo-info">
-              <h4>Promo 15 Star Glory Bonus 2 Star</h4>
-              <div class="promo-rank-label">
-                Glory <span class="stars">★★★★★★★★★★★★★★★★★</span> 17
-              </div>
-              <div class="promo-price">Rp 352.500</div>
-            </div>
-            <div class="add-btn">+</div>
-          </div>
-          <div
-            class="promo-card"
-            onclick="
-              openOrder(
-                'Promo 15 Star Honor Bonus 2 Star',
-                'mythic_honor',
-                17,
-                'Rp 262.500',
-              )
-            "
-          >
-            <div class="promo-rank-icon">🌟</div>
-            <div class="promo-info">
-              <h4>Promo 15 Star Honor Bonus 2 Star</h4>
-              <div class="promo-rank-label">
-                Honor <span class="stars">★★★★★★★★★★★★★★★★★</span> 17
-              </div>
-              <div class="promo-price">Rp 262.500</div>
-            </div>
-            <div class="add-btn">+</div>
-          </div>
-          <div
-            class="promo-card"
-            onclick="
-              openOrder(
-                'Promo 15 Star Mythic Bonus 2 Star',
-                'mythic',
-                17,
-                'Rp 232.500',
-              )
-            "
-          >
-            <div class="promo-rank-icon">⚡</div>
-            <div class="promo-info">
-              <h4>Promo 15 Star Mythic Bonus 2 Star</h4>
-              <div class="promo-rank-label">
-                Mythic <span class="stars">★★★★★★★★★★★★★★★★★</span> 17
-              </div>
-              <div class="promo-price">Rp 232.500</div>
-            </div>
-            <div class="add-btn">+</div>
-          </div>
-          <div
-            class="promo-card"
-            onclick="
-              openOrder(
-                'Promo 15 Star Legend Bonus 2 Star',
-                'legend',
-                17,
-                'Rp 97.500',
-              )
-            "
-          >
-            <div class="promo-rank-icon">🏅</div>
-            <div class="promo-info">
-              <h4>Promo 15 Star Legend Bonus 2 Star</h4>
-              <div class="promo-rank-label">
-                Legend <span class="stars">★★★★★★★★★★★★★★★★★</span> 17
-              </div>
-              <div class="promo-price">Rp 97.500</div>
-            </div>
-            <div class="add-btn">+</div>
-          </div>
-          <div
-            class="promo-card"
-            onclick="
-              openOrder(
-                'Promo 15 Star Epic Bonus 2 Star',
-                'epic',
-                17,
-                'Rp 82.500',
-              )
-            "
-          >
-            <div class="promo-rank-icon">💎</div>
-            <div class="promo-info">
-              <h4>Promo 15 Star Epic Bonus 2 Star</h4>
-              <div class="promo-rank-label">
-                Epic <span class="stars">★★★★★★★★★★★★★★★★★</span> 17
-              </div>
-              <div class="promo-price">Rp 82.500</div>
-            </div>
-            <div class="add-btn">+</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- MODAL -->
-    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-      <div class="modal">
-        <h3>HASIL ESTIMASI BIAYA</h3>
-        <div class="modal-rank-row">
-          <div class="modal-rank">
-            <div class="modal-rank-icon" id="modalFromIcon">🛡️</div>
-            <p id="modalFromRank">Grandmaster</p>
-            <small id="modalFromStars">4 ⭐</small>
-          </div>
-          <div class="arrow">→</div>
-          <div class="modal-rank">
-            <div class="modal-rank-icon" id="modalToIcon">💎</div>
-            <p id="modalToRank">Epic</p>
-            <small id="modalToStars">5 ⭐</small>
-          </div>
-        </div>
-        <hr class="modal-divider" />
-        <div class="modal-total">
-          <span>Total Estimasi Biaya</span>
-          <strong id="modalTotal">Rp 0</strong>
-        </div>
-        <p class="modal-note">ⓘ Estimasi bisa berubah kapan saja</p>
-        <div class="modal-actions">
-          <button class="btn-ghost" onclick="closeModalBtn()">Tutup</button>
-          <button class="btn-order" onclick="lanjutPesan()">
-            Lanjutkan Pemesanan →
+            <i id="hamburger-icon" class="fa-solid fa-bars"></i>
           </button>
         </div>
       </div>
+
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden bg-[#010a1a]/95 backdrop-blur-xl border-t border-white/5 absolute w-full left-0 shadow-2xl"
+      >
+        <nav
+          class="flex flex-col px-5 py-5 gap-1 text-[13px] font-bold tracking-wide uppercase"
+        >
+          <a
+            href="../index.html"
+            class="flex items-center gap-3 text-white/80 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition border-b border-white/5"
+            ><i class="fa-solid fa-house w-5 text-[#00a8ff]"></i> Beranda</a
+          >
+          <a
+            href="../topup/farm.html"
+            class="flex items-center gap-3 text-white/80 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition border-b border-white/5"
+            ><i class="fa-solid fa-layer-group w-5 text-[#00a8ff]"></i> Top
+            Up</a
+          >
+          <a
+            href="../joki/joki.html"
+            class="flex items-center gap-3 text-[#00a8ff] px-4 py-3 rounded-xl hover:bg-white/5 transition border-b border-white/5"
+            ><i class="fa-solid fa-angles-up w-5 text-[#00a8ff]"></i> Joki</a
+          >
+          <a
+            href="../beli_akun/kategori_akun.html"
+            class="flex items-center gap-3 text-white/80 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition border-b border-white/5"
+            ><i class="fa-solid fa-user-tag w-5 text-[#00a8ff]"></i> Beli
+            Akun</a
+          >
+          <a
+            href="../Artikel_GenZstore/artikel.html"
+            class="flex items-center gap-3 text-white/80 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition"
+            ><i class="fa-solid fa-newspaper w-5 text-[#00a8ff]"></i> Artikel</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <div class="joki-content text-[#f2f2f2]">
+      <div class="tabs-wrap">
+        <div class="tabs">
+          <button
+            class="tab-btn active"
+            onclick="switchTab('mobile-legends', this)"
+          >
+            Mobile Legends
+          </button>
+          <button class="tab-btn" onclick="switchTab('no-request', this)">
+            Joki ML No Request
+          </button>
+        </div>
+      </div>
+
+      <div id="tab-mobile-legends">
+        <div class="section pt-10">
+          <div class="calc-grid">
+            <div class="card">
+              <div class="card-title">KALKULATOR JOKI</div>
+              <p class="card-desc">
+                Kalkulator Joki Rank membantu kamu mengetahui estimasi biaya
+                joki di GENZSTORE. Kamu juga bisa langsung menghubungi admin
+                melalui hasil kalkulator.
+              </p>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Rank Sekarang</label>
+                  <select id="rankFrom" onchange="updateStarsFrom()">
+                    <option value="">Pilih Rank</option>
+                    <option value="gm_5">Grandmaster V</option>
+                    <option value="gm_4">Grandmaster IV</option>
+                    <option value="gm_3">Grandmaster III</option>
+                    <option value="gm_2">Grandmaster II</option>
+                    <option value="gm_1">Grandmaster I</option>
+                    <option value="epic_5">Epic V</option>
+                    <option value="epic_4">Epic IV</option>
+                    <option value="epic_3">Epic III</option>
+                    <option value="epic_2">Epic II</option>
+                    <option value="epic_1">Epic I</option>
+                    <option value="legend_5">Legend V</option>
+                    <option value="legend_4">Legend IV</option>
+                    <option value="legend_3">Legend III</option>
+                    <option value="legend_2">Legend II</option>
+                    <option value="legend_1">Legend I</option>
+                    <option value="mythic">Mythic Base</option>
+                    <option value="mythic_honor">Mythic Honor</option>
+                    <option value="mythic_glory">Mythic Glory</option>
+                    <option value="mythic_immortal">Mythic Immortal</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Bintang Sekarang</label>
+                  <input
+                    type="number"
+                    id="starsFrom"
+                    placeholder="Bintang"
+                    min="1"
+                    max="10"
+                  />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Rank Tujuan</label>
+                  <select id="rankTo" onchange="updateStarsTo()">
+                    <option value="">Pilih Rank</option>
+                    <option value="gm_5">Grandmaster V</option>
+                    <option value="gm_4">Grandmaster IV</option>
+                    <option value="gm_3">Grandmaster III</option>
+                    <option value="gm_2">Grandmaster II</option>
+                    <option value="gm_1">Grandmaster I</option>
+                    <option value="epic_5">Epic V</option>
+                    <option value="epic_4">Epic IV</option>
+                    <option value="epic_3">Epic III</option>
+                    <option value="epic_2">Epic II</option>
+                    <option value="epic_1">Epic I</option>
+                    <option value="legend_5">Legend V</option>
+                    <option value="legend_4">Legend IV</option>
+                    <option value="legend_3">Legend III</option>
+                    <option value="legend_2">Legend II</option>
+                    <option value="legend_1">Legend I</option>
+                    <option value="mythic">Mythic Base</option>
+                    <option value="mythic_honor">Mythic Honor</option>
+                    <option value="mythic_glory">Mythic Glory</option>
+                    <option value="mythic_immortal">Mythic Immortal</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Bintang Tujuan</label>
+                  <input
+                    type="number"
+                    id="starsTo"
+                    placeholder="Bintang"
+                    min="1"
+                    max="10"
+                  />
+                </div>
+              </div>
+
+              <button class="btn-calc" onclick="hitungEstimasi()">
+                Hitung Estimasi Biaya
+              </button>
+            </div>
+
+            <div class="card">
+              <div class="card-title">DAFTAR HARGA</div>
+              <p class="card-desc">
+                Harga dapat berubah sewaktu-waktu, menyesuaikan dengan periode
+                season: awal, pertengahan, atau akhir season.
+              </p>
+
+              <div class="price-list">
+                <div class="price-item">
+                  <div class="rank-icon">
+                    <img
+                      src="assets4/gm.png"
+                      class="w-full h-full object-contain"
+                      alt="GM"
+                    />
+                  </div>
+                  <div class="price-info">
+                    <strong>Grandmaster</strong>
+                    <span>Rp 4.500</span>
+                    <small>/bintang</small>
+                  </div>
+                </div>
+                <div class="price-item">
+                  <div class="rank-icon">
+                    <img
+                      src="assets4/epic.png"
+                      class="w-full h-full object-contain"
+                      alt="Epic"
+                    />
+                  </div>
+                  <div class="price-info">
+                    <strong>Epic</strong>
+                    <span>Rp 6.000</span>
+                    <small>/bintang</small>
+                  </div>
+                </div>
+                <div class="price-item">
+                  <div class="rank-icon">
+                    <img
+                      src="assets4/legend.png"
+                      class="w-full h-full object-contain"
+                      alt="Legend"
+                    />
+                  </div>
+                  <div class="price-info">
+                    <strong>Legend</strong>
+                    <span>Rp 7.000</span>
+                    <small>/bintang</small>
+                  </div>
+                </div>
+                <div class="price-item">
+                  <div class="rank-icon">
+                    <img
+                      src="assets4/mytic.png"
+                      class="w-full h-full object-contain"
+                      alt="Mythic"
+                    />
+                  </div>
+                  <div class="price-info">
+                    <strong>Mythic Base</strong>
+                    <span>Rp 16.000</span>
+                    <small>/bintang</small>
+                  </div>
+                </div>
+                <div class="price-item">
+                  <div class="rank-icon">
+                    <img
+                      src="assets4/mytic.png"
+                      class="w-full h-full object-contain"
+                      alt="Honor"
+                    />
+                  </div>
+                  <div class="price-info">
+                    <strong>Mythic Honor</strong>
+                    <span>Rp 18.000</span>
+                    <small>/bintang</small>
+                  </div>
+                </div>
+                <div class="price-item">
+                  <div class="rank-icon">
+                    <img
+                      src="assets4/glory.png"
+                      class="w-full h-full object-contain"
+                      alt="Glory"
+                    />
+                  </div>
+                  <div class="price-info">
+                    <strong>Mythic Glory</strong>
+                    <span>Rp 24.000</span>
+                    <small>/bintang</small>
+                  </div>
+                </div>
+                <div class="price-item" style="grid-column: span 2">
+                  <div class="rank-icon">
+                    <img
+                      src="assets4/imo.png"
+                      class="w-full h-full object-contain"
+                      alt="Immortal"
+                    />
+                  </div>
+                  <div class="price-info">
+                    <strong>Mythic Immortal</strong>
+                    <span>Rp 27.000</span>
+                    <small>/bintang</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="note-box">
+                <div class="note-label">⚠️ Catatan Penting</div>
+                <p>
+                  Harga joki gendong lebih tinggi
+                  <strong>Rp 2.000,-</strong> dibandingkan dengan joki biasa.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="divider-joki" />
+
+        <div class="section">
+          <div class="promo-header">
+            <div>
+              <div class="promo-tag">
+                <i class="fa-solid fa-fire mr-1"></i> Promo Terbatas
+              </div>
+              <div class="section-title">PROMO WEEKDAY</div>
+              <p class="section-sub">
+                Promo khusus hari Senin–Jumat. Berlaku selama stok tersedia.
+              </p>
+            </div>
+          </div>
+
+          <div class="promo-grid">
+            <div
+              class="promo-card"
+              onclick="
+                openOrder(
+                  'Promo 9 Star Bonus 1 Star Glory',
+                  'mythic_glory',
+                  10,
+                  'Rp 210.000',
+                )
+              "
+            >
+              <div class="promo-rank-icon">
+                <img
+                  src="assets4/glory.png"
+                  class="w-full h-full object-contain"
+                  alt="Glory"
+                />
+              </div>
+              <div class="promo-info">
+                <h4>Promo 9 Star Bonus 1 Star Glory</h4>
+                <div class="promo-rank-label">
+                  Glory <span class="stars">★</span> 10
+                </div>
+                <div class="promo-price">Rp 210.000</div>
+              </div>
+              <div class="add-btn">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </div>
+            </div>
+            <div
+              class="promo-card"
+              onclick="
+                openOrder(
+                  'Promo 9 Star Bonus 1 Star Honor',
+                  'mythic_honor',
+                  10,
+                  'Rp 157.000',
+                )
+              "
+            >
+              <div class="promo-rank-icon">
+                <img
+                  src="assets4/mytic.png"
+                  class="w-full h-full object-contain"
+                  alt="Honor"
+                />
+              </div>
+              <div class="promo-info">
+                <h4>Promo 9 Star Bonus 1 Star Honor</h4>
+                <div class="promo-rank-label">
+                  Honor <span class="stars">★</span> 10
+                </div>
+                <div class="promo-price">Rp 157.000</div>
+              </div>
+              <div class="add-btn">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </div>
+            </div>
+            <div
+              class="promo-card"
+              onclick="
+                openOrder(
+                  'Promo 9 Star Bonus 1 Star Mythic',
+                  'mythic',
+                  9,
+                  'Rp 135.000',
+                )
+              "
+            >
+              <div class="promo-rank-icon">
+                <img
+                  src="assets4/mytic.png"
+                  class="w-full h-full object-contain"
+                  alt="Mythic"
+                />
+              </div>
+              <div class="promo-info">
+                <h4>Promo 9 Star Bonus 1 Star Mythic</h4>
+                <div class="promo-rank-label">
+                  Mythic <span class="stars">★</span> 9
+                </div>
+                <div class="promo-price">Rp 135.000</div>
+              </div>
+              <div class="add-btn">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </div>
+            </div>
+            <div
+              class="promo-card"
+              onclick="
+                openOrder('Promo 5 Star Glory', 'mythic_glory', 5, 'Rp 115.000')
+              "
+            >
+              <div class="promo-rank-icon">
+                <img
+                  src="assets4/glory.png"
+                  class="w-full h-full object-contain"
+                  alt="Glory"
+                />
+              </div>
+              <div class="promo-info">
+                <h4>Promo 5 Star Glory</h4>
+                <div class="promo-rank-label">
+                  Glory <span class="stars">★</span> 5
+                </div>
+                <div class="promo-price">Rp 115.000</div>
+              </div>
+              <div class="add-btn">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </div>
+            </div>
+            <div
+              class="promo-card"
+              onclick="
+                openOrder('Promo 5 Star Honor', 'mythic_honor', 5, 'Rp 80.000')
+              "
+            >
+              <div class="promo-rank-icon">
+                <img
+                  src="assets4/mytic.png"
+                  class="w-full h-full object-contain"
+                  alt="Honor"
+                />
+              </div>
+              <div class="promo-info">
+                <h4>Promo 5 Star Honor</h4>
+                <div class="promo-rank-label">
+                  Honor <span class="stars">★</span> 5
+                </div>
+                <div class="promo-price">Rp 80.000</div>
+              </div>
+              <div class="add-btn">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </div>
+            </div>
+            <div
+              class="promo-card"
+              onclick="
+                openOrder('Promo 5 Star Mythic', 'mythic', 5, 'Rp 70.000')
+              "
+            >
+              <div class="promo-rank-icon">
+                <img
+                  src="assets4/mytic.png"
+                  class="w-full h-full object-contain"
+                  alt="Mythic"
+                />
+              </div>
+              <div class="promo-info">
+                <h4>Promo 5 Star Mythic</h4>
+                <div class="promo-rank-label">
+                  Mythic <span class="stars">★</span> 5
+                </div>
+                <div class="promo-price">Rp 70.000</div>
+              </div>
+              <div class="add-btn">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </div>
+            </div>
+            <div
+              class="promo-card"
+              onclick="
+                openOrder(
+                  'Promo 9 Star Bonus 1 Star Legend',
+                  'legend',
+                  10,
+                  'Rp 60.000',
+                )
+              "
+            >
+              <div class="promo-rank-icon">
+                <img
+                  src="assets4/legend.png"
+                  class="w-full h-full object-contain"
+                  alt="Legend"
+                />
+              </div>
+              <div class="promo-info">
+                <h4>Promo 9 Star Bonus 1 Star Legend</h4>
+                <div class="promo-rank-label">
+                  Legend <span class="stars">★</span> 10
+                </div>
+                <div class="promo-price">Rp 60.000</div>
+              </div>
+              <div class="add-btn">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </div>
+            </div>
+            <div
+              class="promo-card"
+              onclick="
+                openOrder(
+                  'Promo 9 Star Bonus 1 Star Epic',
+                  'epic',
+                  10,
+                  'Rp 52.000',
+                )
+              "
+            >
+              <div class="promo-rank-icon">
+                <img
+                  src="assets4/epic.png"
+                  class="w-full h-full object-contain"
+                  alt="Epic"
+                />
+              </div>
+              <div class="promo-info">
+                <h4>Promo 9 Star Bonus 1 Star Epic</h4>
+                <div class="promo-rank-label">
+                  Epic <span class="stars">★</span> 10
+                </div>
+                <div class="promo-price">Rp 52.000</div>
+              </div>
+              <div class="add-btn">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </div>
+            </div>
+            <div
+              class="promo-card"
+              onclick="
+                openOrder('Promo 5 Star Legend', 'legend', 5, 'Rp 31.500')
+              "
+            >
+              <div class="promo-rank-icon">
+                <img
+                  src="assets4/legend.png"
+                  class="w-full h-full object-contain"
+                  alt="Legend"
+                />
+              </div>
+              <div class="promo-info">
+                <h4>Promo 5 Star Legend</h4>
+                <div class="promo-rank-label">
+                  Legend <span class="stars">★</span> 5
+                </div>
+                <div class="promo-price">Rp 31.500</div>
+              </div>
+              <div class="add-btn">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </div>
+            </div>
+            <div
+              class="promo-card"
+              onclick="openOrder('Promo 5 Star Epic', 'epic', 5, 'Rp 28.000')"
+            >
+              <div class="promo-rank-icon">
+                <img
+                  src="assets4/epic.png"
+                  class="w-full h-full object-contain"
+                  alt="Epic"
+                />
+              </div>
+              <div class="promo-info">
+                <h4>Promo 5 Star Epic</h4>
+                <div class="promo-rank-label">
+                  Epic <span class="stars">★</span> 5
+                </div>
+                <div class="promo-price">Rp 28.000</div>
+              </div>
+              <div class="add-btn">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="divider-joki" />
+
+        <div class="section">
+          <div class="promo-header">
+            <div>
+              <div class="promo-tag">
+                <i class="fa-solid fa-star mr-1"></i> Awal Season
+              </div>
+              <div class="section-title">PROMO 10 STAR BONUS 1 STAR</div>
+              <p class="section-sub">
+                Promo 10 Star Awal Season — beli 10 bintang, bonus 1 bintang
+                ekstra!
+              </p>
+            </div>
+          </div>
+          <div class="promo-grid">
+            <div
+              class="promo-card"
+              onclick="
+                openOrder(
+                  'Bundle 10 Star Bonus 1 Star Mythic Immortal',
+                  'mythic_immortal',
+                  11,
+                  'Rp 270.000',
+                )
+              "
+            >
+              <div class="promo-rank-icon">
+                <img
+                  src="assets4/imo.png"
+                  class="w-full h-full object-contain"
+                  alt="Immortal"
+                />
+              </div>
+              <div class="promo-info">
+                <h4>Bundle 10 Star Bonus 1 Star Mythic Immortal</h4>
+                <div class="promo-rank-label">
+                  Mythic Immortal <span class="stars">★</span> 11
+                </div>
+                <div class="promo-price">Rp 270.000</div>
+              </div>
+              <div class="add-btn">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </div>
+            </div>
+            <div
+              class="promo-card"
+              onclick="
+                openOrder(
+                  'Bundle 10 Star Bonus 1 Star Mythic Glory',
+                  'mythic_glory',
+                  11,
+                  'Rp 235.000',
+                )
+              "
+            >
+              <div class="promo-rank-icon">
+                <img
+                  src="assets4/glory.png"
+                  class="w-full h-full object-contain"
+                  alt="Glory"
+                />
+              </div>
+              <div class="promo-info">
+                <h4>Bundle 10 Star Bonus 1 Star Mythic Glory</h4>
+                <div class="promo-rank-label">
+                  Mythic Glory <span class="stars">★</span> 11
+                </div>
+                <div class="promo-price">Rp 235.000</div>
+              </div>
+              <div class="add-btn">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </div>
+            </div>
+            <div
+              class="promo-card"
+              onclick="
+                openOrder(
+                  'Bundle 10 Star Bonus 1 Star Mythic Honor',
+                  'mythic_honor',
+                  11,
+                  'Rp 175.000',
+                )
+              "
+            >
+              <div class="promo-rank-icon">
+                <img
+                  src="assets4/mytic.png"
+                  class="w-full h-full object-contain"
+                  alt="Honor"
+                />
+              </div>
+              <div class="promo-info">
+                <h4>Bundle 10 Star Bonus 1 Star Mythic Honor</h4>
+                <div class="promo-rank-label">
+                  Mythic Honor <span class="stars">★</span> 11
+                </div>
+                <div class="promo-price">Rp 175.000</div>
+              </div>
+              <div class="add-btn">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </div>
+            </div>
+            <div
+              class="promo-card"
+              onclick="
+                openOrder(
+                  'Bundle 10 Star Bonus 1 Star Mythic',
+                  'mythic',
+                  11,
+                  'Rp 155.000',
+                )
+              "
+            >
+              <div class="promo-rank-icon">
+                <img
+                  src="assets4/mytic.png"
+                  class="w-full h-full object-contain"
+                  alt="Mythic"
+                />
+              </div>
+              <div class="promo-info">
+                <h4>Bundle 10 Star Bonus 1 Star Mythic</h4>
+                <div class="promo-rank-label">
+                  Mythic <span class="stars">★</span> 11
+                </div>
+                <div class="promo-price">Rp 155.000</div>
+              </div>
+              <div class="add-btn">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </div>
+            </div>
+            <div
+              class="promo-card"
+              onclick="
+                openOrder(
+                  'Bundle 10 Star Bonus 1 Star Legend',
+                  'legend',
+                  11,
+                  'Rp 65.000',
+                )
+              "
+            >
+              <div class="promo-rank-icon">
+                <img
+                  src="assets4/legend.png"
+                  class="w-full h-full object-contain"
+                  alt="Legend"
+                />
+              </div>
+              <div class="promo-info">
+                <h4>Bundle 10 Star Bonus 1 Star Legend</h4>
+                <div class="promo-rank-label">
+                  Legend <span class="stars">★</span> 11
+                </div>
+                <div class="promo-price">Rp 65.000</div>
+              </div>
+              <div class="add-btn">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </div>
+            </div>
+            <div
+              class="promo-card"
+              onclick="
+                openOrder(
+                  'Bundle 10 Star Bonus 1 Star Epic',
+                  'epic',
+                  11,
+                  'Rp 55.000',
+                )
+              "
+            >
+              <div class="promo-rank-icon">
+                <img
+                  src="assets4/epic.png"
+                  class="w-full h-full object-contain"
+                  alt="Epic"
+                />
+              </div>
+              <div class="promo-info">
+                <h4>Bundle 10 Star Bonus 1 Star Epic</h4>
+                <div class="promo-rank-label">
+                  Epic <span class="stars">★</span> 11
+                </div>
+                <div class="promo-price">Rp 55.000</div>
+              </div>
+              <div class="add-btn">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </div>
+            </div>
+            <div
+              class="promo-card"
+              onclick="
+                openOrder(
+                  'Bundle 10 Star Bonus 1 Star Grandmaster',
+                  'grandmaster',
+                  11,
+                  'Rp 40.000',
+                )
+              "
+            >
+              <div class="promo-rank-icon">
+                <img
+                  src="assets4/gm.png"
+                  class="w-full h-full object-contain"
+                  alt="GM"
+                />
+              </div>
+              <div class="promo-info">
+                <h4>Bundle 10 Star Bonus 1 Star Grandmaster</h4>
+                <div class="promo-rank-label">
+                  Grandmaster <span class="stars">★</span> 11
+                </div>
+                <div class="promo-price">Rp 40.000</div>
+              </div>
+              <div class="add-btn">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="divider-joki" />
+
+        <div class="section">
+          <div class="promo-header">
+            <div>
+              <div class="promo-tag">
+                <i class="fa-solid fa-bullseye mr-1"></i> Awal Season
+              </div>
+              <div class="section-title">PROMO 15 STAR BONUS 2 STAR</div>
+              <p class="section-sub">
+                Promo 15 Star Awal Season — beli 15 bintang, bonus 2 bintang
+                ekstra!
+              </p>
+            </div>
+          </div>
+          <div class="promo-grid">
+            <div
+              class="promo-card"
+              onclick="
+                openOrder(
+                  'Promo 15 Star Glory Bonus 2 Star',
+                  'mythic_glory',
+                  17,
+                  'Rp 352.500',
+                )
+              "
+            >
+              <div class="promo-rank-icon">
+                <img
+                  src="assets4/glory.png"
+                  class="w-full h-full object-contain"
+                  alt="Glory"
+                />
+              </div>
+              <div class="promo-info">
+                <h4>Promo 15 Star Glory Bonus 2 Star</h4>
+                <div class="promo-rank-label">
+                  Glory <span class="stars">★</span> 17
+                </div>
+                <div class="promo-price">Rp 352.500</div>
+              </div>
+              <div class="add-btn">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </div>
+            </div>
+            <div
+              class="promo-card"
+              onclick="
+                openOrder(
+                  'Promo 15 Star Honor Bonus 2 Star',
+                  'mythic_honor',
+                  17,
+                  'Rp 262.500',
+                )
+              "
+            >
+              <div class="promo-rank-icon">
+                <img
+                  src="assets4/mytic.png"
+                  class="w-full h-full object-contain"
+                  alt="Honor"
+                />
+              </div>
+              <div class="promo-info">
+                <h4>Promo 15 Star Honor Bonus 2 Star</h4>
+                <div class="promo-rank-label">
+                  Honor <span class="stars">★</span> 17
+                </div>
+                <div class="promo-price">Rp 262.500</div>
+              </div>
+              <div class="add-btn">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </div>
+            </div>
+            <div
+              class="promo-card"
+              onclick="
+                openOrder(
+                  'Promo 15 Star Mythic Bonus 2 Star',
+                  'mythic',
+                  17,
+                  'Rp 232.500',
+                )
+              "
+            >
+              <div class="promo-rank-icon">
+                <img
+                  src="assets4/mytic.png"
+                  class="w-full h-full object-contain"
+                  alt="Mythic"
+                />
+              </div>
+              <div class="promo-info">
+                <h4>Promo 15 Star Mythic Bonus 2 Star</h4>
+                <div class="promo-rank-label">
+                  Mythic <span class="stars">★</span> 17
+                </div>
+                <div class="promo-price">Rp 232.500</div>
+              </div>
+              <div class="add-btn">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </div>
+            </div>
+            <div
+              class="promo-card"
+              onclick="
+                openOrder(
+                  'Promo 15 Star Legend Bonus 2 Star',
+                  'legend',
+                  17,
+                  'Rp 97.500',
+                )
+              "
+            >
+              <div class="promo-rank-icon">
+                <img
+                  src="assets4/legend.png"
+                  class="w-full h-full object-contain"
+                  alt="Legend"
+                />
+              </div>
+              <div class="promo-info">
+                <h4>Promo 15 Star Legend Bonus 2 Star</h4>
+                <div class="promo-rank-label">
+                  Legend <span class="stars">★</span> 17
+                </div>
+                <div class="promo-price">Rp 97.500</div>
+              </div>
+              <div class="add-btn">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </div>
+            </div>
+            <div
+              class="promo-card"
+              onclick="
+                openOrder(
+                  'Promo 15 Star Epic Bonus 2 Star',
+                  'epic',
+                  17,
+                  'Rp 82.500',
+                )
+              "
+            >
+              <div class="promo-rank-icon">
+                <img
+                  src="assets4/epic.png"
+                  class="w-full h-full object-contain"
+                  alt="Epic"
+                />
+              </div>
+              <div class="promo-info">
+                <h4>Promo 15 Star Epic Bonus 2 Star</h4>
+                <div class="promo-rank-label">
+                  Epic <span class="stars">★</span> 17
+                </div>
+                <div class="promo-price">Rp 82.500</div>
+              </div>
+              <div class="add-btn">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+        <div class="modal">
+          <h3>HASIL ESTIMASI BIAYA</h3>
+          <div class="modal-rank-row">
+            <div class="modal-rank">
+              <div class="modal-rank-icon" id="modalFromIcon"></div>
+              <p id="modalFromRank">Grandmaster</p>
+              <small id="modalFromStars">4 ⭐</small>
+            </div>
+            <div class="arrow">
+              <i class="fa-solid fa-arrow-right-long"></i>
+            </div>
+            <div class="modal-rank">
+              <div class="modal-rank-icon" id="modalToIcon"></div>
+              <p id="modalToRank">Epic</p>
+              <small id="modalToStars">5 ⭐</small>
+            </div>
+          </div>
+          <hr class="modal-divider" />
+          <div class="modal-total">
+            <span>Total Estimasi Biaya</span>
+            <strong id="modalTotal">Rp 0</strong>
+          </div>
+          <p class="modal-note">ⓘ Estimasi bisa berubah kapan saja</p>
+          <div class="modal-actions">
+            <button class="btn-ghost" onclick="closeModalBtn()">Tutup</button>
+            <button class="btn-order" onclick="bukaFormOrder()">
+              Lanjutkan Pemesanan <i class="fa-solid fa-arrow-right ml-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-form-overlay" id="modalOrderOverlay">
+        <div class="modal-form-box">
+          <div class="modal-form-header">Formulir Pemesanan</div>
+
+          <div class="modal-form-body custom-scrollbar">
+            <div class="form-rank-display">
+              <div class="fr-item">
+                <div class="fr-icon" id="foFromIcon">
+                  <img src="assets4/gm.png" alt="Awal" />
+                </div>
+                <div class="fr-name" id="foFromRank">Grandmaster</div>
+                <div class="fr-star" id="foFromStar">1 ⭐</div>
+              </div>
+              <div class="fr-arrow">
+                <i class="fa-solid fa-arrow-right"></i>
+              </div>
+              <div class="fr-item">
+                <div class="fr-icon" id="foToIcon">
+                  <img src="assets4/epic.png" alt="Tujuan" />
+                </div>
+                <div class="fr-name" id="foToRank">Epic</div>
+                <div class="fr-star" id="foToStar">5 ⭐</div>
+              </div>
+            </div>
+
+            <div class="input-grid">
+              <div class="input-group">
+                <label>Login Via <span>*</span></label>
+                <select class="input-control" id="f_login">
+                  <option value="">Pilih metode login</option>
+                  <option value="Moonton">Moonton (Recommended)</option>
+                  <option value="Google">Google</option>
+                  <option value="VK">VK</option>
+                  <option value="Facebook">Facebook</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label>Nickname <span>*</span></label>
+                <input
+                  type="text"
+                  class="input-control"
+                  id="f_nickname"
+                  placeholder="Masukkan Nickname"
+                />
+              </div>
+
+              <div class="input-group">
+                <label>User ID <span>*</span></label>
+                <input
+                  type="text"
+                  class="input-control"
+                  id="f_userid"
+                  placeholder="Masukkan User ID"
+                />
+              </div>
+              <div class="input-group">
+                <label>Server ID <span>*</span></label>
+                <input
+                  type="text"
+                  class="input-control"
+                  id="f_serverid"
+                  placeholder="Masukkan Server ID"
+                />
+              </div>
+
+              <div class="input-group">
+                <label>Email <span>*</span></label>
+                <input
+                  type="email"
+                  class="input-control"
+                  id="f_email"
+                  placeholder="Masukkan Email"
+                />
+              </div>
+              <div class="input-group">
+                <label>Password <span>*</span></label>
+                <input
+                  type="password"
+                  class="input-control"
+                  id="f_password"
+                  placeholder="Masukkan Password"
+                />
+              </div>
+
+              <div class="input-group">
+                <label>WhatsApp <span>*</span></label>
+                <div class="input-phone">
+                  <div class="country-code">🇮🇩 +62</div>
+                  <input
+                    type="number"
+                    class="input-control"
+                    id="f_wa"
+                    placeholder="812xxxxxx"
+                  />
+                </div>
+              </div>
+              <div class="input-group">
+                <label>Tau GENZSTORE dari? <span>*</span></label>
+                <select class="input-control" id="f_source">
+                  <option value="">Pilih sumber informasi</option>
+                  <option value="Instagram">Instagram</option>
+                  <option value="TikTok">TikTok</option>
+                  <option value="Teman">Rekomendasi Teman</option>
+                  <option value="Lainnya">Lainnya</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="input-group" style="margin-bottom: 16px">
+              <label>Request Hero</label>
+              <input
+                type="text"
+                class="input-control"
+                id="f_hero"
+                placeholder="Masukkan hero yang diinginkan (opsional)"
+              />
+            </div>
+            <div class="input-group" style="margin-bottom: 32px">
+              <label>Catatan</label>
+              <textarea
+                class="input-control"
+                id="f_note"
+                rows="2"
+                placeholder="Masukkan catatan tambahan (opsional)"
+              ></textarea>
+            </div>
+
+            <div class="kupon-section">
+              <div class="kupon-title">
+                <i class="fa-solid fa-tag"></i> Kupon Tersedia
+              </div>
+              <div class="kupon-grid">
+                <div class="kupon-card">
+                  <i class="fa-solid fa-lock"></i>
+                  <h5>WEEKDAY5K</h5>
+                  <div class="off">Rp 5.000 OFF</div>
+                  <ul>
+                    <li>
+                      <i class="fa-solid fa-circle-info mr-1"></i> Belanja
+                      minimal Rp 165.000
+                    </li>
+                  </ul>
+                </div>
+                <div class="kupon-card">
+                  <i class="fa-solid fa-lock"></i>
+                  <h5>GENZMEMBER</h5>
+                  <div class="off">Rp 10.000 OFF</div>
+                  <ul>
+                    <li>
+                      <i class="fa-solid fa-circle-info mr-1"></i> Khusus Member
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="kupon-alert">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <div>
+                  <p>Belum memenuhi syarat kupon</p>
+                  <span
+                    >Tingkatkan nilai pesanan Anda untuk menggunakan kupon yang
+                    tersedia.</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="kupon-title mt-6">
+              <i class="fa-solid fa-receipt"></i> Ringkasan Harga
+            </div>
+            <div class="summary-box">
+              <div class="sum-row">
+                <span>Harga Asli</span>
+                <span id="foPriceAsli">Rp 0</span>
+              </div>
+              <div class="sum-row total">
+                <span>Total Harga</span>
+                <span id="foPriceTotal">Rp 0</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-form-footer">
+            <div class="footer-terms">
+              Dengan melanjutkan, Anda menyetujui
+              <a href="#">Syarat & Ketentuan</a> dan
+              <a href="#">Kebijakan Privasi</a> kami.
+            </div>
+            <div class="footer-actions">
+              <button class="btn-cancel" onclick="tutupFormOrder()">
+                Tutup
+              </button>
+              <button class="btn-submit" onclick="validasiDanPesan()">
+                Pesan Sekarang
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-error-overlay" id="modalErrorOverlay">
+        <div class="modal-error-box">
+          <div class="error-header">
+            <i class="fa-solid fa-triangle-exclamation"></i> Form Belum Lengkap
+          </div>
+          <div class="error-desc">
+            Harap lengkapi field berikut sebelum melanjutkan:
+          </div>
+
+          <div class="error-list custom-scrollbar" id="errorListWrap"></div>
+
+          <div class="error-note">
+            <h6><i class="fa-solid fa-circle-info mr-1"></i> Catatan:</h6>
+            <p>
+              Field <strong>Request Hero</strong> dan
+              <strong>Catatan</strong> bersifat opsional.
+            </p>
+          </div>
+
+          <div class="error-btn-wrap">
+            <button class="btn-mengerti" onclick="tutupError()">
+              Mengerti
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <!-- ══════════════════════════════════════════ -->
     <!-- FOOTER -->
-    <footer>
-      <p>
-        Copyright © 2026 <a href="#">GENZSTORE</a>. All rights reserved. Powered
-        by GENZSTORE.
-      </p>
+    <!-- ══════════════════════════════════════════ -->
+    <footer
+      style="
+        background: linear-gradient(180deg, #020d1f, #010812);
+        border-top: 1px solid rgba(0, 168, 255, 0.14);
+      "
+    >
+      <div class="container mx-auto px-4 max-w-6xl pt-14 pb-8">
+        <div class="flex items-center gap-4 mb-10 pb-8 border-b border-white/8">
+          <div
+            class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#00a8ff] to-[#0050ff] flex items-center justify-center shadow-lg"
+          >
+            <i class="fa-solid fa-gamepad text-xl text-white"></i>
+          </div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-black italic tracking-wider">
+              <span class="text-white">GENZ</span
+              ><span class="text-[#F52727]">STORE</span>
+            </h2>
+            <p
+              class="text-gray-500 text-xs font-bold tracking-widest uppercase mt-0.5"
+            >
+              MURAH · AMAN · TERPERCAYA
+            </p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+          <div class="space-y-5">
+            <div>
+              <h3
+                class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-3"
+              >
+                GENZSTORE
+              </h3>
+              <p class="text-gray-500 text-sm leading-relaxed">
+                Bisnis yang bergerak di bidang pelayanan top-up dan upgrade
+                level dalam berbagai game mobile Indonesia.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-2"
+              >
+                Kantor Pusat
+              </h3>
+              <p class="text-gray-500 text-sm">
+                Kota Sidoarjo, Provinsi Jawa Timur, Indonesia
+              </p>
+            </div>
+          </div>
+          <div>
+            <h3
+              class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-4"
+            >
+              Customer Service
+            </h3>
+            <ul class="space-y-2.5">
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Top Up</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Joki</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Service</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Beli Mobile Legends</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Beli Free Fire</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Beli Efootball</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div class="mb-7">
+              <h3
+                class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-4"
+              >
+                Social Media Resmi
+              </h3>
+              <ul class="space-y-2.5">
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                    ><div
+                      class="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-white/10 flex items-center justify-center transition"
+                    >
+                      <i class="fa-solid fa-link text-sm"></i>
+                    </div>
+                    Linktree</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                    ><div
+                      class="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-white/10 flex items-center justify-center transition"
+                    >
+                      <i class="fa-brands fa-tiktok text-sm"></i>
+                    </div>
+                    TikTok</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                    ><div
+                      class="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-white/10 flex items-center justify-center transition"
+                    >
+                      <i class="fa-brands fa-instagram text-sm"></i>
+                    </div>
+                    Instagram</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3
+                class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-3"
+              >
+                Peta Situs
+              </h3>
+              <ul class="space-y-1.5">
+                <li>
+                  <a
+                    href="topup/farm.html"
+                    class="text-gray-500 hover:text-white transition text-sm"
+                    >Top Up</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="joki/joki.html"
+                    class="text-gray-500 hover:text-white transition text-sm"
+                    >Joki</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="beli_akun/kategori_akun.html"
+                    class="text-gray-500 hover:text-white transition text-sm"
+                    >Beli Akun</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-white/5 pt-6 text-center">
+          <p class="text-gray-600 text-xs font-medium">
+            Copyright &copy; 2026 <span class="text-gray-400">GENZSTORE</span>.
+            All rights reserved. Powered by GENZSTORE.
+          </p>
+        </div>
+      </div>
     </footer>
 
     <script>
-      /* ── DATA ── */
+      /* ── DATA JOKI & HARGA ── */
       const rankData = {
-        grandmaster: {
-          label: "Grandmaster",
-          icon: "🛡️",
-          price: 4500,
-          maxStars: 5,
+        grandmaster: { icon: "assets4/gm.png", price: 4500 },
+        epic: { icon: "assets4/epic.png", price: 6000 },
+        legend: { icon: "assets4/legend.png", price: 7000 },
+        mythic: { icon: "assets4/mytic.png", price: 16000 },
+        mythic_honor: { icon: "assets4/mytic.png", price: 18000 },
+        mythic_glory: { icon: "assets4/glory.png", price: 24000 },
+        mythic_immortal: { icon: "assets4/imo.png", price: 27000 },
+      };
+
+      const tierConfig = {
+        gm_5: {
+          category: "grandmaster",
+          label: "Grandmaster V",
+          baseStar: 0,
+          max: 5,
         },
-        epic: { label: "Epic", icon: "💎", price: 6000, maxStars: 5 },
-        legend: { label: "Legend", icon: "🏅", price: 7000, maxStars: 5 },
-        mythic: { label: "Mythic", icon: "⚡", price: 16000, maxStars: 10 },
+        gm_4: {
+          category: "grandmaster",
+          label: "Grandmaster IV",
+          baseStar: 5,
+          max: 5,
+        },
+        gm_3: {
+          category: "grandmaster",
+          label: "Grandmaster III",
+          baseStar: 10,
+          max: 5,
+        },
+        gm_2: {
+          category: "grandmaster",
+          label: "Grandmaster II",
+          baseStar: 15,
+          max: 5,
+        },
+        gm_1: {
+          category: "grandmaster",
+          label: "Grandmaster I",
+          baseStar: 20,
+          max: 5,
+        },
+        epic_5: { category: "epic", label: "Epic V", baseStar: 25, max: 5 },
+        epic_4: { category: "epic", label: "Epic IV", baseStar: 30, max: 5 },
+        epic_3: { category: "epic", label: "Epic III", baseStar: 35, max: 5 },
+        epic_2: { category: "epic", label: "Epic II", baseStar: 40, max: 5 },
+        epic_1: { category: "epic", label: "Epic I", baseStar: 45, max: 5 },
+        legend_5: {
+          category: "legend",
+          label: "Legend V",
+          baseStar: 50,
+          max: 5,
+        },
+        legend_4: {
+          category: "legend",
+          label: "Legend IV",
+          baseStar: 55,
+          max: 5,
+        },
+        legend_3: {
+          category: "legend",
+          label: "Legend III",
+          baseStar: 60,
+          max: 5,
+        },
+        legend_2: {
+          category: "legend",
+          label: "Legend II",
+          baseStar: 65,
+          max: 5,
+        },
+        legend_1: {
+          category: "legend",
+          label: "Legend I",
+          baseStar: 70,
+          max: 5,
+        },
+        mythic: { category: "mythic", label: "Mythic", baseStar: 75, max: 999 },
         mythic_honor: {
+          category: "mythic_honor",
           label: "Mythic Honor",
-          icon: "🌟",
-          price: 18000,
-          maxStars: 10,
+          baseStar: 75,
+          max: 999,
         },
         mythic_glory: {
+          category: "mythic_glory",
           label: "Mythic Glory",
-          icon: "👑",
-          price: 24000,
-          maxStars: 10,
+          baseStar: 75,
+          max: 999,
         },
         mythic_immortal: {
+          category: "mythic_immortal",
           label: "Mythic Immortal",
-          icon: "🔥",
-          price: 27000,
-          maxStars: 10,
+          baseStar: 75,
+          max: 999,
         },
       };
-      const rankOrder = [
-        "grandmaster",
-        "epic",
-        "legend",
-        "mythic",
-        "mythic_honor",
-        "mythic_glory",
-        "mythic_immortal",
-      ];
 
+      // Variabel Global
+      let currentTotalHargaText = "Rp 0";
+
+      /* =========================================================
+         LOGIKA HERO IMAGE SLIDER / CAROUSEL
+         ========================================================= */
+      let slideIndex = 0;
+      let slideInterval;
+      const slides = document.querySelectorAll(".slide");
+      const dots = document.querySelectorAll(".dot");
+      const wrapper = document.getElementById("sliderWrapper");
+
+      function showSlide(index) {
+        if (slides.length === 0) return; // Jika tidak ada slide, lewati
+
+        if (index >= slides.length) slideIndex = 0;
+        else if (index < 0) slideIndex = slides.length - 1;
+        else slideIndex = index;
+
+        wrapper.style.transform = `translateX(-${slideIndex * 100}%)`;
+
+        dots.forEach((dot) => dot.classList.remove("active"));
+        if (dots[slideIndex]) dots[slideIndex].classList.add("active");
+      }
+
+      function moveSlide(step) {
+        showSlide(slideIndex + step);
+        resetInterval();
+      }
+
+      function currentSlide(index) {
+        showSlide(index);
+        resetInterval();
+      }
+
+      function startAutoSlide() {
+        if (slides.length > 1) {
+          slideInterval = setInterval(() => {
+            moveSlide(1);
+          }, 5000); // Otomatis geser tiap 5 detik
+        }
+      }
+
+      function resetInterval() {
+        clearInterval(slideInterval);
+        startAutoSlide();
+      }
+
+      // Initialize Slider & Navbar Mobile
+      document.addEventListener("DOMContentLoaded", () => {
+        showSlide(slideIndex);
+        startAutoSlide();
+
+        const hamburgerBtn = document.getElementById("hamburger-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        if (hamburgerBtn && mobileMenu) {
+          hamburgerBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+          });
+        }
+      });
+
+      /* =========================================================
+         LOGIKA KALKULATOR JOKI
+         ========================================================= */
       function updateStarsFrom() {
         const r = document.getElementById("rankFrom").value;
         const el = document.getElementById("starsFrom");
-        if (r) {
-          el.max = rankData[r].maxStars;
-          el.value = 1;
+        if (r && tierConfig[r]) {
+          el.max = tierConfig[r].max;
+          if (r === "mythic_honor") el.value = 25;
+          else if (r === "mythic_glory") el.value = 50;
+          else if (r === "mythic_immortal") el.value = 100;
+          else el.value = 1;
         }
       }
+
       function updateStarsTo() {
         const r = document.getElementById("rankTo").value;
         const el = document.getElementById("starsTo");
-        if (r) {
-          el.max = rankData[r].maxStars;
-          el.value = rankData[r].maxStars;
+        if (r && tierConfig[r]) {
+          el.max = tierConfig[r].max;
+          if (r === "mythic_honor") el.value = 25;
+          else if (r === "mythic_glory") el.value = 50;
+          else if (r === "mythic_immortal") el.value = 100;
+          else el.value = tierConfig[r].max === 999 ? 15 : tierConfig[r].max;
         }
       }
 
@@ -1535,50 +2747,65 @@
           return;
         }
 
-        const fromIdx = rankOrder.indexOf(fromKey);
-        const toIdx = rankOrder.indexOf(toKey);
+        const configFrom = tierConfig[fromKey];
+        const configTo = tierConfig[toKey];
 
-        if (toIdx < fromIdx || (toIdx === fromIdx && toStar <= fromStar)) {
-          alert("Rank tujuan harus lebih tinggi dari rank sekarang!");
+        const fromIndex = configFrom.baseStar + fromStar;
+        const toIndex = configTo.baseStar + toStar;
+
+        if (toIndex <= fromIndex) {
+          alert(
+            "Rank tujuan harus lebih tinggi atau bintang harus lebih banyak!",
+          );
           return;
         }
 
         let total = 0;
-        for (let i = fromIdx; i <= toIdx; i++) {
-          const key = rankOrder[i];
-          const rd = rankData[key];
-          const startStar = i === fromIdx ? fromStar : 1;
-          const endStar = i === toIdx ? toStar : rd.maxStars;
-          total += (endStar - startStar) * rd.price;
+        for (let i = fromIndex; i < toIndex; i++) {
+          if (i < 26) total += rankData.grandmaster.price;
+          else if (i < 51) total += rankData.epic.price;
+          else if (i < 76) total += rankData.legend.price;
+          else if (i < 100) total += rankData.mythic.price;
+          else if (i < 125) total += rankData.mythic_honor.price;
+          else if (i < 175) total += rankData.mythic_glory.price;
+          else total += rankData.mythic_immortal.price;
         }
 
-        // show modal
-        document.getElementById("modalFromIcon").textContent =
-          rankData[fromKey].icon;
-        document.getElementById("modalToIcon").textContent =
-          rankData[toKey].icon;
-        document.getElementById("modalFromRank").textContent =
-          rankData[fromKey].label;
-        document.getElementById("modalToRank").textContent =
-          rankData[toKey].label;
+        currentTotalHargaText = formatRupiah(total);
+
+        document.getElementById("modalFromIcon").innerHTML =
+          `<img src="${rankData[configFrom.category].icon}" class="w-full h-full object-contain" alt="Rank Awal">`;
+        document.getElementById("modalToIcon").innerHTML =
+          `<img src="${rankData[configTo.category].icon}" class="w-full h-full object-contain" alt="Rank Tujuan">`;
+        document.getElementById("modalFromRank").textContent = configFrom.label;
+        document.getElementById("modalToRank").textContent = configTo.label;
         document.getElementById("modalFromStars").textContent =
           fromStar + " ⭐";
         document.getElementById("modalToStars").textContent = toStar + " ⭐";
-        document.getElementById("modalTotal").textContent = formatRupiah(total);
+        document.getElementById("modalTotal").textContent =
+          currentTotalHargaText;
+
         document.getElementById("modalOverlay").classList.add("open");
       }
 
-      /* promo card opens modal */
       function openOrder(name, rankKey, stars, price) {
-        document.getElementById("modalFromIcon").textContent = "❓";
-        document.getElementById("modalToIcon").textContent =
-          rankData[rankKey]?.icon || "⭐";
+        document.getElementById("modalFromIcon").innerHTML =
+          `<i class="fa-solid fa-question text-gray-500 text-3xl"></i>`;
+        const categoryKey = rankKey;
+        const iconSrc = rankData[categoryKey]?.icon || "assets4/gm.png";
+
+        currentTotalHargaText = price;
+
+        document.getElementById("modalToIcon").innerHTML =
+          `<img src="${iconSrc}" class="w-full h-full object-contain" alt="Rank Tujuan">`;
         document.getElementById("modalFromRank").textContent = "Rank Saat Ini";
         document.getElementById("modalToRank").textContent =
-          rankData[rankKey]?.label || rankKey;
+          rankData[categoryKey]?.label || rankKey;
         document.getElementById("modalFromStars").textContent = "—";
         document.getElementById("modalToStars").textContent = stars + " ⭐";
-        document.getElementById("modalTotal").textContent = price;
+        document.getElementById("modalTotal").textContent =
+          currentTotalHargaText;
+
         document.getElementById("modalOverlay").classList.add("open");
       }
 
@@ -1589,20 +2816,107 @@
       function closeModalBtn() {
         document.getElementById("modalOverlay").classList.remove("open");
       }
-      function lanjutPesan() {
-        window.open(
-          "https://wa.me/6285790427533?text=Halo+GENZSTORE%2C+saya+mau+order+joki+ML+🎮",
-          "_blank",
-        );
-      }
 
-      /* tabs */
       function switchTab(tab, btn) {
         document
           .querySelectorAll(".tab-btn")
           .forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
-        // Extend here if No Request tab has its own content
+      }
+
+      /* =========================================================
+         LOGIKA FORM ORDER & ERROR
+         ========================================================= */
+      function bukaFormOrder() {
+        document.getElementById("modalOverlay").classList.remove("open");
+
+        document.getElementById("foFromIcon").innerHTML =
+          document.getElementById("modalFromIcon").innerHTML ||
+          '<img src="assets4/gm.png">';
+        document.getElementById("foToIcon").innerHTML =
+          document.getElementById("modalToIcon").innerHTML ||
+          '<img src="assets4/epic.png">';
+        document.getElementById("foFromRank").innerText =
+          document.getElementById("modalFromRank").innerText;
+        document.getElementById("foFromStar").innerText =
+          document.getElementById("modalFromStars").innerText;
+        document.getElementById("foToRank").innerText =
+          document.getElementById("modalToRank").innerText;
+        document.getElementById("foToStar").innerText =
+          document.getElementById("modalToStars").innerText;
+
+        document.getElementById("foPriceAsli").innerText =
+          currentTotalHargaText;
+        document.getElementById("foPriceTotal").innerText =
+          currentTotalHargaText;
+
+        document.getElementById("modalOrderOverlay").classList.add("open");
+      }
+
+      function tutupFormOrder() {
+        document.getElementById("modalOrderOverlay").classList.remove("open");
+      }
+
+      function validasiDanPesan() {
+        const login = document.getElementById("f_login").value;
+        const nickname = document.getElementById("f_nickname").value;
+        const userid = document.getElementById("f_userid").value;
+        const serverid = document.getElementById("f_serverid").value;
+        const email = document.getElementById("f_email").value;
+        const password = document.getElementById("f_password").value;
+        const wa = document.getElementById("f_wa").value;
+        const source = document.getElementById("f_source").value;
+
+        let errors = [];
+
+        if (!login) errors.push("Login Via");
+        if (!nickname) errors.push("Nickname");
+        if (!userid) errors.push("User ID");
+        if (!serverid) errors.push("Server ID");
+        if (!email) errors.push("Email");
+        if (!password) errors.push("Password");
+
+        if (!wa || wa.length < 9) errors.push("WhatsApp (nomor tidak valid)");
+        if (!source) errors.push("Tau GENZSTORE dari?");
+
+        if (errors.length > 0) tampilkanError(errors);
+        else prosesKirimWA();
+      }
+
+      function tampilkanError(errorArray) {
+        const wrap = document.getElementById("errorListWrap");
+        wrap.innerHTML = "";
+
+        errorArray.forEach((err) => {
+          wrap.innerHTML += `<div class="error-item"><i class="fa-solid fa-circle-exclamation"></i> ${err}</div>`;
+        });
+
+        document.getElementById("modalErrorOverlay").classList.add("open");
+      }
+
+      function tutupError() {
+        document.getElementById("modalErrorOverlay").classList.remove("open");
+      }
+
+      function prosesKirimWA() {
+        const nickname = document.getElementById("f_nickname").value;
+        const login = document.getElementById("f_login").value;
+        const total = document.getElementById("foPriceTotal").innerText;
+
+        const r_awal = document.getElementById("foFromRank").innerText;
+        const s_awal = document.getElementById("foFromStar").innerText;
+        const r_tujuan = document.getElementById("foToRank").innerText;
+        const s_tujuan = document.getElementById("foToStar").innerText;
+
+        let pesan = `Halo Admin GENZSTORE! 🎮%0A%0ASaya ingin Order Joki ML:%0A`;
+        pesan += `- Rank Awal: *${r_awal} ${s_awal}*%0A`;
+        pesan += `- Rank Tujuan: *${r_tujuan} ${s_tujuan}*%0A`;
+        pesan += `- Nickname: *${nickname}*%0A`;
+        pesan += `- Login Via: *${login}*%0A`;
+        pesan += `- Total Biaya: *${total}*%0A%0A`;
+        pesan += `Data akun sudah saya isi lengkap di website. Mohon segera diproses ya min!`;
+
+        window.open(`https://wa.me/6285790427533?text=${pesan}`, "_blank");
       }
     </script>
   </body>
