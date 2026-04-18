@@ -1,1 +1,1056 @@
-COMING SOON
+<!doctype html>
+<html lang="id" class="overflow-x-hidden">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artikel & Info — GenZstore</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      * {
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: #020d1f;
+        font-family: "Poppins", sans-serif;
+      }
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .orb-cyan {
+        background: rgba(0, 168, 255, 0.18);
+      }
+      .orb-blue {
+        background: rgba(0, 80, 255, 0.15);
+      }
+      .bg-grid {
+        background-image: radial-gradient(
+          circle,
+          rgba(0, 168, 255, 0.07) 1px,
+          transparent 1px
+        );
+        background-size: 32px 32px;
+      }
+      .navbar-glass {
+        background: rgba(2, 13, 31, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(0, 168, 255, 0.14);
+      }
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .animate-marquee {
+        animation: marquee 28s linear infinite;
+      }
+      .grad-text {
+        background: linear-gradient(135deg, #00a8ff, #a78bfa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .art-card-hover {
+        transition:
+          transform 0.3s,
+          border-color 0.3s,
+          box-shadow 0.3s;
+      }
+      .art-card-hover:hover {
+        transform: translateY(-6px);
+        border-color: #00a8ff !important;
+        box-shadow: 0 20px 40px rgba(0, 168, 255, 0.14);
+      }
+      .filter-btn {
+        padding: 6px 16px;
+        border-radius: 100px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        border: 1px solid rgba(0, 168, 255, 0.25);
+        color: rgba(255, 255, 255, 0.5);
+        background: rgba(0, 168, 255, 0.06);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: #00a8ff;
+        color: #000;
+        border-color: #00a8ff;
+      }
+      .badge-tip {
+        background: rgba(0, 168, 255, 0.12);
+        color: #00a8ff;
+        border: 1px solid rgba(0, 168, 255, 0.3);
+      }
+      .badge-gaming {
+        background: rgba(34, 197, 94, 0.1);
+        color: #22c55e;
+        border: 1px solid rgba(34, 197, 94, 0.25);
+      }
+      .badge-waspada {
+        background: rgba(255, 79, 79, 0.1);
+        color: #ff4f4f;
+        border: 1px solid rgba(255, 79, 79, 0.25);
+      }
+      .badge-bocoran {
+        background: rgba(167, 139, 250, 0.1);
+        color: #a78bfa;
+        border: 1px solid rgba(167, 139, 250, 0.25);
+      }
+      .badge-guide {
+        background: rgba(251, 191, 36, 0.1);
+        color: #fbbf24;
+        border: 1px solid rgba(251, 191, 36, 0.25);
+      }
+      .hidden-card {
+        display: none !important;
+      }
+    </style>
+  </head>
+
+  <body class="bg-[#020d1f] text-white overflow-x-hidden pt-16">
+    <!-- NAVBAR -->
+    <header class="navbar-glass fixed top-0 left-0 right-0 z-50">
+      <div
+        class="container mx-auto px-4 max-w-[1400px] h-16 flex items-center justify-between gap-4"
+      >
+        <a href="../index.html" class="flex items-center gap-2 shrink-0 group">
+          <div
+            class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00a8ff] to-[#0050ff] flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform"
+          >
+            <i class="fa-solid fa-gamepad text-sm text-white"></i>
+          </div>
+          <span class="text-lg md:text-xl font-black tracking-widest italic"
+            >GENZ<span class="text-[#F52727]">STORE</span></span
+          >
+        </a>
+
+        <nav
+          class="hidden lg:flex items-center gap-1 text-[12px] font-bold tracking-wide uppercase shrink-0"
+        >
+          <a
+            href="../index.html"
+            class="flex items-center gap-1.5 text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition"
+            ><i class="fa-solid fa-house text-[#00a8ff]"></i> Beranda</a
+          >
+          <a
+            href="../topup/farm.html"
+            class="flex items-center gap-1.5 text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition"
+            ><i class="fa-solid fa-layer-group text-[#00a8ff]"></i> Top Up</a
+          >
+          <a
+            href="../joki/joki.html"
+            class="flex items-center gap-1.5 text-[#00a8ff] px-3 py-2 rounded-lg hover:bg-white/5 transition"
+            ><i class="fa-solid fa-angles-up text-[#00a8ff]"></i> Joki</a
+          >
+          <a
+            href="../beli_akun/kategori_akun.html"
+            class="flex items-center gap-1.5 text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition"
+          >
+            <i class="fa-solid fa-user-tag text-[#00a8ff]"></i> Beli Akun
+            <span
+              class="bg-red-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded animate-pulse"
+              >HOT</span
+            >
+          </a>
+          <a
+            href="../Artikel_GenZstore/artikel.html"
+            class="flex items-center gap-1.5 text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition"
+            ><i class="fa-solid fa-newspaper text-[#00a8ff]"></i> Artikel</a
+          >
+        </nav>
+
+        <div class="flex lg:hidden items-center gap-2 flex-1 justify-end">
+          <button
+            id="hamburger-btn"
+            class="text-white text-xl p-2 rounded-lg hover:bg-white/10 transition cursor-pointer"
+          >
+            <i id="hamburger-icon" class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden bg-[#010a1a]/95 backdrop-blur-xl border-t border-white/5 absolute w-full left-0 shadow-2xl"
+      >
+        <nav
+          class="flex flex-col px-5 py-5 gap-1 text-[13px] font-bold tracking-wide uppercase"
+        >
+          <a
+            href="../index.html"
+            class="flex items-center gap-3 text-white/80 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition border-b border-white/5"
+            ><i class="fa-solid fa-house w-5 text-[#00a8ff]"></i> Beranda</a
+          >
+          <a
+            href="../topup/farm.html"
+            class="flex items-center gap-3 text-white/80 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition border-b border-white/5"
+            ><i class="fa-solid fa-layer-group w-5 text-[#00a8ff]"></i> Top
+            Up</a
+          >
+          <a
+            href="../joki/joki.html"
+            class="flex items-center gap-3 text-[#00a8ff] px-4 py-3 rounded-xl hover:bg-white/5 transition border-b border-white/5"
+            ><i class="fa-solid fa-angles-up w-5 text-[#00a8ff]"></i> Joki</a
+          >
+          <a
+            href="../beli_akun/kategori_akun.html"
+            class="flex items-center gap-3 text-white/80 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition border-b border-white/5"
+            ><i class="fa-solid fa-user-tag w-5 text-[#00a8ff]"></i> Beli
+            Akun</a
+          >
+          <a
+            href="../Artikel_GenZstore/artikel.html"
+            class="flex items-center gap-3 text-white/80 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition"
+            ><i class="fa-solid fa-newspaper w-5 text-[#00a8ff]"></i> Artikel</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <!-- TICKER -->
+    <div
+      class="w-full bg-gradient-to-r from-[#0050ff] to-[#00a8ff] overflow-hidden py-2"
+    >
+      <div
+        class="flex animate-marquee whitespace-nowrap gap-12"
+        style="width: max-content"
+      >
+        <span class="text-white font-black text-xs tracking-widest uppercase"
+          >🔥 MABAR MAKIN GILA, SKIN MAKIN MENYALA!</span
+        >
+        <span class="text-white/70 font-bold text-xs">|</span>
+        <a
+          href="../index.html"
+          class="text-white font-black text-xs tracking-widest uppercase hover:underline"
+          >WEBSITE GENZSTORE</a
+        >
+        <span class="text-white/70 font-bold text-xs">|</span>
+        <span class="text-white font-black text-xs tracking-widest uppercase"
+          >⚡ DISKON AKUN 20% — KLIK DI SINI</span
+        >
+        <span class="text-white/70 font-bold text-xs">|</span>
+        <span class="text-white font-black text-xs tracking-widest uppercase"
+          >✅ PASTIKAN TRANSAKSI HANYA MELALUI WEBSITE RESMI GENZSTORE</span
+        >
+        <span class="text-white/70 font-bold text-xs">|</span>
+        <span class="text-white font-black text-xs tracking-widest uppercase"
+          >🔥 MABAR MAKIN GILA, SKIN MAKIN MENYALA!</span
+        >
+        <span class="text-white/70 font-bold text-xs">|</span>
+        <a
+          href="../index.html"
+          class="text-white font-black text-xs tracking-widest uppercase hover:underline"
+          >WEBSITE GENZSTORE</a
+        >
+        <span class="text-white/70 font-bold text-xs">|</span>
+        <span class="text-white font-black text-xs tracking-widest uppercase"
+          >⚡ DISKON AKUN 20% — KLIK DI SINI</span
+        >
+        <span class="text-white/70 font-bold text-xs">|</span>
+        <span class="text-white font-black text-xs tracking-widest uppercase"
+          >✅ PASTIKAN TRANSAKSI HANYA MELALUI WEBSITE RESMI GENZSTORE</span
+        >
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="relative w-full py-16 md:py-24 overflow-hidden">
+      <div
+        class="orb orb-cyan w-[500px] h-[500px] -top-40 -left-40 opacity-30"
+      ></div>
+      <div
+        class="orb orb-blue w-[350px] h-[350px] top-0 right-0 opacity-20"
+      ></div>
+      <div class="absolute inset-0 bg-grid opacity-30 z-0"></div>
+      <div class="container mx-auto px-4 max-w-4xl text-center relative z-10">
+        <div
+          class="inline-flex items-center gap-2 bg-[#00a8ff]/10 border border-[#00a8ff]/28 text-[#00a8ff] text-[11px] font-black tracking-[0.12em] uppercase px-4 py-1.5 rounded-full mb-5"
+        >
+          <i class="fa-solid fa-newspaper"></i> Blog & Info Gaming
+        </div>
+        <h1
+          class="text-4xl md:text-6xl lg:text-7xl font-black italic tracking-tighter mb-4"
+        >
+          ARTIKEL <span class="grad-text">&amp; BERITA</span>
+        </h1>
+        <p
+          class="text-gray-400 text-sm md:text-base font-medium max-w-xl mx-auto leading-relaxed"
+        >
+          Tips, trik, bocoran, dan info terbaru seputar dunia gaming — disajikan
+          khusus buat lo, gamer sejati.
+        </p>
+      </div>
+    </section>
+
+    <!-- FILTER & SEARCH -->
+    <section class="container mx-auto px-4 max-w-6xl mb-8">
+      <div class="flex flex-wrap gap-3 items-center justify-between">
+        <div class="relative">
+          <i
+            class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs"
+          ></i>
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Cari artikel..."
+            class="bg-white/5 border border-white/10 focus:border-[#00a8ff] text-white text-sm rounded-xl pl-8 pr-4 py-2 focus:outline-none transition w-56 placeholder-gray-500"
+          />
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button class="filter-btn active" data-cat="all">Semua</button>
+          <button class="filter-btn" data-cat="tip">Tip &amp; Trick</button>
+          <button class="filter-btn" data-cat="gaming">Gaming</button>
+          <button class="filter-btn" data-cat="waspada">Waspada</button>
+          <button class="filter-btn" data-cat="bocoran">Bocoran</button>
+          <button class="filter-btn" data-cat="guide">Guide</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED -->
+    <section class="container mx-auto px-4 max-w-6xl mb-10" id="featuredWrap">
+      <a
+        href="detail.html?id=1"
+        data-cat="tip"
+        data-title="5 metode pembayaran top up ml murah dana qris pulsa"
+        class="art-card-hover group flex flex-col md:flex-row rounded-2xl overflow-hidden border border-white/[0.08] bg-gradient-to-br from-[#00264d]/40 to-[#001a33]/40 cursor-pointer block"
+      >
+        <div
+          class="relative md:w-2/5 min-h-[200px] md:min-h-[280px] bg-gradient-to-br from-[#001a33] to-[#000d1a] flex items-center justify-center overflow-hidden shrink-0"
+        >
+          <img
+            src="../assets/img/berita1.jpg"
+            alt=""
+            class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-500"
+            onerror="this.style.display = 'none'"
+          />
+          <span class="text-7xl z-10 drop-shadow-2xl">💎</span>
+          <div class="absolute top-4 left-4 z-20">
+            <span
+              class="badge-tip text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider"
+              >⭐ Artikel Pilihan</span
+            >
+          </div>
+        </div>
+        <div class="p-6 md:p-8 flex flex-col justify-center flex-1">
+          <div class="flex items-center gap-3 mb-3 flex-wrap">
+            <span
+              class="badge-tip text-[10px] font-black px-2.5 py-1 rounded uppercase tracking-wider"
+              >Tip &amp; Trick</span
+            >
+            <span class="text-gray-500 text-xs">11 Maret 2026</span>
+            <span class="text-gray-600 text-xs">· 5 min baca</span>
+          </div>
+          <h2
+            class="text-xl md:text-2xl font-black uppercase tracking-tight leading-tight mb-3 group-hover:text-[#00a8ff] transition-colors"
+          >
+            5 Metode Pembayaran Top Up ML Paling Murah (Dana, QRIS, Pulsa?)
+          </h2>
+          <p class="text-gray-400 text-sm leading-relaxed mb-5">
+            Bingung pilih metode pembayaran buat top up Diamond Mobile Legends
+            yang paling hemat? Kita bedah satu per satu — dari DANA, GoPay,
+            QRIS, sampai Pulsa — mana yang kasih harga paling murah.
+          </p>
+          <span
+            class="flex items-center gap-2 text-[#00a8ff] font-black text-xs uppercase tracking-wider group-hover:gap-4 transition-all"
+          >
+            Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
+      </a>
+    </section>
+
+    <!-- GRID ARTIKEL -->
+    <section class="container mx-auto px-4 max-w-6xl mb-24">
+      <div class="flex items-center gap-3 mb-6">
+        <div
+          class="w-1 h-6 bg-gradient-to-b from-[#00a8ff] to-[#0050ff] rounded-full"
+        ></div>
+        <h2 class="text-sm font-black uppercase tracking-widest text-gray-400">
+          Artikel Terbaru
+        </h2>
+      </div>
+      <div
+        id="articlesGrid"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+      >
+        <a
+          href="detail.html?id=2"
+          data-cat="gaming"
+          data-title="jam terbaik top up mobile legends harga lebih murah"
+          class="art-card art-card-hover group flex flex-col rounded-2xl overflow-hidden border border-white/[0.08] bg-gradient-to-br from-white/[0.03] to-transparent cursor-pointer block"
+        >
+          <div
+            class="relative h-44 bg-[#001226] flex items-center justify-center overflow-hidden"
+          >
+            <img
+              src="../assets/img/berita2.jpg"
+              alt=""
+              class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-500"
+              onerror="this.style.display = 'none'"
+            />
+            <span class="text-5xl z-10">⏰</span>
+            <div class="absolute top-3 left-3 z-20">
+              <span
+                class="badge-gaming text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider"
+                >Gaming</span
+              >
+            </div>
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <p class="text-gray-600 text-xs mb-2">09 Maret 2026 · 3 min baca</p>
+            <h3
+              class="font-black uppercase text-sm leading-tight mb-2 group-hover:text-[#00a8ff] transition-colors flex-1"
+            >
+              Jam Terbaik Top Up ML Biar Dapat Harga Lebih Murah
+            </h3>
+            <p class="text-gray-500 text-xs leading-relaxed mb-4">
+              Ternyata waktu top up Diamond ML juga ngaruh ke harga! Cek jam-jam
+              terbaik biar dapetin promo paling worth it.
+            </p>
+            <span
+              class="text-[#00a8ff] font-black text-[11px] uppercase tracking-wider flex items-center gap-1.5 group-hover:gap-3 transition-all"
+              >Baca <i class="fa-solid fa-arrow-right text-[10px]"></i
+            ></span>
+          </div>
+        </a>
+
+        <a
+          href="detail.html?id=3"
+          data-cat="waspada"
+          data-title="jangan asal top up ciri website ml berbahaya"
+          class="art-card art-card-hover group flex flex-col rounded-2xl overflow-hidden border border-white/[0.08] bg-gradient-to-br from-white/[0.03] to-transparent cursor-pointer block"
+        >
+          <div
+            class="relative h-44 bg-[#001226] flex items-center justify-center overflow-hidden"
+          >
+            <img
+              src="../assets/img/berita3.jpg"
+              alt=""
+              class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-500"
+              onerror="this.style.display = 'none'"
+            />
+            <span class="text-5xl z-10">⚠️</span>
+            <div class="absolute top-3 left-3 z-20">
+              <span
+                class="badge-waspada text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider"
+                >Waspada</span
+              >
+            </div>
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <p class="text-gray-600 text-xs mb-2">08 Maret 2026 · 4 min baca</p>
+            <h3
+              class="font-black uppercase text-sm leading-tight mb-2 group-hover:text-[#00a8ff] transition-colors flex-1"
+            >
+              Jangan Asal Top Up! Ini 5 Ciri Website ML Yang Berbahaya
+            </h3>
+            <p class="text-gray-500 text-xs leading-relaxed mb-4">
+              Banyak website top up palsu yang siap tipu lo. Kenali ciri-cirinya
+              sekarang sebelum jadi korban!
+            </p>
+            <span
+              class="text-[#00a8ff] font-black text-[11px] uppercase tracking-wider flex items-center gap-1.5 group-hover:gap-3 transition-all"
+              >Baca <i class="fa-solid fa-arrow-right text-[10px]"></i
+            ></span>
+          </div>
+        </a>
+
+        <a
+          href="detail.html?id=4"
+          data-cat="bocoran"
+          data-title="bocoran skin baru free fire spesial ramadhan 2026"
+          class="art-card art-card-hover group flex flex-col rounded-2xl overflow-hidden border border-white/[0.08] bg-gradient-to-br from-white/[0.03] to-transparent cursor-pointer block"
+        >
+          <div
+            class="relative h-44 bg-[#001226] flex items-center justify-center overflow-hidden"
+          >
+            <img
+              src="../assets/img/berita4.jpg"
+              alt=""
+              class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-500"
+              onerror="this.style.display = 'none'"
+            />
+            <span class="text-5xl z-10">🔮</span>
+            <div class="absolute top-3 left-3 z-20">
+              <span
+                class="badge-bocoran text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider"
+                >Bocoran</span
+              >
+            </div>
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <p class="text-gray-600 text-xs mb-2">05 Maret 2026 · 2 min baca</p>
+            <h3
+              class="font-black uppercase text-sm leading-tight mb-2 group-hover:text-[#00a8ff] transition-colors flex-1"
+            >
+              Bocoran Skin Baru Free Fire Spesial Ramadhan 2026
+            </h3>
+            <p class="text-gray-500 text-xs leading-relaxed mb-4">
+              Garena bakal rilis skin edisi Ramadhan yang super keren! Nih
+              bocoran tampilannya sebelum resmi dirilis.
+            </p>
+            <span
+              class="text-[#00a8ff] font-black text-[11px] uppercase tracking-wider flex items-center gap-1.5 group-hover:gap-3 transition-all"
+              >Baca <i class="fa-solid fa-arrow-right text-[10px]"></i
+            ></span>
+          </div>
+        </a>
+
+        <a
+          href="detail.html?id=5"
+          data-cat="guide"
+          data-title="cara jual akun mobile legends aman tanpa kena ban"
+          class="art-card art-card-hover group flex flex-col rounded-2xl overflow-hidden border border-white/[0.08] bg-gradient-to-br from-white/[0.03] to-transparent cursor-pointer block"
+        >
+          <div
+            class="relative h-44 bg-[#001226] flex items-center justify-center overflow-hidden"
+          >
+            <img
+              src="../assets/img/berita1.jpg"
+              alt=""
+              class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-500"
+              onerror="this.style.display = 'none'"
+            />
+            <span class="text-5xl z-10">📘</span>
+            <div class="absolute top-3 left-3 z-20">
+              <span
+                class="badge-guide text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider"
+                >Guide</span
+              >
+            </div>
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <p class="text-gray-600 text-xs mb-2">01 Maret 2026 · 6 min baca</p>
+            <h3
+              class="font-black uppercase text-sm leading-tight mb-2 group-hover:text-[#00a8ff] transition-colors flex-1"
+            >
+              Cara Jual Akun Mobile Legends Aman Tanpa Kena Ban
+            </h3>
+            <p class="text-gray-500 text-xs leading-relaxed mb-4">
+              Mau jual akun ML tapi takut kena banned? Ikuti panduan lengkap ini
+              supaya proses jual beli aman dan anti rugi.
+            </p>
+            <span
+              class="text-[#00a8ff] font-black text-[11px] uppercase tracking-wider flex items-center gap-1.5 group-hover:gap-3 transition-all"
+              >Baca <i class="fa-solid fa-arrow-right text-[10px]"></i
+            ></span>
+          </div>
+        </a>
+
+        <a
+          href="detail.html?id=6"
+          data-cat="tip"
+          data-title="tips joki rank mobile legends naik mythic glory"
+          class="art-card art-card-hover group flex flex-col rounded-2xl overflow-hidden border border-white/[0.08] bg-gradient-to-br from-white/[0.03] to-transparent cursor-pointer block"
+        >
+          <div
+            class="relative h-44 bg-[#001226] flex items-center justify-center overflow-hidden"
+          >
+            <img
+              src="../assets/img/berita2.jpg"
+              alt=""
+              class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-500"
+              onerror="this.style.display = 'none'"
+            />
+            <span class="text-5xl z-10">🏆</span>
+            <div class="absolute top-3 left-3 z-20">
+              <span
+                class="badge-tip text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider"
+                >Tip &amp; Trick</span
+              >
+            </div>
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <p class="text-gray-600 text-xs mb-2">25 Feb 2026 · 4 min baca</p>
+            <h3
+              class="font-black uppercase text-sm leading-tight mb-2 group-hover:text-[#00a8ff] transition-colors flex-1"
+            >
+              Tips Joki Rank ML Biar Naik Cepat ke Mythic Glory
+            </h3>
+            <p class="text-gray-500 text-xs leading-relaxed mb-4">
+              Stuck di Epic atau Legend? Simak tips memilih jasa joki rank
+              terpercaya yang bisa naikin rank lo sampai Mythic.
+            </p>
+            <span
+              class="text-[#00a8ff] font-black text-[11px] uppercase tracking-wider flex items-center gap-1.5 group-hover:gap-3 transition-all"
+              >Baca <i class="fa-solid fa-arrow-right text-[10px]"></i
+            ></span>
+          </div>
+        </a>
+
+        <a
+          href="detail.html?id=7"
+          data-cat="gaming"
+          data-title="hero meta mobile legends season terbaru 2026"
+          class="art-card art-card-hover group flex flex-col rounded-2xl overflow-hidden border border-white/[0.08] bg-gradient-to-br from-white/[0.03] to-transparent cursor-pointer block"
+        >
+          <div
+            class="relative h-44 bg-[#001226] flex items-center justify-center overflow-hidden"
+          >
+            <img
+              src="../assets/img/berita3.jpg"
+              alt=""
+              class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-500"
+              onerror="this.style.display = 'none'"
+            />
+            <span class="text-5xl z-10">🎮</span>
+            <div class="absolute top-3 left-3 z-20">
+              <span
+                class="badge-gaming text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider"
+                >Gaming</span
+              >
+            </div>
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <p class="text-gray-600 text-xs mb-2">20 Feb 2026 · 5 min baca</p>
+            <h3
+              class="font-black uppercase text-sm leading-tight mb-2 group-hover:text-[#00a8ff] transition-colors flex-1"
+            >
+              Hero Meta Mobile Legends Season Terbaru 2026 — Wajib Pakai!
+            </h3>
+            <p class="text-gray-500 text-xs leading-relaxed mb-4">
+              Meta ML udah berubah banyak! Cek daftar hero yang paling OP di
+              season ini dan langsung kuasai ranked-mu.
+            </p>
+            <span
+              class="text-[#00a8ff] font-black text-[11px] uppercase tracking-wider flex items-center gap-1.5 group-hover:gap-3 transition-all"
+              >Baca <i class="fa-solid fa-arrow-right text-[10px]"></i
+            ></span>
+          </div>
+        </a>
+
+        <a
+          href="detail.html?id=8"
+          data-cat="waspada"
+          data-title="modus penipuan jual beli akun game online marak 2026"
+          class="art-card art-card-hover group flex flex-col rounded-2xl overflow-hidden border border-white/[0.08] bg-gradient-to-br from-white/[0.03] to-transparent cursor-pointer block"
+        >
+          <div
+            class="relative h-44 bg-[#001226] flex items-center justify-center overflow-hidden"
+          >
+            <img
+              src="../assets/img/berita4.jpg"
+              alt=""
+              class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-500"
+              onerror="this.style.display = 'none'"
+            />
+            <span class="text-5xl z-10">🚨</span>
+            <div class="absolute top-3 left-3 z-20">
+              <span
+                class="badge-waspada text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider"
+                >Waspada</span
+              >
+            </div>
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <p class="text-gray-600 text-xs mb-2">15 Feb 2026 · 5 min baca</p>
+            <h3
+              class="font-black uppercase text-sm leading-tight mb-2 group-hover:text-[#00a8ff] transition-colors flex-1"
+            >
+              Modus Penipuan Jual Beli Akun Game Online yang Lagi Marak 2026
+            </h3>
+            <p class="text-gray-500 text-xs leading-relaxed mb-4">
+              Laporan penipuan makin banyak! Kenali modusnya dan jangan sampai
+              lo jadi korban berikutnya.
+            </p>
+            <span
+              class="text-[#00a8ff] font-black text-[11px] uppercase tracking-wider flex items-center gap-1.5 group-hover:gap-3 transition-all"
+              >Baca <i class="fa-solid fa-arrow-right text-[10px]"></i
+            ></span>
+          </div>
+        </a>
+
+        <a
+          href="detail.html?id=9"
+          data-cat="bocoran"
+          data-title="bocoran patch efootball 2026 pemain baru fitur"
+          class="art-card art-card-hover group flex flex-col rounded-2xl overflow-hidden border border-white/[0.08] bg-gradient-to-br from-white/[0.03] to-transparent cursor-pointer block"
+        >
+          <div
+            class="relative h-44 bg-[#001226] flex items-center justify-center overflow-hidden"
+          >
+            <img
+              src="../assets/img/berita1.jpg"
+              alt=""
+              class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-500"
+              onerror="this.style.display = 'none'"
+            />
+            <span class="text-5xl z-10">⚽</span>
+            <div class="absolute top-3 left-3 z-20">
+              <span
+                class="badge-bocoran text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider"
+                >Bocoran</span
+              >
+            </div>
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <p class="text-gray-600 text-xs mb-2">10 Feb 2026 · 3 min baca</p>
+            <h3
+              class="font-black uppercase text-sm leading-tight mb-2 group-hover:text-[#00a8ff] transition-colors flex-1"
+            >
+              Bocoran Patch Terbaru eFootball 2026 — Pemain Baru &amp; Fitur
+              Keren!
+            </h3>
+            <p class="text-gray-500 text-xs leading-relaxed mb-4">
+              Konami bakal update besar eFootball 2026! Dari featured players
+              baru sampai perubahan gameplay seru.
+            </p>
+            <span
+              class="text-[#00a8ff] font-black text-[11px] uppercase tracking-wider flex items-center gap-1.5 group-hover:gap-3 transition-all"
+              >Baca <i class="fa-solid fa-arrow-right text-[10px]"></i
+            ></span>
+          </div>
+        </a>
+
+        <a
+          href="detail.html?id=10"
+          data-cat="guide"
+          data-title="panduan beli akun ml sultan anti tipu aman"
+          class="art-card art-card-hover group flex flex-col rounded-2xl overflow-hidden border border-white/[0.08] bg-gradient-to-br from-white/[0.03] to-transparent cursor-pointer block"
+        >
+          <div
+            class="relative h-44 bg-[#001226] flex items-center justify-center overflow-hidden"
+          >
+            <img
+              src="../assets/img/berita2.jpg"
+              alt=""
+              class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-500"
+              onerror="this.style.display = 'none'"
+            />
+            <span class="text-5xl z-10">🛡️</span>
+            <div class="absolute top-3 left-3 z-20">
+              <span
+                class="badge-guide text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider"
+                >Guide</span
+              >
+            </div>
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <p class="text-gray-600 text-xs mb-2">05 Feb 2026 · 7 min baca</p>
+            <h3
+              class="font-black uppercase text-sm leading-tight mb-2 group-hover:text-[#00a8ff] transition-colors flex-1"
+            >
+              Panduan Lengkap Beli Akun ML Sultan Anti Tipu — Aman 100%
+            </h3>
+            <p class="text-gray-500 text-xs leading-relaxed mb-4">
+              Mau beli akun ML sultan tapi khawatir tertipu? Ini checklist
+              lengkap yang wajib lo cek sebelum transfer duit!
+            </p>
+            <span
+              class="text-[#00a8ff] font-black text-[11px] uppercase tracking-wider flex items-center gap-1.5 group-hover:gap-3 transition-all"
+              >Baca <i class="fa-solid fa-arrow-right text-[10px]"></i
+            ></span>
+          </div>
+        </a>
+      </div>
+      <p id="noResult" class="hidden text-center text-gray-500 py-16 text-sm">
+        😅 Artikel tidak ditemukan. Coba kata kunci lain.
+      </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer
+      style="
+        background: linear-gradient(180deg, #020d1f, #010812);
+        border-top: 1px solid rgba(0, 168, 255, 0.14);
+      "
+    >
+      <div class="container mx-auto px-4 max-w-6xl pt-14 pb-8">
+        <div
+          class="flex items-center gap-4 mb-10 pb-8 border-b border-white/[0.08]"
+        >
+          <div
+            class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#00a8ff] to-[#0050ff] flex items-center justify-center shadow-lg"
+          >
+            <i class="fa-solid fa-gamepad text-xl text-white"></i>
+          </div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-black italic tracking-wider">
+              <span class="text-white">GENZ</span
+              ><span class="text-[#F52727]">STORE</span>
+            </h2>
+            <p
+              class="text-gray-500 text-xs font-bold tracking-widest uppercase mt-0.5"
+            >
+              MURAH · AMAN · TERPERCAYA
+            </p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+          <div class="space-y-5">
+            <div>
+              <h3
+                class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-3"
+              >
+                GENZSTORE
+              </h3>
+              <p class="text-gray-500 text-sm leading-relaxed">
+                Bisnis yang bergerak di bidang pelayanan top-up dan upgrade
+                level dalam berbagai game mobile Indonesia.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-2"
+              >
+                Kantor Pusat
+              </h3>
+              <p class="text-gray-500 text-sm">
+                Kota Sidoarjo, Provinsi Jawa Timur, Indonesia
+              </p>
+            </div>
+          </div>
+          <div>
+            <h3
+              class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-4"
+            >
+              Customer Service
+            </h3>
+            <ul class="space-y-2.5">
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Top Up</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Joki</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Service</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Beli Mobile Legends</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Beli Free Fire</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Beli Efootball</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div class="mb-7">
+              <h3
+                class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-4"
+              >
+                Social Media Resmi
+              </h3>
+              <ul class="space-y-2.5">
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                    ><div
+                      class="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-white/10 flex items-center justify-center transition"
+                    >
+                      <i class="fa-solid fa-link text-sm"></i>
+                    </div>
+                    Linktree</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                    ><div
+                      class="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-white/10 flex items-center justify-center transition"
+                    >
+                      <i class="fa-brands fa-tiktok text-sm"></i>
+                    </div>
+                    TikTok</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                    ><div
+                      class="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-white/10 flex items-center justify-center transition"
+                    >
+                      <i class="fa-brands fa-instagram text-sm"></i>
+                    </div>
+                    Instagram</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3
+                class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-3"
+              >
+                Peta Situs
+              </h3>
+              <ul class="space-y-1.5">
+                <li>
+                  <a
+                    href="../topup/farm.html"
+                    class="text-gray-500 hover:text-white transition text-sm"
+                    >Top Up</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="../joki/joki.html"
+                    class="text-gray-500 hover:text-white transition text-sm"
+                    >Joki</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="../beli_akun/kategori_akun.html"
+                    class="text-gray-500 hover:text-white transition text-sm"
+                    >Beli Akun</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-white/5 pt-6 text-center">
+          <p class="text-gray-600 text-xs font-medium">
+            Copyright &copy; 2026 <span class="text-gray-400">GENZSTORE</span>.
+            All rights reserved. Powered by GENZSTORE.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- WA Float -->
+    <a
+      href="https://wa.me/6285790427533"
+      class="fixed bottom-6 right-6 z-[90] w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-[0_8px_30px_rgba(37,211,102,0.5)] hover:scale-110 transition-transform"
+      title="Chat CS via WhatsApp"
+    >
+      <i class="fa-brands fa-whatsapp text-2xl text-white"></i>
+    </a>
+
+    <script>
+      // Hamburger
+      document
+        .getElementById("hamburger-btn")
+        .addEventListener("click", function () {
+          const menu = document.getElementById("mobile-menu");
+          const icon = document.getElementById("hamburger-icon");
+          menu.classList.toggle("hidden");
+          icon.classList.toggle("fa-bars");
+          icon.classList.toggle("fa-xmark");
+        });
+      // Filter
+      const filterBtns = document.querySelectorAll(".filter-btn");
+      const cards = document.querySelectorAll(".art-card");
+      const featuredWrap = document.getElementById("featuredWrap");
+      const featured = featuredWrap.querySelector("a");
+      const noResult = document.getElementById("noResult");
+      function runFilter(cat) {
+        let vis = 0;
+        cards.forEach((c) => {
+          const m = cat === "all" || c.dataset.cat === cat;
+          c.classList.toggle("hidden-card", !m);
+          if (m) vis++;
+        });
+        if (featured) {
+          const fm = cat === "all" || featured.dataset.cat === cat;
+          featuredWrap.classList.toggle("hidden", !fm);
+          if (fm) vis++;
+        }
+        noResult.classList.toggle("hidden", vis > 0);
+      }
+      filterBtns.forEach((btn) =>
+        btn.addEventListener("click", () => {
+          filterBtns.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          runFilter(btn.dataset.cat);
+        }),
+      );
+      // Search
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", function () {
+          const q = this.value.toLowerCase();
+          let vis = 0;
+          cards.forEach((c) => {
+            const t = (
+              c.dataset.title || c.querySelector("h3").textContent
+            ).toLowerCase();
+            const m = t.includes(q);
+            c.classList.toggle("hidden-card", !m);
+            if (m) vis++;
+          });
+          if (featured) {
+            const ft = (
+              featured.dataset.title || featured.querySelector("h2").textContent
+            ).toLowerCase();
+            const fm = ft.includes(q);
+            featuredWrap.classList.toggle("hidden", !fm);
+            if (fm) vis++;
+          }
+          noResult.classList.toggle("hidden", vis > 0);
+          filterBtns.forEach((b) => b.classList.remove("active"));
+          filterBtns[0].classList.add("active");
+        });
+    </script>
+  </body>
+</html>

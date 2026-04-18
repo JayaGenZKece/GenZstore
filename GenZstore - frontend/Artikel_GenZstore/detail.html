@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="id" class="overflow-x-hidden">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artikel — GenZstore</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      * {
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: #020d1f;
+        font-family: "Poppins", sans-serif;
+      }
+      .navbar-glass {
+        background: rgba(2, 13, 31, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(0, 168, 255, 0.14);
+      }
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .orb-cyan {
+        background: rgba(0, 168, 255, 0.18);
+      }
+      .bg-grid {
+        background-image: radial-gradient(
+          circle,
+          rgba(0, 168, 255, 0.07) 1px,
+          transparent 1px
+        );
+        background-size: 32px 32px;
+      }
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .animate-marquee {
+        animation: marquee 28s linear infinite;
+      }
+
+      /* Article content styles */
+      .art-content h2 {
+        font-size: 1.35rem;
+        font-weight: 800;
+        color: #fff;
+        margin: 2rem 0 0.75rem;
+        letter-spacing: -0.01em;
+        text-transform: uppercase;
+      }
+      .art-content h3 {
+        font-size: 1rem;
+        font-weight: 800;
+        color: #00a8ff;
+        margin: 1.5rem 0 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .art-content p {
+        color: #94a3b8;
+        line-height: 1.8;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+      }
+      .art-content strong {
+        color: #e2e8f0;
+        font-weight: 700;
+      }
+      .art-content ul,
+      .art-content ol {
+        padding-left: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      .art-content li {
+        color: #94a3b8;
+        line-height: 1.8;
+        margin-bottom: 0.35rem;
+        font-size: 0.9rem;
+      }
+      .art-content li::marker {
+        color: #00a8ff;
+      }
+      .callout {
+        background: rgba(0, 80, 200, 0.15);
+        border: 1px solid rgba(0, 168, 255, 0.2);
+        border-left: 3px solid #00a8ff;
+        border-radius: 8px;
+        padding: 1rem 1.25rem;
+        margin: 1.5rem 0;
+      }
+      .callout.danger {
+        background: rgba(255, 79, 79, 0.08);
+        border-color: rgba(255, 79, 79, 0.2);
+        border-left-color: #ff4f4f;
+      }
+      .callout.success {
+        background: rgba(34, 197, 94, 0.08);
+        border-color: rgba(34, 197, 94, 0.2);
+        border-left-color: #22c55e;
+      }
+      .callout p {
+        margin: 0;
+        color: #cbd5e1;
+      }
+      .step {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+        background: rgba(0, 80, 200, 0.1);
+        border: 1px solid rgba(0, 168, 255, 0.15);
+        border-radius: 10px;
+        padding: 0.9rem 1.1rem;
+        margin-bottom: 0.75rem;
+      }
+      .step-num {
+        background: linear-gradient(135deg, #0050ff, #00a8ff);
+        color: #fff;
+        font-weight: 900;
+        font-size: 0.9rem;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 0.1rem;
+      }
+      .step h4 {
+        font-weight: 800;
+        font-size: 0.88rem;
+        color: #e2e8f0;
+        margin-bottom: 0.2rem;
+      }
+      .step p {
+        margin: 0;
+        font-size: 0.8rem;
+        color: #94a3b8;
+        line-height: 1.55;
+      }
+      .badge-tip {
+        background: rgba(0, 168, 255, 0.12);
+        color: #00a8ff;
+        border: 1px solid rgba(0, 168, 255, 0.3);
+      }
+      .badge-gaming {
+        background: rgba(34, 197, 94, 0.1);
+        color: #22c55e;
+        border: 1px solid rgba(34, 197, 94, 0.25);
+      }
+      .badge-waspada {
+        background: rgba(255, 79, 79, 0.1);
+        color: #ff4f4f;
+        border: 1px solid rgba(255, 79, 79, 0.25);
+      }
+      .badge-bocoran {
+        background: rgba(167, 139, 250, 0.1);
+        color: #a78bfa;
+        border: 1px solid rgba(167, 139, 250, 0.25);
+      }
+      .badge-guide {
+        background: rgba(251, 191, 36, 0.1);
+        color: #fbbf24;
+        border: 1px solid rgba(251, 191, 36, 0.25);
+      }
+      .related-card {
+        transition:
+          transform 0.3s,
+          border-color 0.3s;
+      }
+      .related-card:hover {
+        transform: translateY(-5px);
+        border-color: #00a8ff !important;
+      }
+    </style>
+  </head>
+
+  <body class="bg-[#020d1f] text-white overflow-x-hidden pt-16">
+    <!-- NAVBAR -->
+    <header class="navbar-glass fixed top-0 left-0 right-0 z-50">
+      <div
+        class="container mx-auto px-4 max-w-[1400px] h-16 flex items-center justify-between gap-4"
+      >
+        <a href="../index.html" class="flex items-center gap-2 shrink-0 group">
+          <div
+            class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00a8ff] to-[#0050ff] flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform"
+          >
+            <i class="fa-solid fa-gamepad text-sm text-white"></i>
+          </div>
+          <span class="text-lg md:text-xl font-black tracking-widest italic"
+            >GENZ<span class="text-[#F52727]">STORE</span></span
+          >
+        </a>
+
+        <nav
+          class="hidden lg:flex items-center gap-1 text-[12px] font-bold tracking-wide uppercase shrink-0"
+        >
+          <a
+            href="../index.html"
+            class="flex items-center gap-1.5 text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition"
+            ><i class="fa-solid fa-house text-[#00a8ff]"></i> Beranda</a
+          >
+          <a
+            href="../topup/farm.html"
+            class="flex items-center gap-1.5 text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition"
+            ><i class="fa-solid fa-layer-group text-[#00a8ff]"></i> Top Up</a
+          >
+          <a
+            href="../joki/joki.html"
+            class="flex items-center gap-1.5 text-[#00a8ff] px-3 py-2 rounded-lg hover:bg-white/5 transition"
+            ><i class="fa-solid fa-angles-up text-[#00a8ff]"></i> Joki</a
+          >
+          <a
+            href="../beli_akun/kategori_akun.html"
+            class="flex items-center gap-1.5 text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition"
+          >
+            <i class="fa-solid fa-user-tag text-[#00a8ff]"></i> Beli Akun
+            <span
+              class="bg-red-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded animate-pulse"
+              >HOT</span
+            >
+          </a>
+          <a
+            href="../Artikel_GenZstore/artikel.html"
+            class="flex items-center gap-1.5 text-white/80 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition"
+            ><i class="fa-solid fa-newspaper text-[#00a8ff]"></i> Artikel</a
+          >
+        </nav>
+
+        <div class="flex lg:hidden items-center gap-2 flex-1 justify-end">
+          <button
+            id="hamburger-btn"
+            class="text-white text-xl p-2 rounded-lg hover:bg-white/10 transition cursor-pointer"
+          >
+            <i id="hamburger-icon" class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden bg-[#010a1a]/95 backdrop-blur-xl border-t border-white/5 absolute w-full left-0 shadow-2xl"
+      >
+        <nav
+          class="flex flex-col px-5 py-5 gap-1 text-[13px] font-bold tracking-wide uppercase"
+        >
+          <a
+            href="../index.html"
+            class="flex items-center gap-3 text-white/80 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition border-b border-white/5"
+            ><i class="fa-solid fa-house w-5 text-[#00a8ff]"></i> Beranda</a
+          >
+          <a
+            href="../topup/farm.html"
+            class="flex items-center gap-3 text-white/80 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition border-b border-white/5"
+            ><i class="fa-solid fa-layer-group w-5 text-[#00a8ff]"></i> Top
+            Up</a
+          >
+          <a
+            href="../joki/joki.html"
+            class="flex items-center gap-3 text-[#00a8ff] px-4 py-3 rounded-xl hover:bg-white/5 transition border-b border-white/5"
+            ><i class="fa-solid fa-angles-up w-5 text-[#00a8ff]"></i> Joki</a
+          >
+          <a
+            href="../beli_akun/kategori_akun.html"
+            class="flex items-center gap-3 text-white/80 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition border-b border-white/5"
+            ><i class="fa-solid fa-user-tag w-5 text-[#00a8ff]"></i> Beli
+            Akun</a
+          >
+          <a
+            href="../Artikel_GenZstore/artikel.html"
+            class="flex items-center gap-3 text-white/80 hover:text-white px-4 py-3 rounded-xl hover:bg-white/5 transition"
+            ><i class="fa-solid fa-newspaper w-5 text-[#00a8ff]"></i> Artikel</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <!-- TICKER -->
+    <div
+      class="w-full bg-gradient-to-r from-[#0050ff] to-[#00a8ff] overflow-hidden py-2"
+    >
+      <div
+        class="flex animate-marquee whitespace-nowrap gap-12"
+        style="width: max-content"
+      >
+        <span class="text-white font-black text-xs tracking-widest uppercase"
+          >🔥 MABAR MAKIN GILA, SKIN MAKIN MENYALA!</span
+        >
+        <span class="text-white/70 font-bold text-xs">|</span>
+        <a
+          href="../index.html"
+          class="text-white font-black text-xs tracking-widest uppercase hover:underline"
+          >WEBSITE GENZSTORE</a
+        >
+        <span class="text-white/70 font-bold text-xs">|</span>
+        <span class="text-white font-black text-xs tracking-widest uppercase"
+          >⚡ DISKON AKUN 20% — KLIK DI SINI</span
+        >
+        <span class="text-white/70 font-bold text-xs">|</span>
+        <span class="text-white font-black text-xs tracking-widest uppercase"
+          >✅ PASTIKAN TRANSAKSI HANYA MELALUI WEBSITE RESMI GENZSTORE</span
+        >
+        <span class="text-white/70 font-bold text-xs">|</span>
+        <span class="text-white font-black text-xs tracking-widest uppercase"
+          >🔥 MABAR MAKIN GILA, SKIN MAKIN MENYALA!</span
+        >
+        <span class="text-white/70 font-bold text-xs">|</span>
+        <a
+          href="../index.html"
+          class="text-white font-black text-xs tracking-widest uppercase hover:underline"
+          >WEBSITE GENZSTORE</a
+        >
+        <span class="text-white/70 font-bold text-xs">|</span>
+        <span class="text-white font-black text-xs tracking-widest uppercase"
+          >⚡ DISKON AKUN 20% — KLIK DI SINI</span
+        >
+        <span class="text-white/70 font-bold text-xs">|</span>
+        <span class="text-white font-black text-xs tracking-widest uppercase"
+          >✅ PASTIKAN TRANSAKSI HANYA MELALUI WEBSITE RESMI GENZSTORE</span
+        >
+      </div>
+    </div>
+
+    <!-- ARTICLE CONTENT injected by JS -->
+    <div id="app"></div>
+
+    <!-- FOOTER -->
+    <footer
+      style="
+        background: linear-gradient(180deg, #020d1f, #010812);
+        border-top: 1px solid rgba(0, 168, 255, 0.14);
+      "
+    >
+      <div class="container mx-auto px-4 max-w-6xl pt-14 pb-8">
+        <div
+          class="flex items-center gap-4 mb-10 pb-8 border-b border-white/[0.08]"
+        >
+          <div
+            class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#00a8ff] to-[#0050ff] flex items-center justify-center shadow-lg"
+          >
+            <i class="fa-solid fa-gamepad text-xl text-white"></i>
+          </div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-black italic tracking-wider">
+              <span class="text-white">GENZ</span
+              ><span class="text-[#F52727]">STORE</span>
+            </h2>
+            <p
+              class="text-gray-500 text-xs font-bold tracking-widest uppercase mt-0.5"
+            >
+              MURAH · AMAN · TERPERCAYA
+            </p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+          <div class="space-y-5">
+            <div>
+              <h3
+                class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-3"
+              >
+                GENZSTORE
+              </h3>
+              <p class="text-gray-500 text-sm leading-relaxed">
+                Bisnis yang bergerak di bidang pelayanan top-up dan upgrade
+                level dalam berbagai game mobile Indonesia.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-2"
+              >
+                Kantor Pusat
+              </h3>
+              <p class="text-gray-500 text-sm">
+                Kota Sidoarjo, Provinsi Jawa Timur, Indonesia
+              </p>
+            </div>
+          </div>
+          <div>
+            <h3
+              class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-4"
+            >
+              Customer Service
+            </h3>
+            <ul class="space-y-2.5">
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Top Up</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Joki</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Service</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Beli Mobile Legends</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Beli Free Fire</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/6285790427533"
+                  class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                  ><i
+                    class="fa-brands fa-whatsapp text-xl text-green-400 group-hover:scale-110 transition-transform"
+                  ></i>
+                  CS Beli Efootball</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div class="mb-7">
+              <h3
+                class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-4"
+              >
+                Social Media Resmi
+              </h3>
+              <ul class="space-y-2.5">
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                    ><div
+                      class="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-white/10 flex items-center justify-center transition"
+                    >
+                      <i class="fa-solid fa-link text-sm"></i>
+                    </div>
+                    Linktree</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                    ><div
+                      class="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-white/10 flex items-center justify-center transition"
+                    >
+                      <i class="fa-brands fa-tiktok text-sm"></i>
+                    </div>
+                    TikTok</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center gap-3 text-gray-400 hover:text-white transition text-sm group"
+                    ><div
+                      class="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-white/10 flex items-center justify-center transition"
+                    >
+                      <i class="fa-brands fa-instagram text-sm"></i>
+                    </div>
+                    Instagram</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3
+                class="text-[#00a8ff] font-black text-sm uppercase tracking-wider mb-3"
+              >
+                Peta Situs
+              </h3>
+              <ul class="space-y-1.5">
+                <li>
+                  <a
+                    href="../topup/farm.html"
+                    class="text-gray-500 hover:text-white transition text-sm"
+                    >Top Up</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="../joki/joki.html"
+                    class="text-gray-500 hover:text-white transition text-sm"
+                    >Joki</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="../beli_akun/kategori_akun.html"
+                    class="text-gray-500 hover:text-white transition text-sm"
+                    >Beli Akun</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-white/5 pt-6 text-center">
+          <p class="text-gray-600 text-xs font-medium">
+            Copyright &copy; 2026 <span class="text-gray-400">GENZSTORE</span>.
+            All rights reserved. Powered by GENZSTORE.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- WA Float -->
+    <a
+      href="https://wa.me/6285790427533"
+      class="fixed bottom-6 right-6 z-[90] w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-[0_8px_30px_rgba(37,211,102,0.5)] hover:scale-110 transition-transform"
+      title="Chat CS via WhatsApp"
+    >
+      <i class="fa-brands fa-whatsapp text-2xl text-white"></i>
+    </a>
+
+    <script>
+      // Hamburger
+      document
+        .getElementById("hamburger-btn")
+        .addEventListener("click", function () {
+          const menu = document.getElementById("mobile-menu");
+          const icon = document.getElementById("hamburger-icon");
+          menu.classList.toggle("hidden");
+          icon.classList.toggle("fa-bars");
+          icon.classList.toggle("fa-xmark");
+        });
+
+      // ── ARTIKEL DATABASE ──────────────────────────────
+      const ARTICLES = {
+        1: {
+          cat: "tip",
+          catLabel: "Tip & Trick",
+          date: "11 Maret 2026",
+          readMin: "5 min baca",
+          emoji: "💎",
+          img: "berita1.jpg",
+          title:
+            "5 Metode Pembayaran Top Up ML Paling Murah (Dana, QRIS, Pulsa?)",
+          lead: "Bingung milih metode pembayaran buat top up Diamond Mobile Legends yang paling hemat? Kita bedah satu per satu — dari DANA, GoPay, QRIS, sampai Pulsa.",
+          tags: ["Top Up", "Mobile Legends", "Diamond", "DANA", "QRIS"],
+          content: `<h2>KENAPA METODE BAYAR BISA NGARUH KE HARGA?</h2><p>Banyak yang gak tau kalau <strong>metode pembayaran yang lo pilih bisa ngasih selisih harga yang lumayan</strong>. Setiap platform punya biaya transaksi (MDR) yang berbeda, dan beberapa sering ngasih cashback atau promo khusus.</p><h2>1. QRIS — PALING FLEKSIBEL</h2><p>QRIS bisa dipake di hampir semua e-wallet dan m-banking. Biaya transaksi rendah 0.3%–0.7%, dan sering ada cashback dari bank atau e-wallet yang lo pake.</p><div class="callout success"><p><span>✅</span> <strong>Tips:</strong> Cek promo cashback di app e-wallet lo sebelum bayar lewat QRIS. Kadang ada cashback sampai 20%!</p></div><h2>2. DANA — JUARA CASHBACK</h2><p>DANA sering banget ngasih promo cashback buat transaksi gaming. Nominalnya bisa mulai dari Rp 5.000 sampai Rp 50.000, tergantung promo yang lagi jalan.</p><div class="step"><div class="step-num">1</div><div><h4>Cek Halaman Promo DANA</h4><p>Buka app DANA → tab "Promo" → cari promo Gaming atau Top Up.</p></div></div><div class="step"><div class="step-num">2</div><div><h4>Klaim Promo Dulu</h4><p>Klik "Klaim" atau "Aktifkan" sebelum transaksi. Kalau lupa klaim, cashback-nya hangus!</p></div></div><div class="step"><div class="step-num">3</div><div><h4>Bayar Lewat DANA</h4><p>Pilih DANA sebagai metode bayar di GenzStore, lalu selesaikan transaksi.</p></div></div><h2>3. GOPAY — PROMO MINGGUAN</h2><p>GoPay rutin ngasih promo tiap Rabu dan Jumat. Cashback bisa sampai Rp 30.000 buat transaksi di atas nominal tertentu.</p><h2>4. SHOPEEPAY — WORTH IT SAAT HARBOLNAS</h2><p>ShopeePay juara cashback saat event besar kayak 11.11, 12.12. Di luar event tetep oke, tapi lebih worth it kalau ada event.</p><h2>5. PULSA — PALING MAHAL, HINDARI!</h2><p>Top up pakai pulsa bisa <strong>20-30% lebih mahal</strong> dari metode lain. Gunakan hanya kalau kepepet!</p><div class="callout danger"><p>⚠️ <strong>Hindari pulsa</strong> kalau mau hemat. Selisih harganya signifikan banget dibanding QRIS.</p></div><h2>KESIMPULAN</h2><p>Urutan dari paling hemat: <strong>QRIS (pakai e-wallet berpromo) → DANA → GoPay → ShopeePay → Transfer Bank → Pulsa</strong>. Selalu cek promo aktif sebelum transaksi!</p>`,
+        },
+        2: {
+          cat: "gaming",
+          catLabel: "Gaming",
+          date: "09 Maret 2026",
+          readMin: "3 min baca",
+          emoji: "⏰",
+          img: "berita2.jpg",
+          title:
+            "Jam Terbaik Top Up Mobile Legends Biar Dapat Harga Lebih Murah",
+          lead: "Ternyata waktu top up Diamond ML juga ngaruh ke harga! Cek jam-jam terbaik biar dapetin promo dan harga paling worth it.",
+          tags: ["Top Up", "Mobile Legends", "Diamond", "Promo"],
+          content: `<h2>EMANG ADA JAM SPESIAL BUAT TOP UP?</h2><p>Jawabannya: <strong>ada, tapi bukan soal harga dasar yang berubah</strong>. Yang berubah adalah ketersediaan promo dari platform pembayaran. Timing yang tepat bisa bikin lo hemat puluhan ribu!</p><h2>JAM-JAM TERBAIK</h2><div class="step"><div class="step-num">1</div><div><h4>Tengah Malam (00.00–01.00)</h4><p>Banyak promo flash sale dari e-wallet yang reset di tengah malam. Cashback kuota baru tersedia di jam ini.</p></div></div><div class="step"><div class="step-num">2</div><div><h4>Pagi Hari (07.00–09.00)</h4><p>Beberapa bank ngasih promo cashback spesial pagi hari buat transaksi pertama di hari itu.</p></div></div><div class="step"><div class="step-num">3</div><div><h4>Jam Makan Siang (12.00–13.00)</h4><p>GoPay dan OVO sering ngadain flash deal pendek di jam makan siang, terutama hari kerja.</p></div></div><div class="step"><div class="step-num">4</div><div><h4>Malam (20.00–22.00)</h4><p>Prime time gaming! Beberapa platform top up ngasih bonus diamond ekstra di jam-jam ini.</p></div></div><h2>HARI TERBAIK</h2><ul><li><strong>Rabu:</strong> GoPay sering ada promo spesial</li><li><strong>Jumat:</strong> Weekend promo, banyak cashback aktif</li><li><strong>Tanggal 1 & 15:</strong> Promo gajian dari berbagai bank</li><li><strong>Tanggal kembar (11.11, 12.12):</strong> Promo terbesar sepanjang tahun</li></ul><div class="callout"><p>💡 <strong>Pro tip:</strong> Follow sosmed GenzStore biar gak ketinggalan flash sale Diamond!</p></div><h2>HINDARI JAM INI</h2><p>Hindari top up di jam <strong>02.00–06.00</strong> karena server payment gateway sering maintenance. Risiko transaksi gagal lebih tinggi!</p>`,
+        },
+        3: {
+          cat: "waspada",
+          catLabel: "Waspada",
+          date: "08 Maret 2026",
+          readMin: "4 min baca",
+          emoji: "⚠️",
+          img: "berita3.jpg",
+          title: "Jangan Asal Top Up! Ini 5 Ciri Website ML Yang Berbahaya",
+          lead: "Banyak website top up palsu yang siap tipu lo. Kenali ciri-cirinya sekarang sebelum jadi korban penipuan online!",
+          tags: ["Keamanan", "Penipuan", "Mobile Legends", "Top Up", "Waspada"],
+          content: `<h2>KENAPA PENTING PILIH WEBSITE TOP UP YANG BENAR?</h2><p>Laporan penipuan top up game makin meningkat. Korban biasanya rugi mulai dari <strong>Rp 50.000 sampai jutaan rupiah</strong> karena terjebak website palsu yang mirip asli.</p><div class="callout danger"><p>🚨 <strong>PERINGATAN:</strong> GENZSTORE HANYA BEROPERASI DI genzstoreid.vercel.app — Waspada terhadap website palsu yang mengatasnamakan kami!</p></div><h2>5 CIRI WEBSITE TOP UP BERBAHAYA</h2><h3>1. URL / Alamat Website Mencurigakan</h3><p>Website palsu punya URL yang <strong>mirip tapi tidak sama</strong> dengan yang asli. Contoh: "genzst0re.com" atau "genz-store.net". Selalu cek alamat lengkap di address bar browser!</p><div class="callout danger"><p>🔴 Kalau ada typo, angka menggantikan huruf, atau domain aneh (.xyz, .tk) — <strong>LANGSUNG TUTUP!</strong></p></div><h3>2. Tidak Ada Kontak yang Jelas</h3><p>Website top up terpercaya selalu punya CS yang aktif — minimal WhatsApp. Kalau hanya ada form kontak tanpa nomor WA, itu tanda bahaya besar.</p><h3>3. Harga Jauh Di Bawah Pasaran</h3><p>Kalau ada yang jual 500 Diamond ML seharga Rp 10.000 padahal normalnya Rp 75.000 — <strong>jangan tergiur!</strong> Ini trik klasik penipu.</p><h3>4. Tidak Ada Review Asli</h3><p>Review palsu biasanya menggunakan nama generik dan komentar yang terlalu sempurna. Cari review di platform independen seperti Google Maps atau forum gaming.</p><h3>5. Proses Pembayaran yang Aneh</h3><p>Kalau diminta transfer ke rekening pribadi (bukan virtual account/QRIS) — <strong>itu hampir pasti penipuan</strong>.</p><h2>CHECKLIST SEBELUM TOP UP</h2><div class="step"><div class="step-num">✓</div><div><h4>Cek URL dengan teliti</h4><p>Pastikan domain sama persis dengan website resmi.</p></div></div><div class="step"><div class="step-num">✓</div><div><h4>Cek ada SSL (gembok di browser)</h4><p>URL harus mulai dengan https://, bukan http://</p></div></div><div class="step"><div class="step-num">✓</div><div><h4>Test CS dulu</h4><p>Hubungi CS sebelum transaksi untuk memastikan aktif dan responsif.</p></div></div>`,
+        },
+        4: {
+          cat: "bocoran",
+          catLabel: "Bocoran",
+          date: "05 Maret 2026",
+          readMin: "2 min baca",
+          emoji: "🔮",
+          img: "berita4.jpg",
+          title: "Bocoran Skin Baru Free Fire Spesial Ramadhan 2026",
+          lead: "Garena bakal rilis skin edisi Ramadhan yang super keren di Free Fire! Nih bocoran tampilannya sebelum resmi dirilis.",
+          tags: ["Free Fire", "Skin", "Ramadhan", "Bocoran", "Garena"],
+          content: `<h2>GARENA SIAPKAN KOLEKSI RAMADHAN 2026</h2><p>Setiap tahun Garena selalu hadir dengan koleksi skin bertema Ramadhan, dan tahun 2026 ini bocoran-nya makin keren dari sebelumnya!</p><h2>SKIN YANG BOCOR</h2><h3>1. Bundle "Bulan Bintang Elite"</h3><p>Bundle premium bertema bulan sabit dengan dominasi warna <strong>emas, biru dongker, dan putih mutiara</strong>. Dilengkapi efek animasi bintang saat karakter bergerak. Ini diprediksi bakal jadi item paling diburu!</p><h3>2. Skin Senjata "Crescent Sniper"</h3><p>M82B dengan desain ornamen Arab bertema Ramadhan. Ada efek tembakan cahaya bulan saat kill. Visual-nya sangat premium dan setara skin Diamond lama.</p><h3>3. Backpack & Helmet Set "Sahur Edition"</h3><p>Aksesori lengkap bertema takjil dan sahur — desainnya imut tapi tetap stylish.</p><h2>CARA DAPAT SKIN RAMADHAN 2026</h2><div class="step"><div class="step-num">1</div><div><h4>Login Rutin Selama Ramadhan</h4><p>Garena biasanya ngasih reward login harian khusus Ramadhan. Jangan sampai skip!</p></div></div><div class="step"><div class="step-num">2</div><div><h4>Ikuti Event Ramadhan</h4><p>Misi event Ramadhan biasanya ngasih token yang bisa ditukar skin.</p></div></div><div class="step"><div class="step-num">3</div><div><h4>Top Up Diamond di GenzStore</h4><p>Buat item premium, lo tetap butuh Diamond. Top up sekarang dengan harga terbaik!</p></div></div><div class="callout"><p>🔔 <strong>Update terus</strong> artikel ini karena bakal ada bocoran baru seiring tanggal rilis makin dekat!</p></div>`,
+        },
+        5: {
+          cat: "guide",
+          catLabel: "Guide",
+          date: "01 Maret 2026",
+          readMin: "6 min baca",
+          emoji: "📘",
+          img: "berita1.jpg",
+          title: "Cara Jual Akun Mobile Legends Aman Tanpa Kena Ban",
+          lead: "Mau jual akun ML tapi takut kena banned? Ikuti panduan lengkap ini supaya proses jual beli aman, cepat, dan anti rugi.",
+          tags: ["Jual Akun", "Mobile Legends", "Aman", "Guide"],
+          content: `<h2>PERSIAPAN SEBELUM JUAL AKUN</h2><h3>1. Pisahkan Akun dari Data Pribadi</h3><p>Sebelum jual, pastikan akun tidak terhubung ke email utama atau nomor HP yang masih lo aktif pakai. Ganti ke email/nomor khusus yang akan ikut dengan akun.</p><h3>2. Screenshot Semua Aset</h3><p>Foto semua hero, skin, emblem, dan statistik akun. Ini penting sebagai bukti kondisi akun saat dijual.</p><h3>3. Cek Riwayat Login</h3><p>Pastikan tidak ada device lain yang masih login. Logout dari semua device sebelum transfer ke pembeli.</p><h2>PROSES JUAL YANG AMAN</h2><div class="step"><div class="step-num">1</div><div><h4>Gunakan Platform Terpercaya</h4><p>Jual lewat GenzStore untuk keamanan maksimal. Kita punya sistem verifikasi dan escrow yang melindungi kedua pihak.</p></div></div><div class="step"><div class="step-num">2</div><div><h4>Jangan Lepas Akun Sebelum Bayar</h4><p>Tunggu konfirmasi pembayaran diterima sebelum memberikan data login. Ini aturan paling penting!</p></div></div><div class="step"><div class="step-num">3</div><div><h4>Transfer Bertahap</h4><p>Berikan email dulu, lalu password, terakhir ubah nomor HP setelah pembayaran clear 100%.</p></div></div><div class="step"><div class="step-num">4</div><div><h4>Simpan Bukti Transaksi</h4><p>Screenshot semua percakapan dan bukti transfer. Simpan minimal 30 hari.</p></div></div><div class="callout success"><p>🛡️ <strong>Jual lewat GenzStore</strong> — Proses aman, harga terbaik, dan CS siap bantu 24/7!</p></div>`,
+        },
+        6: {
+          cat: "tip",
+          catLabel: "Tip & Trick",
+          date: "25 Feb 2026",
+          readMin: "4 min baca",
+          emoji: "🏆",
+          img: "berita2.jpg",
+          title: "Tips Joki Rank ML Biar Naik Cepat ke Mythic Glory",
+          lead: "Stuck di Epic atau Legend? Simak tips memilih jasa joki rank terpercaya yang bisa naikin rank lo sampai Mythic tanpa drama.",
+          tags: ["Joki", "Mobile Legends", "Rank", "Mythic", "Tips"],
+          content: `<h2>KENAPA BUTUH JASA JOKI RANK?</h2><p>Gak semua orang punya waktu atau skill buat grind rank sendiri. Jasa joki memungkinkan lo untuk mencapai rank impian tanpa harus frustrasi akibat tim yang toxic.</p><h2>TIPS PILIH JOKI RANK YANG TEPAT</h2><h3>1. Pilih yang Pakai Akun Sendiri (Bukan Bot)</h3><p>Joki yang menggunakan bot sangat berisiko kena ban. Pastikan joki lo adalah <strong>pemain manusia asli</strong> dengan winrate tinggi. Di GenzStore, semua joki adalah pro player terverifikasi!</p><h3>2. Cek Winrate & Rekam Jejak Joki</h3><p>Minta screenshot statistik joki sebelum deal. Winrate ideal untuk joki Mythic adalah di atas <strong>60%</strong>.</p><h3>3. Pastikan Ada Jaminan Rank</h3><p>Joki terpercaya akan memberikan <strong>garansi rank tercapai</strong>. Kalau tidak ada garansi, cari yang lain.</p><div class="callout"><p>💡 Saat akun sedang dijoki, <strong>jangan login</strong> ke akun yang sama. Ini bisa menyebabkan kick dan delay progress.</p></div><h2>ESTIMASI WAKTU JOKI</h2><ul><li><strong>Epic → Legend:</strong> 2-4 hari</li><li><strong>Legend → Mythic:</strong> 3-7 hari</li><li><strong>Mythic → Mythic Glory:</strong> 7-14 hari</li><li><strong>Mythic Glory → Top Global:</strong> Tersedia paket khusus</li></ul>`,
+        },
+        7: {
+          cat: "gaming",
+          catLabel: "Gaming",
+          date: "20 Feb 2026",
+          readMin: "5 min baca",
+          emoji: "🎮",
+          img: "berita3.jpg",
+          title: "Hero Meta Mobile Legends Season Terbaru 2026 — Wajib Pakai!",
+          lead: "Update meta terbaru ML udah berubah banyak! Cek daftar hero yang paling OP di season ini dan langsung kuasai ranked-mu.",
+          tags: ["Mobile Legends", "Meta", "Hero", "Season 2026", "Ranked"],
+          content: `<h2>META SEASON TERBARU: APA YANG BERUBAH?</h2><p>Moonton baru aja rilis patch besar yang mengubah balance secara signifikan. Ada hero yang turun, ada yang naik daun. Yuk intip siapa aja yang wajib lo kuasai!</p><h2>TIER S — HERO PALING OP</h2><h3>Marksman</h3><ul><li><strong>Melissa</strong> — Masih brutal di late game, bubble shield-nya susah ditembus</li><li><strong>Beatrix</strong> — Versatilitas senjatanya bikin dia adaptif di semua situasi</li></ul><h3>Fighter / Tank</h3><ul><li><strong>Uranus</strong> — Regen HP-nya masih overpowered di patch ini</li><li><strong>Fredrinn</strong> — Sustain tinggi + damage yang mengejutkan</li><li><strong>Chip</strong> — Support/Tank terbaik di meta sekarang, ult-nya game-changing</li></ul><h3>Mage</h3><ul><li><strong>Valentina</strong> — Ultimate bisa steal ult lawan, sangat powerful</li><li><strong>Faramis</strong> — Revive di teamfight masih terlalu kuat</li></ul><h2>TIER A — SANGAT DIREKOMENDASIKAN</h2><ul><li>Fanny — Mastery curve tinggi tapi reward lebih tinggi</li><li>Lancelot — Masih solid untuk solo queue</li><li>Mathilda — Support dengan mobilitas terbaik</li></ul><div class="callout danger"><p>❌ Hindari <strong>Layla, Miya, Nana</strong> di ranked. Mereka ter-counter terlalu mudah di meta sekarang.</p></div><h2>TIPS DRAFT PICK</h2><p>Ban prioritas: <strong>Chip, Uranus, Valentina</strong>. Pick prioritas: Marksman dulu, lalu Fighter yang bisa sustain. Balance antara CC, damage, dan sustain adalah kunci menang!</p>`,
+        },
+        8: {
+          cat: "waspada",
+          catLabel: "Waspada",
+          date: "15 Feb 2026",
+          readMin: "5 min baca",
+          emoji: "🚨",
+          img: "berita4.jpg",
+          title:
+            "Modus Penipuan Jual Beli Akun Game Online yang Lagi Marak 2026",
+          lead: "Laporan penipuan jual beli akun game makin banyak! Kenali modusnya dan jangan sampai lo jadi korban berikutnya.",
+          tags: ["Penipuan", "Keamanan", "Game Online", "Waspada", "2026"],
+          content: `<h2>ANGKA PENIPUAN GAMING MAKIN MENGKHAWATIRKAN</h2><p>Di 2026, penipuan jual beli akun game online meningkat signifikan. Maraknya marketplace dan WA malah dimanfaatkan penipu untuk menjangkau lebih banyak korban.</p><h2>MODUS #1: "AKUN SULTAN MURAH BANGET"</h2><p>Penipu menawarkan akun ML dengan 500+ skin seharga Rp 200.000 — harga yang jelas tidak masuk akal. Korban tergiur, transfer uang, lalu penipu menghilang.</p><div class="callout danger"><p>🔴 Kalau harga terlalu bagus untuk jadi kenyataan, itu pasti penipuan. Titik.</p></div><h2>MODUS #2: HACKBACK SETELAH TRANSAKSI</h2><p>Ini modus paling berbahaya. Penjual menjual akun, lalu <strong>beberapa hari kemudian mengklaim akunnya kembali</strong> lewat email recovery yang tidak diganti. Akun pembeli hilang tanpa ganti rugi.</p><p><strong>Pencegahan:</strong> Hanya beli dari platform bergaransi seperti GenzStore yang menyediakan layanan anti hackback.</p><h2>MODUS #3: FAKE MIDDLEMAN</h2><p>Penipu berpura-pura jadi middleman yang dipercaya. Mereka mengambil uang dari pembeli dengan janji "dititipkan ke penjual", lalu kabur. <strong>Selalu transaksi lewat platform resmi!</strong></p><h2>MODUS #4: PHISHING LINK</h2><p>Penipu mengirim link "verifikasi akun" yang mirip website resmi. Korban memasukkan password, lalu akun langsung diambil alih.</p><div class="step"><div class="step-num">1</div><div><h4>Jangan Klik Link Sembarangan</h4><p>Akses website langsung dari URL yang lo hapal, bukan dari link di WA/Telegram.</p></div></div><div class="step"><div class="step-num">2</div><div><h4>Aktifkan 2FA</h4><p>Two-factor authentication wajib aktif di semua akun game dan email lo.</p></div></div><div class="callout success"><p>🛡️ <strong>Jual beli di GenzStore</strong> dilindungi sistem anti hackback dan garansi lifetime. Lo aman 100%!</p></div>`,
+        },
+        9: {
+          cat: "bocoran",
+          catLabel: "Bocoran",
+          date: "10 Feb 2026",
+          readMin: "3 min baca",
+          emoji: "⚽",
+          img: "berita1.jpg",
+          title:
+            "Bocoran Patch Terbaru eFootball 2026 — Pemain Baru & Fitur Keren!",
+          lead: "Konami bakal hadir dengan update besar di eFootball 2026! Dari featured players baru sampai perubahan gameplay yang bikin makin seru.",
+          tags: ["eFootball", "Konami", "Patch", "Bocoran", "2026"],
+          content: `<h2>UPDATE BESAR EFOOTBALL 2026 SUDAH DI DEPAN MATA</h2><p>Konami mengkonfirmasi bahwa patch besar eFootball 2026 akan membawa perubahan fundamental pada gameplay dan hadirkan pemain-pemain ikonik baru dalam format Featured Player.</p><h2>BOCORAN FEATURED PLAYERS BARU</h2><h3>Generasi Emas yang Kembali</h3><ul><li><strong>Ronaldo Fenomeno (Icon)</strong> — Stats kecepatan dan finishing yang abnormal</li><li><strong>Zidane (Icon)</strong> — Dribbling dan passing stats tertinggi</li><li><strong>Messi TOTY</strong> — Versi terkuat Messi yang pernah ada di eFootball</li></ul><h3>Pemain Aktif Baru</h3><ul><li><strong>Vinicius Jr. (Featured)</strong> — Speed 99, Dribbling 97</li><li><strong>Bellingham (Milestone)</strong> — Overall 96, bisa didapat dari tantangan match</li><li><strong>Lamine Yamal (Rising Star)</strong> — Sensasi muda Barcelona hadir pertama kali!</li></ul><h2>PERUBAHAN GAMEPLAY</h2><p>Sistem <strong>Physical Duel</strong> dikabarkan dirombak total — tackle sekarang lebih realistis. Sistem <strong>Stamina</strong> juga diupdate sehingga pemain yang sering sprint akan drop performa di babak kedua.</p><div class="callout"><p>⚽ <strong>Siapkan koin lo!</strong> Top up eFootball sekarang di GenzStore dengan harga terjangkau.</p></div>`,
+        },
+        10: {
+          cat: "guide",
+          catLabel: "Guide",
+          date: "05 Feb 2026",
+          readMin: "7 min baca",
+          emoji: "🛡️",
+          img: "berita2.jpg",
+          title: "Panduan Lengkap Beli Akun ML Sultan Anti Tipu — Aman 100%",
+          lead: "Mau beli akun Mobile Legends sultan tapi khawatir tertipu? Ini checklist lengkap yang wajib lo cek sebelum transfer duit!",
+          tags: ["Beli Akun", "Mobile Legends", "Sultan", "Guide", "Aman"],
+          content: `<h2>MENGAPA BELI AKUN ML ITU BERISIKO?</h2><p>Pasar akun Mobile Legends dipenuhi penipu yang menjual akun hasil hack, atau akun yang langsung di-recover balik setelah transaksi. Dengan panduan ini, lo bisa terhindar dari semua itu.</p><h2>CHECKLIST SEBELUM BELI</h2><div class="step"><div class="step-num">1</div><div><h4>Minta Bukti Kepemilikan Asli</h4><p>Minta penjual tunjukkan email dan nomor HP yang terdaftar di akun. Kalau menolak, SKIP!</p></div></div><div class="step"><div class="step-num">2</div><div><h4>Cek Riwayat Akun</h4><p>Tanyakan apakah akun pernah dijual sebelumnya, dan minta tangkapan layar pengaturan akun.</p></div></div><div class="step"><div class="step-num">3</div><div><h4>Verifikasi Skin & Hero Secara Live</h4><p>Minta screen sharing atau video call langsung di dalam game untuk verifikasi kondisi akun.</p></div></div><div class="step"><div class="step-num">4</div><div><h4>Cek Binding Akun</h4><p>Pastikan tidak ada binding Moonton Account, Facebook, atau Google yang masih aktif milik penjual.</p></div></div><div class="step"><div class="step-num">5</div><div><h4>Beli Lewat Platform Bergaransi</h4><p>Platform seperti GenzStore menyediakan garansi anti hackback dan verifikasi akun sebelum dijual.</p></div></div><h2>RED FLAGS — LANGSUNG BATALKAN JIKA:</h2><ul><li>Penjual terburu-buru dan minta transfer cepat</li><li>Tidak mau video call atau screen sharing</li><li>Harga jauh di bawah pasaran</li><li>Tidak ada garansi sama sekali</li></ul><div class="callout danger"><p>⛔ Jangan pernah bayar DP dulu baru lihat akun. Ini modus klasik yang selalu berhasil tipu korban!</p></div><h2>KENAPA BELI DI GENZSTORE LEBIH AMAN?</h2><ul><li>✅ Setiap akun diverifikasi tim GenzStore sebelum dipajang</li><li>✅ Garansi anti hackback seumur hidup</li><li>✅ CS aktif 24/7 via WhatsApp</li><li>✅ Refund 100% kalau akun bermasalah</li></ul>`,
+        },
+      };
+
+      const RELATED = {
+        tip: ["2", "6"],
+        gaming: ["7", "2"],
+        waspada: ["3", "8"],
+        bocoran: ["4", "9"],
+        guide: ["5", "10"],
+      };
+      const BADGE = {
+        tip: "badge-tip",
+        gaming: "badge-gaming",
+        waspada: "badge-waspada",
+        bocoran: "badge-bocoran",
+        guide: "badge-guide",
+      };
+
+      function renderNotFound() {
+        document.getElementById("app").innerHTML = `
+          <div class="container mx-auto px-4 max-w-3xl py-24 text-center">
+            <div class="text-6xl mb-4">😅</div>
+            <h2 class="text-2xl font-black uppercase mb-3">Artikel Tidak Ditemukan</h2>
+            <p class="text-gray-500 text-sm mb-6">Artikel yang lo cari tidak ada atau sudah dipindahkan.</p>
+            <a href="artikel.html" class="inline-block bg-gradient-to-r from-[#0050ff] to-[#00a8ff] text-white font-black text-xs uppercase px-6 py-3 rounded-xl shadow-lg hover:brightness-110 transition">← Kembali ke Artikel</a>
+          </div>`;
+      }
+
+      function renderArticle(id) {
+        const art = ARTICLES[id];
+        if (!art) {
+          renderNotFound();
+          return;
+        }
+        document.title = art.title + " — GENZSTORE";
+
+        const relIds = (RELATED[art.cat] || [])
+          .filter((r) => r != id)
+          .slice(0, 3);
+        const relHTML = relIds
+          .map((rid) => {
+            const r = ARTICLES[rid];
+            if (!r) return "";
+            return `<a href="detail.html?id=${rid}" class="related-card flex gap-3 items-center bg-white/[0.03] border border-white/[0.08] rounded-xl p-3 cursor-pointer no-underline">
+            <span class="text-3xl shrink-0">${r.emoji}</span>
+            <div><p class="text-[#00a8ff] text-[10px] font-black uppercase tracking-wider mb-0.5">${r.catLabel}</p><h4 class="text-white font-black text-xs leading-tight uppercase">${r.title}</h4><p class="text-gray-600 text-[10px] mt-0.5">${r.date} · ${r.readMin}</p></div>
+          </a>`;
+          })
+          .join("");
+
+        document.getElementById("app").innerHTML = `
+          <!-- Breadcrumb -->
+          <div class="container mx-auto px-4 max-w-3xl pt-6 pb-0">
+            <div class="flex items-center gap-2 text-xs text-gray-600 font-medium">
+              <a href="../index.html" class="hover:text-white transition">Beranda</a>
+              <i class="fa-solid fa-chevron-right text-[9px]"></i>
+              <a href="artikel.html" class="hover:text-white transition">Artikel</a>
+              <i class="fa-solid fa-chevron-right text-[9px]"></i>
+              <span class="text-[#00a8ff]">${art.catLabel}</span>
+            </div>
+          </div>
+
+          <!-- Article Header -->
+          <div class="container mx-auto px-4 max-w-3xl pt-6 pb-0">
+            <div class="flex items-center gap-3 mb-4 flex-wrap">
+              <span class="${BADGE[art.cat]} text-[10px] font-black px-2.5 py-1 rounded uppercase tracking-wider">${art.catLabel}</span>
+              <span class="text-gray-500 text-xs">${art.date}</span>
+              <span class="text-gray-600 text-xs">· ${art.readMin}</span>
+            </div>
+            <h1 class="text-2xl md:text-3xl font-black uppercase tracking-tight leading-tight mb-4">${art.title}</h1>
+            <p class="text-gray-400 text-sm leading-relaxed border-l-2 border-[#00a8ff] pl-4 mb-6">${art.lead}</p>
+          </div>
+
+          <!-- Hero Image -->
+          <div class="container mx-auto px-4 max-w-3xl mb-8">
+            <div class="relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#001a33] to-[#000d1a] border border-white/[0.08] flex items-center justify-center min-h-[200px] md:min-h-[280px]">
+              <img src="../assets/img/${art.img}" alt="" class="absolute inset-0 w-full h-full object-cover opacity-40" onerror="this.style.display='none'"/>
+              <span class="text-8xl relative z-10" style="filter:drop-shadow(0 0 30px rgba(0,168,255,0.3))">${art.emoji}</span>
+            </div>
+          </div>
+
+          <!-- Article Content -->
+          <div class="container mx-auto px-4 max-w-3xl mb-10">
+            <div class="art-content">${art.content}</div>
+          </div>
+
+          <!-- Tags -->
+          <div class="container mx-auto px-4 max-w-3xl mb-8">
+            <div class="h-px bg-gradient-to-r from-transparent via-[#00a8ff]/30 to-transparent mb-6"></div>
+            <div class="flex flex-wrap gap-2">
+              ${art.tags.map((t) => `<span class="bg-white/5 border border-white/10 text-gray-400 text-xs font-bold px-3 py-1 rounded-full">#${t}</span>`).join("")}
+            </div>
+          </div>
+
+          <!-- CTA Banner -->
+          <div class="container mx-auto px-4 max-w-3xl mb-10">
+            <div class="rounded-2xl border border-[#00a8ff]/20 bg-gradient-to-br from-[#00264d]/40 to-[#001a33]/40 p-6 md:p-8 text-center relative overflow-hidden">
+              <div class="absolute inset-0 opacity-5" style="background:radial-gradient(ellipse 70% 100% at 50% 0%,#00a8ff,transparent)"></div>
+              <p class="text-[#00a8ff] text-[11px] font-black tracking-widest uppercase mb-2 relative z-10">Butuh Top Up atau Beli Akun?</p>
+              <h3 class="text-xl md:text-2xl font-black italic uppercase tracking-tight mb-2 relative z-10">GENZ<span class="text-[#F52727]">STORE</span> ADA!</h3>
+              <p class="text-gray-400 text-sm mb-5 relative z-10">Proses instan, harga terbaik, dan garansi anti hackback seumur hidup. Dipercaya ribuan gamer Indonesia!</p>
+              <a href="../index.html" class="inline-block bg-gradient-to-r from-[#0050ff] to-[#00a8ff] text-white font-black text-xs uppercase px-6 py-3 rounded-xl shadow-[0_0_20px_rgba(0,168,255,0.3)] hover:brightness-110 transition relative z-10">🎮 Kunjungi GenzStore</a>
+            </div>
+          </div>
+
+          <!-- Related Articles -->
+          ${
+            relIds.length
+              ? `
+          <div class="container mx-auto px-4 max-w-3xl mb-12">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-1 h-5 bg-gradient-to-b from-[#00a8ff] to-[#0050ff] rounded-full"></div>
+              <h2 class="text-xs font-black uppercase tracking-widest text-gray-400">Artikel Terkait</h2>
+            </div>
+            <div class="flex flex-col gap-3">${relHTML}</div>
+          </div>`
+              : ""
+          }
+
+          <!-- Back Button -->
+          <div class="container mx-auto px-4 max-w-3xl mb-16 text-center">
+            <a href="artikel.html" class="inline-flex items-center gap-2 text-gray-500 hover:text-white text-xs font-bold uppercase tracking-wider transition">
+              <i class="fa-solid fa-arrow-left"></i> Kembali ke Semua Artikel
+            </a>
+          </div>
+        `;
+      }
+
+      const id = parseInt(
+        new URLSearchParams(window.location.search).get("id"),
+      );
+      if (id && ARTICLES[id]) renderArticle(id);
+      else renderNotFound();
+    </script>
+  </body>
+</html>
