@@ -202,11 +202,11 @@
         class="container mx-auto px-4 max-w-[1400px] h-16 flex items-center justify-between gap-4"
       >
         <a href="../index.html" class="flex items-center gap-2 shrink-0 group">
-          <div
-            class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00a8ff] to-[#0050ff] flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform"
-          >
-            <i class="fa-solid fa-gamepad text-sm text-white"></i>
-          </div>
+          <img
+            src="assets5/img/logo GZ merah.png"
+            alt="GenZStore Logo"
+            class="w-14 h-14 rounded-lg object-contain group-hover:scale-105 transition-transform shadow-lg"
+          />
           <span class="text-lg md:text-xl font-black tracking-widest italic"
             >GENZ<span class="text-[#F52727]">STORE</span></span
           >
@@ -344,7 +344,9 @@
     <!-- ARTICLE CONTENT injected by JS -->
     <div id="app"></div>
 
+    <!-- ══════════════════════════════════════════ -->
     <!-- FOOTER -->
+    <!-- ══════════════════════════════════════════ -->
     <footer
       style="
         background: linear-gradient(180deg, #020d1f, #010812);
@@ -352,14 +354,12 @@
       "
     >
       <div class="container mx-auto px-4 max-w-6xl pt-14 pb-8">
-        <div
-          class="flex items-center gap-4 mb-10 pb-8 border-b border-white/[0.08]"
-        >
-          <div
-            class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#00a8ff] to-[#0050ff] flex items-center justify-center shadow-lg"
-          >
-            <i class="fa-solid fa-gamepad text-xl text-white"></i>
-          </div>
+        <div class="flex items-center gap-4 mb-10 pb-8 border-b border-white/8">
+          <img
+            src="assets5/img/logo GZ merah.png"
+            alt="GenZStore Logo"
+            class="w-20 h-20 rounded-lg object-contain group-hover:scale-105 transition-transform shadow-lg"
+          />
           <div>
             <h2 class="text-2xl md:text-3xl font-black italic tracking-wider">
               <span class="text-white">GENZ</span
@@ -391,9 +391,26 @@
               >
                 Kantor Pusat
               </h3>
-              <p class="text-gray-500 text-sm">
+              <p class="text-gray-500 text-sm mb-3">
                 Kota Sidoarjo, Provinsi Jawa Timur, Indonesia
               </p>
+              <div
+                class="rounded-xl overflow-hidden border border-white/10"
+                style="height: 150px"
+              >
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126058.17591790684!2d112.61665565!3d-7.4457616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7e4b96aa6f471%3A0x78aa3fb24bb5fd8f!2sSidoarjo%2C%20East%20Java%2C%20Indonesia!5e0!3m2!1sen!2sid!4v1714000000000"
+                  width="100%"
+                  height="150"
+                  style="
+                    border: 0;
+                    filter: invert(90%) hue-rotate(180deg) saturate(0.8);
+                  "
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
             </div>
           </div>
           <div>
@@ -520,21 +537,21 @@
               <ul class="space-y-1.5">
                 <li>
                   <a
-                    href="../topup/farm.html"
+                    href="topup/farm.html"
                     class="text-gray-500 hover:text-white transition text-sm"
                     >Top Up</a
                   >
                 </li>
                 <li>
                   <a
-                    href="../joki/joki.html"
+                    href="joki/joki.html"
                     class="text-gray-500 hover:text-white transition text-sm"
                     >Joki</a
                   >
                 </li>
                 <li>
                   <a
-                    href="../beli_akun/kategori_akun.html"
+                    href="beli_akun/kategori_akun.html"
                     class="text-gray-500 hover:text-white transition text-sm"
                     >Beli Akun</a
                   >
@@ -552,10 +569,10 @@
       </div>
     </footer>
 
-    <!-- WA Float -->
+    <!-- WhatsApp Float Button -->
     <a
       href="https://wa.me/6285790427533"
-      class="fixed bottom-6 right-6 z-[90] w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-[0_8px_30px_rgba(37,211,102,0.5)] hover:scale-110 transition-transform"
+      class="fixed bottom-6 right-6 z-[90] w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-[0_8px_30px_rgba(37,211,102,0.5)] hover:scale-110 transition-transform cursor-pointer"
       title="Chat CS via WhatsApp"
     >
       <i class="fa-brands fa-whatsapp text-2xl text-white"></i>
