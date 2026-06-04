@@ -510,23 +510,36 @@
             <i class="fa-solid fa-chevron-left text-sm"></i>
           </button>
           <div
-            class="flex-1 overflow-hidden rounded-2xl shadow-[0_30px_80px_rgba(0,0,0,0.7)] border border-white/10 relative"
+            class="flex-1 overflow-hidden rounded-2xl shadow-[0_30px_80px_rgba(0,0,0,0.7)] border border-white/10 relative bg-[#020d1f]"
           >
+            <!-- Mobile nav buttons -->
+            <button
+              onclick="prevBanner()"
+              class="md:hidden absolute left-2 top-1/2 -translate-y-1/2 z-20 glass text-white rounded-full w-8 h-8 flex items-center justify-center cursor-pointer"
+            >
+              <i class="fa-solid fa-chevron-left text-xs"></i>
+            </button>
+            <button
+              onclick="nextBanner()"
+              class="md:hidden absolute right-2 top-1/2 -translate-y-1/2 z-20 glass text-white rounded-full w-8 h-8 flex items-center justify-center cursor-pointer"
+            >
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+            </button>
             <div
               id="banner-track"
               class="flex transition-transform duration-1000 ease-in-out w-full"
             >
               <img
                 src="assets/img/banner4.png"
-                class="w-full h-[200px] md:h-[350px] object-cover flex-shrink-0"
+                class="w-full h-auto max-h-[480px] md:h-[350px] md:max-h-none object-contain md:object-cover flex-shrink-0 bg-[#020d1f]"
               />
               <img
                 src="assets/img/banner2.png"
-                class="w-full h-[200px] md:h-[350px] object-cover flex-shrink-0"
+                class="w-full h-auto max-h-[480px] md:h-[350px] md:max-h-none object-contain md:object-cover flex-shrink-0 bg-[#020d1f]"
               />
               <img
                 src="assets/img/banner3.png"
-                class="w-full h-[200px] md:h-[350px] object-cover flex-shrink-0"
+                class="w-full h-auto max-h-[480px] md:h-[350px] md:max-h-none object-contain md:object-cover flex-shrink-0 bg-[#020d1f]"
               />
             </div>
             <div
